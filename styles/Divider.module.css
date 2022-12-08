@@ -1,0 +1,6 @@
+.divider {
+  background-color: var(--clr-stroke);
+  opacity: 0.5;
+  height: 2px;
+  width: 100%;
+}

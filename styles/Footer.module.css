@@ -1,0 +1,21 @@
+.footer {
+  background-color: var(--clr-darker);
+  color: var(--clr-light);
+  padding-inline: var(--spacing-base);
+  height: 104px;
+  display: flex;
+  align-items: center;
+  border-top: solid 2px var(--clr-stroke);
+}
+.footer_barlink {
+  font-weight: var(--fw-exbold);
+  font-size: 24px;
+}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+  }
+  .footer_barlink {
+    text-align: center;
+  }
+}
