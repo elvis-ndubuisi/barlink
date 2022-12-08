@@ -7,3 +7,5 @@
 //       setCopied(false);
 //     }, 2000);
 //   };
+
+export {};

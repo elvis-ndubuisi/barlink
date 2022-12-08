@@ -49,13 +49,13 @@ const Footer = () => {
         <section>
           <Socials>
             <p>Get in touch</p>
-            <a href={profile_links.twitter} target="_blank">
+            <a href={profile_links.twitter} target="_blank" rel="noreferrer">
               <AiOutlineTwitter size={25} />
             </a>
-            <a href={profile_links.youtube} target="_blank">
+            <a href={profile_links.youtube} target="_blank" rel="noreferrer">
               <AiFillYoutube size={25} />
             </a>
-            <a href={profile_links.linkedin} target="_blank">
+            <a href={profile_links.linkedin} target="_blank" rel="noreferrer">
               <AiFillLinkedin size={25} />
             </a>
           </Socials>

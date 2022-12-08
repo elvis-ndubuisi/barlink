@@ -59,7 +59,7 @@ const MeProfile = () => {
             JavaScript/Typescript web & mobile developer with passion for
             open-source projects, SASS platforms and undying love for Art; and
             currently making tutorial videos on{" "}
-            <a href={profile_links.youtube} target="_blank">
+            <a href={profile_links.youtube} target="_blank" rel="noreferrer">
               YouTube
             </a>
             .
@@ -68,7 +68,7 @@ const MeProfile = () => {
           <p>
             The Barlink platform (version 1 was Baabar) was inspired my
             individuals on <a href="">Product Hunt</a> and{" "}
-            <a href={profile_links.twitter} target="_blank">
+            <a href={profile_links.twitter} target="_blank" rel="noreferrer">
               Twitter
             </a>
             ; and the desire to make a brand for myself.

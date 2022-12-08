@@ -158,7 +158,7 @@ export const Parag = styled.div`
 `;
 
 export default function Home() {
-  function handleCustonization(e): void {
+  function handleCustonization(e: any): void {
     e.preventDefault();
   }
   return (

@@ -3,7 +3,7 @@ import { BiMenuAltRight, BiX } from "react-icons/bi";
 import styled from "styled-components";
 import Button, { IconButton } from "./Buttons";
 import Wrapper from "./Wrapper";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AiFillSecurityScan } from "react-icons/ai";
 
 const StyledHeader = styled.header`
@@ -26,15 +26,15 @@ const BWrapper = styled.div`
 `;
 
 const Navigation: React.FC = () => {
-  let pageWidth = 0;
+  let pageWidth = useRef(0);
   const [menuActive, setMenuActive] = useState(false);
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
-    pageWidth = window.innerWidth;
-    if (pageWidth <= 768) setMobile(true);
+    pageWidth.current = window.innerWidth;
+    if (pageWidth.current <= 768) setMobile(true);
     // return () => {};
-  }, [pageWidth]);
+  }, []);
 
   return (
     <StyledHeader>
