@@ -32,14 +32,18 @@ const Socials = styled.nav`
   gap: 10px;
   margin: 10px 0;
   font-weight: var(--fw-smbold);
-  font-size: 0.8125rem;
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
       <Wrapper>
-        <Link href="/">Barlink</Link>
+        <Link
+          href="/"
+          style={{ fontSize: "2rem", fontWeight: "var(--fw-bold)" }}
+        >
+          Barlink
+        </Link>
 
         <section>
           <Link href="/terms-of-use">Terms of use</Link>
@@ -48,7 +52,7 @@ const Footer = () => {
 
         <section>
           <Socials>
-            <p>Get in touch</p>
+            <p>Find Me</p>
             <a href={profile_links.twitter} target="_blank" rel="noreferrer">
               <AiOutlineTwitter size={25} />
             </a>
@@ -61,7 +65,7 @@ const Footer = () => {
           </Socials>
         </section>
 
-        <section>copyright</section>
+        <small>&#169; 2022, Ike Elvis Ndubuisi. All Right Reserved.</small>
       </Wrapper>
     </StyledFooter>
   );

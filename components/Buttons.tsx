@@ -5,6 +5,12 @@ interface iButton {
   primary?: boolean;
 }
 
+interface iProps {
+  primary?: boolean;
+  children: any;
+  handleClick?: Function;
+}
+
 export const StyledButton = styled.button<iButton>`
   outline: 0;
   display: flex;
@@ -95,13 +101,7 @@ const Button = styled(StyledButton)<iButton>`
   }
 `;
 
-const Buttons = ({
-  primary,
-  children,
-}: {
-  primary?: boolean;
-  children: any;
-}) => {
+const Buttons = ({ primary, children, handleClick }: iProps) => {
   return <Button primary={primary || false}>{children}</Button>;
 };
 

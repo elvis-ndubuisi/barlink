@@ -1,9 +1,0 @@
-.landing {
-  min-height: calc(var(--landing-height) / 2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 1.5em;
-}

@@ -2,6 +2,36 @@ import styled from "styled-components";
 import React, { useState } from "react";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
+const Accordion = () => {
+  const [active, setActive] = useState(false);
+
+  function showAccordion(): void {
+    setActive(!active);
+  }
+
+  return (
+    <StyledAccordion>
+      <AccordionBar onClick={() => showAccordion()}>
+        <h4>accordin title</h4>
+        {!active ? <BiChevronDown size={24} /> : <BiChevronUp size={24} />}
+      </AccordionBar>
+      {active && (
+        <AccordionContent>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum,
+            reiciendis dignissimos expedita accusamus reprehenderit ab facere
+            asperiores veritatis quibusdam libero?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic,
+            debitis?
+          </p>
+        </AccordionContent>
+      )}
+    </StyledAccordion>
+  );
+};
+
 const StyledAccordion = styled.div`
   margin-bottom: 0.5em;
 `;
@@ -53,35 +83,5 @@ const AccordionContent = styled.article`
     color: inherit;
   }
 `;
-
-const Accordion = () => {
-  const [active, setActive] = useState(false);
-
-  function showAccordion(): void {
-    setActive(!active);
-  }
-
-  return (
-    <StyledAccordion>
-      <AccordionBar onClick={() => showAccordion()}>
-        <h4>accordin title</h4>
-        {!active ? <BiChevronDown size={24} /> : <BiChevronUp size={24} />}
-      </AccordionBar>
-      {active && (
-        <AccordionContent>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum,
-            reiciendis dignissimos expedita accusamus reprehenderit ab facere
-            asperiores veritatis quibusdam libero?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic,
-            debitis?
-          </p>
-        </AccordionContent>
-      )}
-    </StyledAccordion>
-  );
-};
 
 export default Accordion;

@@ -2,11 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Wrapper from "./Wrapper";
 import { profile_links } from "../libraries/data.js";
-import {
-  AiOutlineYoutube,
-  AiOutlineGlobal,
-  AiOutlineTwitter,
-} from "react-icons/ai";
+import Link from "next/link";
 
 const StyledMe = styled.section`
   padding: 2em 0;
@@ -36,9 +32,6 @@ const StyledMe = styled.section`
       .me {
         order: 1;
       }
-      > section:last-child {
-        display: none;
-      }
     }
   }
 
@@ -53,11 +46,12 @@ const MeProfile = () => {
     <StyledMe>
       <Wrapper>
         <section>
-          <h3>Hello there!</h3>
+          <h3>Hello there &#x1F44B;</h3>
           <p>
-            I&#8216;m Elvis Ndubuisi from Delta State, Nigeria. A self-taught
-            JavaScript/Typescript web & mobile developer with passion for
-            open-source projects, SASS platforms and undying love for Art; and
+            My name is Elvis Ndubuisi from Delta State, Nigeria. I&#8216;m the
+            maker of <Link href="/">BarLink</Link>. A self-taught
+            JavaScript/Typescript web & mobile developer with passion for SaaS
+            projects, Open-source and undying love for Art and Games; and
             currently making tutorial videos on{" "}
             <a href={profile_links.youtube} target="_blank" rel="noreferrer">
               YouTube
@@ -66,28 +60,46 @@ const MeProfile = () => {
           </p>
 
           <p>
-            The Barlink platform (version 1 was Baabar) was inspired my
-            individuals on <a href="">Product Hunt</a> and{" "}
+            The Barlink project (version 1 was Baabar) was inspired by
+            individuals on{" "}
+            <a
+              href={profile_links.productHunt}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Product Hunt
+            </a>{" "}
+            and{" "}
             <a href={profile_links.twitter} target="_blank" rel="noreferrer">
               Twitter
             </a>
-            ; and the desire to make a brand for myself.
+            .
           </p>
 
           <p>
             I first started my journey as a 3d artist, sculptor and Unity game
             developer, learnt C#, zBrush and how to draw by hand, bought and
-            sold my first drawing tablet and finally i&#8216;m here.
+            sold my first drawing tablet and finally i&#8216;m here; enjoying
+            launching fun and useful project.
           </p>
 
-          <p>Thank you for using the Barlink platform!</p>
+          <p>
+            Thank you for using Barlink services and I hope you had fun using it
+            more than i did when working on the project.
+          </p>
         </section>
         <section>
           <Image
-            src="/funny-coder.gif"
+            src="/elvis_ndubuisi.jpeg"
             alt="play display"
-            width={300}
-            height={300}
+            width={350}
+            height={350}
+            style={{
+              aspectRatio: "1",
+              objectFit: "cover",
+              borderRadius: "5px",
+              border: "solid 3px var(--clr-white)",
+            }}
           />
         </section>
       </Wrapper>

@@ -7,6 +7,7 @@ export let profile_links = {
   portfolio: "https://elvis.js.cool",
   instagram: "",
   linkedin: "https://www.linkedin.com/in/elvisndubuisi/",
+  productHunt: 'https://www.producthunt.com/@elvis_ndubuisi'
 };
 
 export let generate_qrcode = [

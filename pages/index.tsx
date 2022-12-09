@@ -14,6 +14,7 @@ import { BiChevronRight } from "react-icons/bi";
 import { BigButton } from "../components/Buttons";
 import MeProfile from "../components/MeProfile";
 import Heading from "../components/Heading";
+import Modal from "../components/Modal";
 
 const Showcase = styled.section`
   > * {
