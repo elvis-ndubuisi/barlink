@@ -1,5 +1,5 @@
-import BlogCard from "../../components/BlogCard";
-import { StyledButton } from "../../components/Buttons";
+import ArticleWrapper from "../../components/ArticleWrapper";
+import FaqWrapper from "../../components/FaqWrapper";
 import Footer from "../../components/Footer";
 import Head from "next/head";
 import Heading from "../../components/Heading";
@@ -9,15 +9,113 @@ import StepCard from "../../components/StepCard";
 import StepWrapper from "../../components/StepWrapper";
 import styled from "styled-components";
 import LandingTitle from "../../components/LandingTitle";
+import React from "react";
 import Wrapper from "../../components/Wrapper";
-import { AiOutlineLink, AiOutlineSetting } from "react-icons/ai";
+import { StyledButton } from "../../components/Buttons";
+import { AiOutlineLink } from "react-icons/ai";
 import { GoSettings } from "react-icons/go";
 import LandiingCaption from "../../components/LandiingCaption";
-import ArticleWrapper from "../../components/ArticleWrapper";
-import { shortenUrl } from "../../libraries/data.js";
-import FaqWrapper from "../../components/FaqWrapper";
-import Accordion from "../../components/Accordion";
+import { shortenUrl, faqShorten } from "../../libraries/data.js";
 
+export default function Home() {
+  const [canGenerate, setCanGenerate] = React.useState(false);
+
+  function handleCustonization(e: any): void {
+    e.preventDefault();
+  }
+
+  function handleShortenURL(): void {}
+
+  function validateUrlInput(): void {}
+
+  return (
+    <>
+      <Head>
+        <title>Shorten URL</title>
+      </Head>
+      <Navbar />
+      <>
+        <Showcase>
+          <Wrapper>
+            <LandingTitle>
+              Simplify Your URLs. <br /> Easy way to share links.
+            </LandingTitle>
+            <LandiingCaption>
+              Shorten it, it&#8216;s free - Fast - Secured - Long term link.
+            </LandiingCaption>
+            <ShortenForm onSubmit={(event) => event?.preventDefault()}>
+              <section>
+                <Input>
+                  <span>
+                    <AiOutlineLink size={30} />
+                  </span>
+                  <input type="text" placeholder="Paste your URL here..." />
+                </Input>
+                <Customize
+                  as="div"
+                  onClick={(e) => handleCustonization(e)}
+                  title="customize URL"
+                >
+                  <GoSettings size={30} />
+                </Customize>
+                <Shorten
+                  type="submit"
+                  disabled={false}
+                  onClick={() => handleShortenURL()}
+                >
+                  Shorten URL
+                </Shorten>
+              </section>
+              <small>
+                By clicking “Shorten URL” you agree to barlink&#8216;s{" "}
+                <Link href="/shortenurl/terms-of-use">Terms of use</Link> and{" "}
+                <Link href="/shortenurl/pricary-policy">Privacy Policy</Link>.
+              </small>
+            </ShortenForm>
+          </Wrapper>
+        </Showcase>
+
+        <section style={{ marginBottom: "2em" }}>
+          <Wrapper>
+            <Heading style={{ textAlign: "center" }}>
+              Simple and fast URL shortener
+            </Heading>
+            <Parag>
+              URLs shortened with Barlink URL shortener always remains the same
+              so you don&#8216;t have to worry about any redirect conflict. Your
+              shortened URLs can be used in social media platforms,
+              advertisements, blogs, instant messages, publications, forums and
+              other locations.
+            </Parag>
+            <StepWrapper>
+              {shortenUrl.map((i, idx) => (
+                <StepCard key={idx} lst={i.id} title={i.title}>
+                  {i.desc}
+                </StepCard>
+              ))}
+            </StepWrapper>
+          </Wrapper>
+        </section>
+
+        <ArticleWrapper>
+          {/* <BlogCard />
+          <BlogCard />
+          <BlogCard />
+          <BlogCard />
+          <BlogCard />
+          <BlogCard />
+          <BlogCard />
+          <BlogCard /> */}
+        </ArticleWrapper>
+
+        <FaqWrapper data={faqShorten} />
+      </>
+      <Footer />
+    </>
+  );
+}
+
+// Styled components
 const Showcase = styled.section`
   > * {
     min-height: var(--landing-height);
@@ -156,87 +254,3 @@ export const Parag = styled.div`
   margin-bottom: 2em;
   text-align: center;
 `;
-
-export default function Home() {
-  function handleCustonization(e: any): void {
-    e.preventDefault();
-  }
-  return (
-    <>
-      <Head>
-        <title>Shorten URL</title>
-      </Head>
-      <Navbar />
-      <>
-        <Showcase>
-          <Wrapper>
-            <LandingTitle>
-              Simplify Your URLs. <br /> Easy way to share links.
-            </LandingTitle>
-            <LandiingCaption>
-              Shorten it, it&#8216;s free - Fast - Secured - Long term link.
-            </LandiingCaption>
-            <ShortenForm>
-              <section>
-                <Input>
-                  <span>
-                    <AiOutlineLink size={30} />
-                  </span>
-                  <input type="text" placeholder="Paste your URL here..." />
-                </Input>
-                <Customize onClick={(e) => handleCustonization(e)}>
-                  <GoSettings size={30} />
-                </Customize>
-                {/* <span className={styles.url_customise}>icon</span> */}
-                <Shorten type="submit" disabled={true}>
-                  Shorten URL
-                </Shorten>
-              </section>
-              <small>
-                By clicking “Shorten URL” you agree to barlink&#8216;s{" "}
-                <Link href="/shortenurl/terms-of-use">Terms of use</Link> and{" "}
-                <Link href="/shortenurl/pricary-policy">Privacy Policy</Link>.
-              </small>
-            </ShortenForm>
-          </Wrapper>
-        </Showcase>
-
-        <section style={{ marginBottom: "2em" }}>
-          <Wrapper>
-            <Heading style={{ textAlign: "center" }}>
-              Simple and fast URL shortener
-            </Heading>
-            <Parag>
-              URLs shortened with Barlink URL shortener always remains the same
-              so you don&#8216;t have to worry about any redirect conflict. Your
-              shortened URLs can be used in social media platforms,
-              advertisements, blogs, instant messages, publications, forums and
-              other locations.
-            </Parag>
-            <StepWrapper>
-              {shortenUrl.map((i, idx) => (
-                <StepCard key={idx} lst={i.id} title={i.title}>
-                  {i.desc}
-                </StepCard>
-              ))}
-            </StepWrapper>
-          </Wrapper>
-        </section>
-
-        <ArticleWrapper>
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-        </ArticleWrapper>
-
-        <FaqWrapper />
-      </>
-      <Footer />
-    </>
-  );
-}

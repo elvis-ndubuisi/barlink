@@ -1,18 +1,51 @@
 import Link from "next/link";
-import styles from "../styles/BlogCard.module.css";
+import styled from "styled-components";
 
-const BlogCard = () => {
+interface iProp {
+  article: { slug: string; frontMatter: { title: string; excerpt: string } };
+}
+
+const BlogCard = ({ article }: iProp) => {
+  const { title, excerpt } = article.frontMatter;
   return (
-    <Link href="/" className={styles.blogcard}>
-      <h3>What is a QR code</h3>
-      <p>
-        Quick response or QR, is a type of barcode that can store a multitude of
-        information. The obvious difference between a QR Code and Barcode is its
-        appearance.
-      </p>
+    <StyledCard href={`article/${article.slug}`}>
+      <h3>{title}</h3>
+      <p>{excerpt}</p>
       <p>Learn more</p>
-    </Link>
+    </StyledCard>
   );
 };
+
+const StyledCard = styled(Link)`
+  border-radius: 5px;
+  padding: 10px 16px;
+  display: inline-block;
+  border: solid 1px var(--clr-main);
+  
+  :hover,
+  :focus,
+  :focus-within {
+    background-color: var(--clr-light);
+    color: var(--clr-dark);
+  }
+  
+  h3 {
+    text-align: center;
+    font-weight: var(--fw-smbold);
+    font-size: 18px;
+  }
+
+  & *:nth-child(2) {
+    margin: 16px 0;
+  }
+
+  p {
+    text-align: left;
+  }
+
+  p:last-child {
+    color: var(--clr-main);
+  }
+`;
 
 export default BlogCard;

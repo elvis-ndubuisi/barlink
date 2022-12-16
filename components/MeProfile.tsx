@@ -4,43 +4,6 @@ import Wrapper from "./Wrapper";
 import { profile_links } from "../libraries/data.js";
 import Link from "next/link";
 
-const StyledMe = styled.section`
-  padding: 2em 0;
-
-  > * {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1.25em;
-
-    > section {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      gap: 0.98rem;
-      max-width: 700px;
-    }
-
-    > section:first-child a {
-      text-decoration: underline;
-      color: var(--clr-main);
-    }
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      .me {
-        order: 1;
-      }
-    }
-  }
-
-  h3 {
-    font-size: 1.875rem;
-    font-weight: var(--fw-smbold);
-  }
-`;
-
 const MeProfile = () => {
   return (
     <StyledMe>
@@ -106,5 +69,42 @@ const MeProfile = () => {
     </StyledMe>
   );
 };
+
+const StyledMe = styled.section`
+  padding: 2em 0;
+
+  > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25em;
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 0.98rem;
+      max-width: 700px;
+    }
+
+    > section:first-child a {
+      text-decoration: underline;
+      color: var(--clr-main);
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      .me {
+        order: 1;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 1.875rem;
+    font-weight: var(--fw-smbold);
+  }
+`;
 
 export default MeProfile;

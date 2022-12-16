@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface iProps {
   children: any;
   type?: string;
+  handlePreset?: () => void;
 }
 
 const Wrap = styled.span`
@@ -44,10 +45,10 @@ export const ColorSwatch = styled(Styled)`
   }
 `;
 
-const OptionButton = ({ children, type }: iProps) => {
+const OptionButton = ({ children, type, handlePreset }: iProps) => {
   return (
     <Wrap>
-      <Styled>{children}</Styled>
+      <Styled onClick={handlePreset}>{children}</Styled>
       <small>{type}</small>
     </Wrap>
   );

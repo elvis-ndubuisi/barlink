@@ -1,4 +1,4 @@
-import BarcodeEditor from "../../components/BarcodeEditor";
+import QRCodeEditor from "../../components/QRCodeEditor";
 import Footer from "../../components/Footer";
 import Head from "next/head";
 import Heading from "../../components/Heading";
@@ -11,7 +11,10 @@ import Wrapper from "../../components/Wrapper";
 import FaqWrapper from "../../components/FaqWrapper";
 import StepWrapper from "../../components/StepWrapper";
 import { Parag } from "../shortenurl";
-import { generate_qrcode } from "../../libraries/data.js";
+import { generate_qrcode, faqQrcode } from "../../libraries/data.js";
+import MobileQRCodeEditor from "../../components/MobileQRCodeEditor";
+import React from "react";
+import { QRProvider } from "../../context/QRContext";
 
 const Landing = styled.section`
   min-height: calc(var(--landing-height) / 2);
@@ -30,6 +33,14 @@ const Landing = styled.section`
 `;
 
 export default function Home() {
+  let screenSize = React.useRef(0);
+  const [isSmallScreen, setIsSmallScreen] = React.useState(true);
+
+  React.useEffect(() => {
+    screenSize.current = window.innerWidth;
+    screenSize.current < 768 ? setIsSmallScreen(true) : setIsSmallScreen(false);
+  }, []);
+
   return (
     <>
       <Head>
@@ -52,7 +63,9 @@ export default function Home() {
         </Landing>
 
         <Wrapper>
-          <BarcodeEditor />
+          <QRProvider>
+            {isSmallScreen ? <MobileQRCodeEditor /> : <QRCodeEditor />}
+          </QRProvider>
         </Wrapper>
 
         <section style={{ marginBottom: "2em" }}>
@@ -72,7 +85,7 @@ export default function Home() {
             </StepWrapper>
           </Wrapper>
         </section>
-        <FaqWrapper />
+        <FaqWrapper data={faqQrcode} />
       </>
       <Footer />
     </>

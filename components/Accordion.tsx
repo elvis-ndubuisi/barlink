@@ -1,31 +1,27 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+import { GoPlus, GoDash } from "react-icons/go";
+import { motion } from "framer-motion";
 
-const Accordion = () => {
-  const [active, setActive] = useState(false);
+interface iProp {
+  question: string;
+  answer: string;
+}
 
-  function showAccordion(): void {
-    setActive(!active);
-  }
+const Accordion = ({ question, answer }: iProp) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <StyledAccordion>
-      <AccordionBar onClick={() => showAccordion()}>
-        <h4>accordin title</h4>
-        {!active ? <BiChevronDown size={24} /> : <BiChevronUp size={24} />}
+      <AccordionBar onClick={() => setIsOpen(!isOpen)}>
+        <h4>{question}</h4>
+        {!isOpen ? <GoPlus size={24} /> : <GoDash size={24} />}
       </AccordionBar>
-      {active && (
+      {isOpen && (
         <AccordionContent>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum,
-            reiciendis dignissimos expedita accusamus reprehenderit ab facere
-            asperiores veritatis quibusdam libero?
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic,
-            debitis?
-          </p>
+          {answer.split("\n").map((ans, idx) => (
+            <p key={idx}>{ans}</p>
+          ))}
         </AccordionContent>
       )}
     </StyledAccordion>
@@ -40,7 +36,7 @@ const AccordionBar = styled.section`
   background-color: var(--clr-light);
   height: 45px;
   width: 100%;
-  padding: 0.4em;
+  padding: 0.4em 1em;
   border-radius: 5px;
   color: var(--clr-dark);
   display: flex;
@@ -54,7 +50,6 @@ const AccordionBar = styled.section`
 
   h4 {
     font-weight: inherit;
-    text-transform: capitalize;
 
     ::selection {
       background-color: inherit;
@@ -70,8 +65,8 @@ const AccordionBar = styled.section`
   }
 `;
 
-const AccordionContent = styled.article`
-  font-size: 1rem;
+const AccordionContent = styled(motion.article)`
+  font-size: 0.9rem;
   font-weight: var(--fw-regular);
   color: var(--clr-light2);
   max-width: 97%;
@@ -79,7 +74,7 @@ const AccordionContent = styled.article`
   padding-top: 0.7em;
 
   > * {
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
     color: inherit;
   }
 `;

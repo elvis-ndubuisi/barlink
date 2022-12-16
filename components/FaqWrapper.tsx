@@ -3,6 +3,29 @@ import Accordion from "./Accordion";
 import Heading from "./Heading";
 import Wrapper from "./Wrapper";
 
+interface iProp {
+  data: { question: string; answer: string }[];
+}
+
+const FaqWrapper = ({ data }: iProp) => {
+  return (
+    <StyledFaq>
+      <Wrapper>
+        <Heading>Frequently Asked Questions</Heading>
+        <div>
+          {data.map((item, idx) => (
+            <Accordion
+              question={item.question}
+              answer={item.answer}
+              key={idx}
+            />
+          ))}
+        </div>
+      </Wrapper>
+    </StyledFaq>
+  );
+};
+
 const StyledFaq = styled.section`
   padding: 2em 0;
 
@@ -15,23 +38,5 @@ const StyledFaq = styled.section`
     margin: auto;
   }
 `;
-
-const FaqWrapper = () => {
-  return (
-    <StyledFaq>
-      <Wrapper>
-        <Heading>Frequently Asked Questions</Heading>
-        <div>
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-          <Accordion />
-        </div>
-      </Wrapper>
-    </StyledFaq>
-  );
-};
 
 export default FaqWrapper;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 interface iButton {
   primary?: boolean;
@@ -11,7 +12,7 @@ interface iProps {
   handleClick?: Function;
 }
 
-export const StyledButton = styled.button<iButton>`
+export const StyledButton = styled(motion.button)<iProps>`
   outline: 0;
   display: flex;
   flex-direction: row;
@@ -29,7 +30,7 @@ export const StyledButton = styled.button<iButton>`
   z-index: 1;
 `;
 
-export const BigButton = styled(StyledButton)<iButton>`
+export const BigButton = styled(StyledButton)<iProps>`
   font-weight: var(--fw-smbold);
   height: 3.25em;
   padding: 0 1.25em;
@@ -68,7 +69,7 @@ export const BigButton = styled(StyledButton)<iButton>`
   }
 `;
 
-export const IconButton = styled(StyledButton)<iButton>`
+export const IconButton = styled(StyledButton)<iProps>`
   display: grid;
   place-items: center;
   place-content: center;
@@ -84,7 +85,7 @@ export const IconButton = styled(StyledButton)<iButton>`
   }
 `;
 
-const Button = styled(StyledButton)<iButton>`
+const Button = styled(StyledButton)<iProps>`
   min-width: 80px;
   font-size: 0.9375rem;
   font-weight: var(--fw-smbold);
@@ -102,7 +103,11 @@ const Button = styled(StyledButton)<iButton>`
 `;
 
 const Buttons = ({ primary, children, handleClick }: iProps) => {
-  return <Button primary={primary || false}>{children}</Button>;
+  return (
+    <Button primary={primary ? primary : false} whileTap={{ scale: 0.8 }}>
+      {children}
+    </Button>
+  );
 };
 
 export default Buttons;
