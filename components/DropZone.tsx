@@ -9,48 +9,76 @@ const DropZone = ({ children }: any) => {
   let [dropText, setDropText] = React.useState<string>("Drag & Drop file");
   const [dropped, setDropped] = React.useState(false);
 
-  function fileDragOver(event: any): void {
-    zone.current && zone.current.classList.add("active");
-    setDropText("Release to upload");
+  // function fileDragDrop(event: any): void {
+  //   console.log(event);
+  //   let file = event.dataTransfer.files[0];
+  // }
+
+  function fileDragEnter(event: React.FormEvent<HTMLInputElement>): void {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
-  function fileDragLeave(event: any): void {
+  function fileDragLeave(event: React.DragEvent<HTMLDivElement>): void {
+    event.preventDefault();
+    event.stopPropagation();
     zone.current && zone.current.classList.remove("active");
     setDropText("Drag & Drop file");
   }
 
-  function fileDragDrop(event: any): void {
-    console.log(event);
-    let file = event.dataTransfer.files[0];
+  function fileDragOver(event: React.DragEvent<HTMLDivElement>): void {
+    event.stopPropagation();
+    event.preventDefault();
+    zone.current && zone.current.classList.add("active");
+    setDropText("Release to upload");
+  }
+
+  function fileDrop(event: React.DragEvent<HTMLDivElement>): void {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const data = event.dataTransfer.files[0];
+
+    handleData(data);
   }
 
   function selectedFile(event: any): void {
-    console.log(event.target.files[0]);
-    zone.current && zone.current.classList.add("dropped");
     file.current = event.target?.files[0];
-    setDropText(event.target?.files[0].name);
-    // let file = console.log(event.target?.files[0]);
-    handleFile(file.current);
+    handleData(file.current);
   }
 
-  function handleFile(file: any): void {
-    let fileExt = file.type;
-    let validType = ["image/jpeg", "image/jpg", "image/png"];
-    if (validType.includes(fileExt)) {
-      /* user selected image file format */
+  function handleData(data: any): void {
+    let { name, type } = data;
+    let validType = ["image/jpeg", "image/png", "image/png", "image/svg+xml"];
+    if (validType.includes(type)) {
+      /* user seected wanted format */
+      setDropText(name);
+      zone.current && zone.current?.classList.add("dropped");
+      // read file
+      const reader = new FileReader();
+      reader.onload = (e) => console.log(e);
+      reader.readAsDataURL(data);
     } else {
-      /* wrong format selected */
-      zone.current?.classList.remove("dropped");
-      zone.current?.classList.add("error");
+      /* unwanted format selected */
+      if (zone.current) {
+        zone.current?.classList.remove("dropped");
+        zone.current?.classList.add("error");
+        setDropText("Invalid file Format");
+      }
     }
   }
   return (
     <Styled
-      onDragOver={(event) => fileDragOver(event)}
-      onDragLeave={(event) => fileDragLeave(event)}
-      onDrop={(e) => {
-        e.preventDefault();
-      }}
+      onDragEnter={(event: React.DragEvent<HTMLInputElement>) =>
+        fileDragEnter(event)
+      }
+      onDragLeave={(event: React.DragEvent<HTMLDivElement>) =>
+        fileDragLeave(event)
+      }
+      onDragOver={(event: React.DragEvent<HTMLDivElement>) =>
+        fileDragOver(event)
+      }
+      onDrop={(event: React.DragEvent<HTMLDivElement>) => fileDrop(event)}
       ref={zone}
     >
       <header>{dropText}</header>

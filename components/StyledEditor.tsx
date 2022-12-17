@@ -13,6 +13,10 @@ interface iContainer {
   noJustify?: boolean;
 }
 
+interface iDownloadFormat {
+  selected: boolean;
+}
+
 export const StyledWrapper = styled.section`
   border-radius: var(--url-radius);
   max-width: 966px;
@@ -78,6 +82,23 @@ export const DownloadSection = styled.section`
   flex-direction: column;
   gap: 0.875em;
   align-items: stretch;
+`;
+
+export const DownloadFormat = styled.button<iDownloadFormat>`
+  display: inline-flex;
+  place-content: center;
+  outline: none;
+  border: 0;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: ${(props) =>
+    props.selected ? "var(--clr-main)" : "var(--clr-white)"};
+  text-decoration: ${(props) => (props.selected ? "underline" : "none")};
+  cursor: pointer;
+
+  :hover {
+    color: var(--clr-main);
+  }
 `;
 
 export const FileName = styled.div`

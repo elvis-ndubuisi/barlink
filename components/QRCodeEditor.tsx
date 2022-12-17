@@ -25,12 +25,13 @@ import {
   HeaderBtn,
   Divider,
   DownloadSection,
+  DownloadFormat,
   FileName,
   Color,
   Grid,
   Input,
   SliderGroup,
-} from "../styles/StyledEditor";
+} from "./StyledEditor";
 import QRContext from "../context/QRContext";
 
 const QRCodeEditor = () => {
@@ -185,13 +186,26 @@ const QRCodeEditor = () => {
               <section>
                 <SliderGroup>
                   <p>style</p>
+                  <select
+                    value="checked value select"
+                    onChange={(event) => console.log(event.target.value)}
+                  >
+                    <option value="option 1">Option 1</option>
+                    <option value="option 2" selected>
+                      Option 2
+                    </option>
+                  </select>
                 </SliderGroup>
                 <SliderGroup>
                   <p>error correction</p>
                 </SliderGroup>
                 <SliderGroup>
                   <label htmlFor="">enable CORS</label>
-                  <Input type="checkbox" />
+                  <Input
+                    type="checkbox"
+                    checked={true}
+                    onChange={(event) => console.log(event.target.value)}
+                  />
                 </SliderGroup>
                 <SliderGroup>
                   <p>size</p>
@@ -238,7 +252,7 @@ const QRCodeEditor = () => {
         {/* Pattern menu */}
         <section>
           <Header>
-            <h4>Pattern</h4>
+            <h4>Eye Radius</h4>
             <HeaderBtn>
               <span>Advanced</span>
               <BsGrid fontSize={20}>icon</BsGrid>
@@ -267,7 +281,7 @@ const QRCodeEditor = () => {
         <section>
           <Header>
             <h4>Colors</h4>
-            <HeaderBtn>
+            <HeaderBtn onClick={() => dispatch({ type: "RESET_FG_COLOR" })}>
               <span>Reset</span>
               <BiReset fontSize={20} />
             </HeaderBtn>
@@ -324,9 +338,9 @@ const QRCodeEditor = () => {
               justifyContent: "center",
             }}
           >
-            <span>JPEG</span>
-            <span>SVG</span>
-            <span>Png</span>
+            <DownloadFormat selected={true}>jpeg</DownloadFormat>
+            <DownloadFormat selected={false}>svg</DownloadFormat>
+            <DownloadFormat selected={false}>utf-8</DownloadFormat>
           </span>
         </DownloadSection>
       </Container>
@@ -335,3 +349,7 @@ const QRCodeEditor = () => {
 };
 
 export default QRCodeEditor;
+
+// const target = event.target;
+// const value = target.type === "checkbox" ? target.checked : target.value;
+// const name = target.name;

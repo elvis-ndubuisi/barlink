@@ -12,7 +12,7 @@ interface iProps {
   handleClick?: Function;
 }
 
-export const StyledButton = styled(motion.button)<iProps>`
+export const StyledButton = styled(motion.button)<iButton>`
   outline: 0;
   display: flex;
   flex-direction: row;
@@ -30,7 +30,7 @@ export const StyledButton = styled(motion.button)<iProps>`
   z-index: 1;
 `;
 
-export const BigButton = styled(StyledButton)<iProps>`
+export const BigButton = styled(StyledButton)<iButton>`
   font-weight: var(--fw-smbold);
   height: 3.25em;
   padding: 0 1.25em;
@@ -69,7 +69,7 @@ export const BigButton = styled(StyledButton)<iProps>`
   }
 `;
 
-export const IconButton = styled(StyledButton)<iProps>`
+export const IconButton = styled(StyledButton)<iButton>`
   display: grid;
   place-items: center;
   place-content: center;
@@ -85,7 +85,7 @@ export const IconButton = styled(StyledButton)<iProps>`
   }
 `;
 
-const Button = styled(StyledButton)<iProps>`
+const Button = styled(StyledButton)<iButton>`
   min-width: 80px;
   font-size: 0.9375rem;
   font-weight: var(--fw-smbold);
@@ -103,11 +103,7 @@ const Button = styled(StyledButton)<iProps>`
 `;
 
 const Buttons = ({ primary, children, handleClick }: iProps) => {
-  return (
-    <Button primary={primary ? primary : false} whileTap={{ scale: 0.8 }}>
-      {children}
-    </Button>
-  );
+  return <Button primary={primary ? primary : false}>{children}</Button>;
 };
 
 export default Buttons;

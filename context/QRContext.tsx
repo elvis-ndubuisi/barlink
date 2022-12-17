@@ -21,6 +21,25 @@ interface iInitial {
 
 let initialState: iInitial = {
   value: "https://barlink.vercel.app",
+  bgColor: "blue",
+  fgColor: "black",
+  qrStyle: "squares",
+  quietZone: 5,
+  size: 150,
+  ecLevel: "M",
+  enableCORs: true,
+  logoImage: "",
+  logoOpacity: 1,
+  logoHeight: 5,
+  logoWidth: 5,
+  removeQrCodeBehindLogo: false,
+  eyeColor: "black",
+  eyeRadius: 0,
+  id: "",
+};
+
+let qrDefaults: iInitial = {
+  value: "https://barlink.vercel.app",
   bgColor: "white",
   fgColor: "black",
   qrStyle: "squares",
@@ -92,15 +111,7 @@ function reducer(state: any, action: any) {
 
     /* Presets */
     case "PRESET_00":
-      return {
-        ...state,
-        logoImage: initialState.logoImage,
-        logOpacity: initialState.logoOpacity,
-        logoHeight: initialState.logoHeight,
-        logoWidth: initialState.logoWidth,
-        eyeRadius: initialState.eyeRadius,
-        eyeColor: initialState.eyeColor,
-      };
+      return { ...state, eyeRadius: qrDefaults.eyeRadius };
 
     case "PRESET_01":
       return {};
@@ -112,6 +123,16 @@ function reducer(state: any, action: any) {
       return {};
     case "PRESET_05":
       return {};
+
+    /* Colors */
+    case "RESET_FG_COLOR":
+      return { ...state, fgColor: qrDefaults.fgColor };
+
+    case "RESET_BG_COLOR":
+      return { ...state, bgColor: qrDefaults.bgColor };
+
+    case "RESET_EYE_COLOR":
+      return { ...state, eyeColor: qrDefaults.eyeColor };
 
     default:
       throw new Error(`no case implemented for type ${type} yet`);

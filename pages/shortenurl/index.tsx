@@ -18,10 +18,11 @@ import LandiingCaption from "../../components/LandiingCaption";
 import { shortenUrl, faqShorten } from "../../libraries/data.js";
 
 export default function Home() {
-  const [canGenerate, setCanGenerate] = React.useState(false);
+  const [invalidInput, setInvalidInput] = React.useState(true);
+  const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
 
-  function handleCustonization(e: any): void {
-    e.preventDefault();
+  function handleCustonization(event: any): void {
+    event.preventDefault();
   }
 
   function handleShortenURL(): void {}
@@ -49,18 +50,23 @@ export default function Home() {
                   <span>
                     <AiOutlineLink size={30} />
                   </span>
-                  <input type="text" placeholder="Paste your URL here..." />
+                  <input
+                    type="text"
+                    placeholder="https://paste-your-long-url-here..."
+                    required
+                  />
                 </Input>
                 <Customize
                   as="div"
-                  onClick={(e) => handleCustonization(e)}
+                  hasCustomUrl={hasCustomUrl}
+                  onClick={(event) => handleCustonization(event)}
                   title="customize URL"
                 >
                   <GoSettings size={30} />
                 </Customize>
                 <Shorten
                   type="submit"
-                  disabled={false}
+                  disabled={invalidInput}
                   onClick={() => handleShortenURL()}
                 >
                   Shorten URL
@@ -199,15 +205,18 @@ const Input = styled.div`
     opacity: 0.5;
   }
 `;
-
-const Customize = styled(StyledButton)`
+interface custom {
+  hasCustomUrl: boolean;
+}
+const Customize = styled(StyledButton)<custom>`
   height: 3.75em;
   aspect-ratio: 1;
   border-radius: var(--url-radius);
   display: grid;
   place-items: center;
   place-content: center;
-  background-color: var(--clr-darker);
+  background-color: ${(props) =>
+    props.hasCustomUrl ? "var(--clr-white)" : "var(--clr-darker)"};
   cursor: pointer;
   border: solid var(--url-border-size) transparent;
   transition: var(--url-transition);
