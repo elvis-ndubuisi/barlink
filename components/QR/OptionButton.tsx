@@ -39,8 +39,7 @@ export const ColorSwatch = styled(Styled)`
   padding: 3px;
   transition: all 0.3s ease-in-out;
 
-  :hover,
-  :focus {
+  :hover {
     transform: scale(1.2);
   }
 `;

@@ -5,15 +5,15 @@ export interface BarcodeOptions {
 export const allOptions = [
   { label: "Details" },
   { label: "Customize" },
-  { label: "Download" },
+  { label: "Advanced" },
   { label: "Carrot" },
   { label: "Banana" },
   { label: "Blueberries" },
   { label: "Champers?" },
 ];
 
-const [details, customize, download] = allOptions;
-export const initialTabs = [details, customize, download];
+const [details, customize, advanced] = allOptions;
+export const initialTabs = [details, customize, advanced];
 
 export function getNextOption(
   options: BarcodeOptions[]

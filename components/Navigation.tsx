@@ -3,8 +3,10 @@ import { BiMenuAltRight, BiX } from "react-icons/bi";
 import styled from "styled-components";
 import Button, { IconButton } from "./Buttons";
 import Wrapper from "./Wrapper";
-import { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+// import Modal from "./Modal";
+// import Scan from "./Scan";
 
 const variants = {
   open: {
@@ -15,10 +17,11 @@ const variants = {
 };
 
 const Navigation: React.FC = () => {
-  let pageWidth = useRef(0);
-  let navigation = useRef<HTMLElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [mobile, setMobile] = useState(false);
+  let pageWidth = React.useRef(0);
+  let navigation = React.useRef<HTMLElement>(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [mobile, setMobile] = React.useState(false);
+  const [scanModal, setScanModal] = React.useState(true);
 
   // Functions
   function handleNavigation(): void {
@@ -26,7 +29,11 @@ const Navigation: React.FC = () => {
     setIsOpen(!isOpen);
   }
 
-  useEffect(() => {
+  function hm() {
+    setScanModal(true);
+  }
+
+  React.useEffect(() => {
     // Check if screen fits mobile view.
     pageWidth.current = window.innerWidth;
     if (pageWidth.current <= 768) setMobile(true);
@@ -42,6 +49,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           {mobile ? (
+            // Mobile Nav
             <motion.nav
               ref={navigation}
               animate={isOpen ? "open" : "closed"}
@@ -58,6 +66,7 @@ const Navigation: React.FC = () => {
               </BtnWrap>
             </motion.nav>
           ) : (
+            // Desktop Nav
             <motion.nav ref={navigation}>
               <Link href="/">Home</Link>
               <Link href="/shortenurl">Shorten URL</Link>
@@ -66,7 +75,9 @@ const Navigation: React.FC = () => {
 
               <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
-                <Button primary={true}>Scan</Button>
+                <Button primary={true} handleClick={() => setScanModal(true)}>
+                  Scan
+                </Button>
               </BtnWrap>
             </motion.nav>
           )}
@@ -82,6 +93,9 @@ const Navigation: React.FC = () => {
           )}
         </Wrapper>
       </StyledHeader>
+      {/* <Modal onClose={() => setScanModal(false)} showModal={scanModal}>
+        <Scan />
+      </Modal> */}
     </>
   );
 };

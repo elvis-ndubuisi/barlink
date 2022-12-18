@@ -94,8 +94,7 @@ const Button = styled(StyledButton)<iButton>`
   background-color: ${(props) =>
     props.primary ? "var(--clr-main)" : "var(--clr-darker)"};
 
-  :hover,
-  :focus {
+  :hover {
     color: ${(props) => !props.primary && "var(--clr-main)"};
     opacity: ${(props) => props.primary && "0.6"};
     transition: all 0.6s;
@@ -103,7 +102,11 @@ const Button = styled(StyledButton)<iButton>`
 `;
 
 const Buttons = ({ primary, children, handleClick }: iProps) => {
-  return <Button primary={primary ? primary : false}>{children}</Button>;
+  return (
+    <Button primary={primary} onClick={() => handleClick && handleClick()}>
+      {children}
+    </Button>
+  );
 };
 
 export default Buttons;

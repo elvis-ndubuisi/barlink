@@ -10,6 +10,7 @@ const StepWrapper = styled.div`
 
   @media (max-width: 640px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 

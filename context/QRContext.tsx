@@ -1,5 +1,8 @@
 import React from "react";
 
+type EyeColor = string;
+type EyeRadi = number;
+
 interface iInitial {
   value: string;
   bgColor: string;
@@ -14,14 +17,14 @@ interface iInitial {
   logoHeight?: number;
   logoWidth?: number;
   removeQrCodeBehindLogo?: boolean;
-  eyeColor?: string | [string];
-  eyeRadius?: number | number[];
+  eyeColor?: EyeColor | [EyeColor, EyeColor, EyeColor];
+  eyeRadius?: EyeRadi | [EyeRadi, EyeRadi, EyeRadi];
   id?: string;
 }
 
 let initialState: iInitial = {
   value: "https://barlink.vercel.app",
-  bgColor: "blue",
+  bgColor: "white",
   fgColor: "black",
   qrStyle: "squares",
   quietZone: 5,
@@ -30,8 +33,8 @@ let initialState: iInitial = {
   enableCORs: true,
   logoImage: "",
   logoOpacity: 1,
-  logoHeight: 5,
-  logoWidth: 5,
+  logoHeight: 150 * 0.2,
+  logoWidth: 150 * 0.2,
   removeQrCodeBehindLogo: false,
   eyeColor: "black",
   eyeRadius: 0,
@@ -103,9 +106,6 @@ function reducer(state: any, action: any) {
         removeQrCodeBehindLogo: payload?.removeQrCodeBehindLogo,
       };
 
-    case "MOD_EYE_COLOR":
-      return { ...state, eyeColor: payload?.eyeColor };
-
     case "MOD_EYE_RADIUS":
       return { ...state, eyeRadius: payload?.eyeRadius };
 
@@ -133,6 +133,15 @@ function reducer(state: any, action: any) {
 
     case "RESET_EYE_COLOR":
       return { ...state, eyeColor: qrDefaults.eyeColor };
+
+    case "MOD_BG_COLOR":
+      return { ...state, bgColor: payload?.bgColor };
+
+    case "MOD_FG_COLOR":
+      return { ...state, fgColor: payload?.bgColor };
+
+    case "MOD_EYE_COLOR":
+      return { ...state, eyeColor: payload?.eyeColor };
 
     default:
       throw new Error(`no case implemented for type ${type} yet`);

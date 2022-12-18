@@ -18,9 +18,6 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { motion } from "framer-motion";
-import Modal from "../components/Modal";
-import Scan from "../components/Scan";
 
 export async function getStaticProps() {
   /* Get markdown files from mdx directory */
@@ -51,8 +48,6 @@ export default function Home({ articles }: { articles: any }) {
   let showcaseTitle = React.useRef<HTMLHeadElement>(null);
   let showcaseCaption = React.useRef<HTMLParagraphElement>(null);
   let showcaseButons = React.useRef<HTMLDivElement>(null);
-
-  const [showModal, setShowModal] = React.useState(false);
 
   return (
     <>
@@ -87,9 +82,7 @@ export default function Home({ articles }: { articles: any }) {
               <BigButton primary={true}>
                 Get started <BiChevronRight size={25} />
               </BigButton>
-              <BigButton primary={false} onClick={() => console.log("yoo")}>
-                Scan QR-code
-              </BigButton>
+              <BigButton primary={false}>Scan QR-code</BigButton>
             </ShowcaseButtons>
           </Wrapper>
         </Showcase>
@@ -148,21 +141,6 @@ export default function Home({ articles }: { articles: any }) {
         {/* profile */}
         <MeProfile />
       </>
-      {/* <Modal onClose={() => console.log("okay")} showModal={showModal}>
-        <Scan />
-      </Modal> */}
-      {/* <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-          praesentium?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit,
-          perspiciatis provident fugiat voluptatem ipsum soluta beatae iure
-          commodi? Quaerat qui aut iste ea dolores voluptatum laborum debitis
-          earum reiciendis.
-        </p>
-      </Modal> */}
       <Footer />
     </>
   );

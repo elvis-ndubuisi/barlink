@@ -2,9 +2,44 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { initialTabs as tabs } from "../libraries/barcodeOptions";
 import styled from "styled-components";
+import SelectType from "./QR/SelectType";
+import InputGroup from "./QR/InputGroup";
+import QRLogo from "./QR/QRLogo";
+import QRPreview from "./QRPreview";
+import QRAdvSettings from "./QR/QRAdvSettings";
+import EyeRadius from "./QR/EyeRadius";
+import ColorMenu from "./QR/ColorMenu";
+import DownloadSection from "./QR/DownloadSection";
 
 const MobileBarcodeEditor = () => {
   const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
+
+  const TabContent = (label: string) => {
+    if (label === "Details") {
+      return (
+        <>
+          <SelectType />
+          <InputGroup />
+        </>
+      );
+    } else if (label === "Customize") {
+      return (
+        <>
+          <QRLogo />
+          <ColorMenu />
+        </>
+      );
+    } else if (label === "Advanced") {
+      return (
+        <>
+          <EyeRadius />
+          <QRAdvSettings />
+        </>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <StyledWrapper>
@@ -26,16 +61,17 @@ const MobileBarcodeEditor = () => {
       </Nav>
       <Main>
         <AnimatePresence mode="wait">
-          <motion.div
+          <Div
             key={selectedTab ? selectedTab.label : "empty"}
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {selectedTab ? selectedTab.label : "😋"}
-          </motion.div>
+            {selectedTab ? TabContent(selectedTab.label) : "😋"}
+          </Div>
         </AnimatePresence>
+        <DownloadSection />
       </Main>
     </StyledWrapper>
   );
@@ -45,7 +81,7 @@ const MobileBarcodeEditor = () => {
 const StyledWrapper = styled(motion.div)`
   width: 100%;
   max-width: 480px;
-  height: 360px;
+  min-height: 360px;
   border-radius: 10px;
   background: var(--clr-dark);
   overflow: hidden;
@@ -156,12 +192,16 @@ const Nav = styled(motion.nav)`
 `;
 
 const Main = styled(motion.main)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 128px;
-  flex-grow: 1;
   user-select: none;
+  padding: 0.5em 0.3em;
+`;
+
+const Div = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+  margin-bottom: 1em;
 `;
 
 export default MobileBarcodeEditor;

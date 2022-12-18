@@ -48,6 +48,8 @@ const QRPreview = () => {
           logoWidth={state?.logoWidth}
           logoOpacity={state?.logoOpacity}
           removeQrCodeBehindLogo={state?.removeQrCodeBehindLogo}
+          eyeColor={state?.eyeColor}
+          eyeRadius={state?.eyeRadius}
           id={state?.id}
         />
       </div>

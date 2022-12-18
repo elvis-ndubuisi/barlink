@@ -9,7 +9,7 @@ import StepCard from "../../components/StepCard";
 import StepWrapper from "../../components/StepWrapper";
 import styled from "styled-components";
 import LandingTitle from "../../components/LandingTitle";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import Wrapper from "../../components/Wrapper";
 import { StyledButton } from "../../components/Buttons";
 import { AiOutlineLink } from "react-icons/ai";
@@ -18,16 +18,43 @@ import LandiingCaption from "../../components/LandiingCaption";
 import { shortenUrl, faqShorten } from "../../libraries/data.js";
 
 export default function Home() {
-  const [invalidInput, setInvalidInput] = React.useState(true);
+  const [allow, setAllow] = React.useState(false);
   const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
-  function handleCustonization(event: any): void {
+  function handleCustonization(event: SyntheticEvent): void {
     event.preventDefault();
   }
 
-  function handleShortenURL(): void {}
+  async function handleShortenURL() {
+    const response = await fetch("/api/urlservice/shorten");
+    const data = await response.json();
+    console.log(data);
+  }
 
-  function validateUrlInput(): void {}
+  function validateUrl(url: string): boolean {
+    let givenInput: any;
+    try {
+      givenInput = new URL(url);
+    } catch (error) {
+      // console.log(error);
+      return false;
+    }
+    return (
+      givenInput?.protocol === "http:" || givenInput?.protocol === "https:"
+    );
+  }
+
+  function handleInputUpdate(event: React.ChangeEvent<HTMLInputElement>): void {
+    setValue(event.target.value);
+    let isValid = validateUrl(value);
+    if (isValid && value.length > 20) {
+      // Enable Button
+      setAllow(true);
+    } else {
+      setAllow(false);
+    }
+  }
 
   return (
     <>
@@ -53,20 +80,26 @@ export default function Home() {
                   <input
                     type="text"
                     placeholder="https://paste-your-long-url-here..."
-                    required
+                    required={true}
+                    defaultValue={value}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      handleInputUpdate(event)
+                    }
                   />
                 </Input>
                 <Customize
                   as="div"
                   hasCustomUrl={hasCustomUrl}
-                  onClick={(event) => handleCustonization(event)}
+                  onClick={(event: SyntheticEvent) =>
+                    handleCustonization(event)
+                  }
                   title="customize URL"
                 >
                   <GoSettings size={30} />
                 </Customize>
                 <Shorten
                   type="submit"
-                  disabled={invalidInput}
+                  disabled={!allow}
                   onClick={() => handleShortenURL()}
                 >
                   Shorten URL
@@ -143,6 +176,7 @@ const Showcase = styled.section`
 const ShortenForm = styled.form`
   width: 100%;
   max-width: var(--url-form-max-width);
+  position: relative;
 
   > section {
     display: flex;

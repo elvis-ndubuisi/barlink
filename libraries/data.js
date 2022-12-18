@@ -19,7 +19,7 @@ export let generate_qrcode = [
   {
     id: 2,
     title: "Fill in the details",
-    desc: "Fill in the details provided in &#8216;Enter details&#8216; section. You can always switch back to a different type if nedded.",
+    desc: "Fill in the details provided in 'Enter details' section. You can always switch back to a different type if nedded.",
   },
   {
     id: 3,
