@@ -1,4 +1,4 @@
-import ArticleWrapper from "../../components/ArticleWrapper";
+import ArticleWrapper from "../../components/Article/ArticleWrapper";
 import FaqWrapper from "../../components/FaqWrapper";
 import Footer from "../../components/Footer";
 import Head from "next/head";
@@ -16,8 +16,29 @@ import { AiOutlineLink } from "react-icons/ai";
 import { GoSettings } from "react-icons/go";
 import LandiingCaption from "../../components/LandiingCaption";
 import { shortenUrl, faqShorten } from "../../libraries/data.js";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import validateUrl from "../../libraries/validateUrl";
+
+export async function getStaticProps() {
+  // Read markdows from directory
+  let mdxFiles = fs.readdirSync(path.join("mdx"));
+  let articles = mdxFiles.map((file) => {
+    const slug = file.replace(".md", "");
+    const meta = fs.readFileSync(path.join("mdx", file), "utf-8");
+    const { data: frontMatter } = matter(meta);
+
+    return { slug, frontMatter };
+  });
+
+  return {
+    props: { articles },
+  };
+}
 
 export default function Home() {
+  const [disableBtn, setDisableBtn] = React.useState(true); //  Enables / Disables submit button
   const [allow, setAllow] = React.useState(false);
   const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -32,27 +53,13 @@ export default function Home() {
     console.log(data);
   }
 
-  function validateUrl(url: string): boolean {
-    let givenInput: any;
-    try {
-      givenInput = new URL(url);
-    } catch (error) {
-      // console.log(error);
-      return false;
-    }
-    return (
-      givenInput?.protocol === "http:" || givenInput?.protocol === "https:"
-    );
-  }
-
   function handleInputUpdate(event: React.ChangeEvent<HTMLInputElement>): void {
     setValue(event.target.value);
     let isValid = validateUrl(value);
-    if (isValid && value.length > 20) {
-      // Enable Button
-      setAllow(true);
+    if (isValid && value.length > 40) {
+      setDisableBtn(false); //  enable submit button
     } else {
-      setAllow(false);
+      setDisableBtn(true);
     }
   }
 
@@ -72,7 +79,7 @@ export default function Home() {
               Shorten it, it&#8216;s free - Fast - Secured - Long term link.
             </LandiingCaption>
             <ShortenForm onSubmit={(event) => event?.preventDefault()}>
-              <section>
+              <section style={{ position: "relative" }}>
                 <Input>
                   <span>
                     <AiOutlineLink size={30} />
@@ -99,11 +106,12 @@ export default function Home() {
                 </Customize>
                 <Shorten
                   type="submit"
-                  disabled={!allow}
+                  disabled={disableBtn}
                   onClick={() => handleShortenURL()}
                 >
                   Shorten URL
                 </Shorten>
+                <Error>Invalid input. Please provide a valid URL</Error>
               </section>
               <small>
                 By clicking “Shorten URL” you agree to barlink&#8216;s{" "}
@@ -296,4 +304,16 @@ export const Parag = styled.div`
   margin-inline: auto;
   margin-bottom: 2em;
   text-align: center;
+`;
+
+const Error = styled.p`
+  background-color: red;
+  color: var(--clr-white);
+  font-size: 0.875rem;
+  padding: 0.5em;
+  border-radius: inherit;
+  position: absolute;
+  top: -50%;
+  left: 1.5em;
+  z-index: 3;
 `;

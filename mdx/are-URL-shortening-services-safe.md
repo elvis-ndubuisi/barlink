@@ -1,9 +1,9 @@
 ---
 title: "Are URL shortening services safe?"
-excerpt: "URL shorteners are a platforms/services that converts long and complex URLs easily to short versions of that URL. But are you sure? As the Internet becomes more and more integral to our lives, it's important to be aware of the risks that come with it."
+excerpt: "URL shorteners are a platforms/services that converts long and complex URLs easily to short versions of that URL. But are you sure? As the Internet becomes more and more..."
+tag: "general url"
+image: ""
 ---
-
-# Are URL shortening services safe?
 
 [URL shorteners](https://what-are-url-shortening-services) are a platforms/services that converts long and complex URLs easily to short versions of that URL. But are you sure? As the Internet becomes more and more integral to our lives, it's important to be aware of the risks that come with it. One of the biggest dangers in shortened URLs is URLs that hide malicious websites. In this case, hackers can access sensitive information by tricking people into clicking malicious links. The best way to protect yourself from this threat is to be careful about the links you click. If you are not sure if the link is safe, please do not click it. You can also install security software on your computer to help block malicious links. By taking these precautions, you can protect sensitive information from URL security risks. This blog post examines the security risks of using URL shortening services and provides security tips.
 

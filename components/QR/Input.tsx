@@ -8,7 +8,7 @@ const Input = styled.input`
   border: none;
   border-radius: 5px;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   padding: 0.875em;
   border: solid 1px transparent;
 
@@ -178,6 +178,37 @@ const Input = styled.input`
   &[type="range"]:focus::-ms-fill-upper {
     background: #367ebd;
   }
+`;
+
+export const Textarea = styled.textarea`
+  font-size: 0.875rem;
+  background-color: var(--clr-dark-gray);
+  color: var(--clr-white);
+  outline: 0;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  width: 100%;
+  padding: 0.875em;
+  border: solid 1px transparent;
+
+  :placeholder {
+    text-transform: uppercase;
+    font-weight: var(--fw-smbold);
+  }
+
+  :focus,
+  :hover {
+    border-color: var(--clr-main);
+  }
+`;
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
 `;
 
 export default Input;

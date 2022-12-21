@@ -30,7 +30,7 @@ let initialState: iInitial = {
   quietZone: 5,
   size: 150,
   ecLevel: "M",
-  enableCORs: true,
+  enableCORs: false,
   logoImage: "",
   logoOpacity: 1,
   logoHeight: 150 * 0.2,
@@ -86,8 +86,9 @@ function reducer(state: any, action: any) {
       return { ...state, ecLevel: payload?.ecLevel };
 
     case "MOD_CORS":
-      return { ...state, enableCors: payload?.enableCors };
+      return { ...state, enableCORs: payload?.enableCORs };
 
+    /* Logo Image Setting */
     case "MOD_LOGO_IMAGE":
       return { ...state, size: payload?.logoImage };
 
@@ -104,6 +105,15 @@ function reducer(state: any, action: any) {
       return {
         ...state,
         removeQrCodeBehindLogo: payload?.removeQrCodeBehindLogo,
+      };
+    case "REMOVE_LOGO":
+      return {
+        ...state,
+        logoImage: qrDefaults.logoImage,
+        logoHeight: qrDefaults.logoHeight,
+        logoWidth: qrDefaults.logoWidth,
+        logoOpacity: qrDefaults.logoOpacity,
+        removeQrCodeBehindLogo: qrDefaults.removeQrCodeBehindLogo,
       };
 
     case "MOD_EYE_RADIUS":

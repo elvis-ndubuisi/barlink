@@ -1,14 +1,36 @@
 import React from "react";
 
-let initialType: string = "website";
+export type qrType =
+  | "website"
+  | "vCard"
+  | "text"
+  | "wifi"
+  | "email"
+  | "upload"
+  | "facebook"
+  | "twitter"
+  | "crypto"
+  | "phone"
+  | "sms"
+  | "geolocation";
+
+let initialType: qrType = "website";
 
 const QTypeContext = React.createContext<{
-  initialType: string;
-  dispatch: React.Dispatch<any>;
-}>({ initialType, dispatch: () => null });
+  type: qrType;
+  setType: React.Dispatch<React.SetStateAction<qrType>>;
+}>({
+  type: initialType,
+  setType: () => null,
+});
 
-// export const QTypeProvider = ({ children }: { children: any }) => {
-//   return <QTypeContext.Provider value={}>{children}</QTypeContext.Provider>;
-// };
+export const QTypeProvider = ({ children }: { children: any }) => {
+  const [type, setType] = React.useState<qrType>(initialType);
+  return (
+    <QTypeContext.Provider value={{ type, setType }}>
+      {children}
+    </QTypeContext.Provider>
+  );
+};
 
 export default QTypeContext;

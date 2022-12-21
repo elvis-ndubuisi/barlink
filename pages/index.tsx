@@ -1,5 +1,5 @@
-import ArticleWrapper from "../components/ArticleWrapper";
-import BlogCard from "../components/BlogCard";
+import ArticleWrapper from "../components/Article/ArticleWrapper";
+import BlogCard from "../components/Article/BlogCard";
 import FaqWrapper from "../components/FaqWrapper";
 import Footer from "../components/Footer";
 import Head from "next/head";
@@ -41,7 +41,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ articles }: { articles: any }) {
+export default function Home({ articles }: { articles: [object] }) {
   let noteWrapper = React.useRef<HTMLDivElement>(null);
   let showcase = React.useRef<HTMLDivElement>(null);
   let showcaseSubtitle = React.useRef<HTMLHeadElement>(null);

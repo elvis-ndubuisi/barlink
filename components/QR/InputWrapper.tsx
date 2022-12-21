@@ -12,6 +12,7 @@ export const Input50 = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 0.4em;
+  max-width: 500px;
 `;
 
 export default InputWrapper;

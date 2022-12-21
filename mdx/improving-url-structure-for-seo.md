@@ -1,9 +1,9 @@
 ---
-title: "Benefits of Using URL Shorteners"
-excerpt: "Long and complex URLs are cumbersome to share online and require the use of link shortening services. It's worth noting that the length of a URL and the number of characters displayed greatly affect the credibility of that URL."
+title: "Improving your URL structure for SEO"
+excerpt: "Remember when you found miles of web addresses with complex sequences of letters, numbers, and special characters? Such long URLs are not only unsightly, but can also..."
+tag: "notag"
+image: "/assets/elvis_ndubuisi.jpeg"
 ---
-
-# Improving your URL structure for SEO
 
 Remember when you found miles of web addresses with complex sequences of letters, numbers, and special characters? Such long URLs are not only unsightly, but can also negatively affect your search engine rankings.
 
@@ -13,7 +13,7 @@ Luckily, it takes a little know-how to improve your URL structure for SEO (Searc
 
 URL stands for Uniform Resource Locator, but it's more likely called a web address i.e the text you type into your web browser to go to a particular page. The URL can be short and descriptive, like "myshop.com". Sometimes the URL is longer and more descriptive, like "myshop.com/products/categories/drinks/cocacola/" ghlps drive more visitors to your website.
 
-## Site Subdomains and Subfolders.
+## Site Subdomains and Subfolders
 
 If your website has a custom domain name, you can also have subdomains or subfolders (a.k.a subdirectories).
 

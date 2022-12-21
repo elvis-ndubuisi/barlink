@@ -3,24 +3,57 @@ import styled from "styled-components";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 import Wrapper from "../../components/Wrapper";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { marked } from "marked";
+import Heading from "../../components/Heading";
 
-export default function Article() {
+interface iProps {
+  frontMatter: { title: string };
+  slug: string;
+  content: string;
+}
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync(path.join("mdx"));
+
+  const paths = files.map((filename) => ({
+    params: { slug: filename.replace(".md", "") },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const mdxMeta = fs.readFileSync(path.join("mdx", slug + ".md"), "utf-8");
+
+  const { data: frontMatter, content } = matter(mdxMeta);
+  return {
+    props: {
+      frontMatter,
+      slug,
+      content,
+    },
+  };
+}
+
+export default function Article({
+  frontMatter: { title },
+  slug,
+  content,
+}: iProps) {
   return (
     <>
       <Navigation />
-      <Wrapper>
-        <StyledArticle>
-          <h1>heading 1</h1>
-          <h2>heading 2</h2>
-          <h3>heading 3</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias et
-            molestiae corporis quo ipsam repudiandae pariatur ipsa obcaecati
-            beatae iure!
-          </p>
-          <a href="">link tag</a>
-        </StyledArticle>
-      </Wrapper>
+      <StyledArticle>
+        <Heading>{title}</Heading>
+        <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+      </StyledArticle>
       <Footer />
     </>
   );
@@ -28,11 +61,38 @@ export default function Article() {
 
 // Styled Component
 const StyledArticle = styled.main`
-  h1 {
+  background-color: var(--clr-white);
+  color: var(--clr-dark-gray);
+  max-width: 1080px;
+  margin: 2em auto;
+  padding: 1em;
+  border-radius: 15px;
+
+
+  h2 {
     font-weight: var(--fw-bold);
     font-size: 2.4rem;
+    text-align: center;
+    background-colr: blue;
+    color: yellow;
   }
   p {
     font-weight: var(--fw-regular);
+  }
+  a {
+    text-decoration: underline;
+    text-color: var(--clr-main);
+    font-family; inherit;
+    font-weight: inherit;
+  }
+  img {
+    display: block
+    max-width: 100%;
+    object-fit: cover;
+    object-posiitin: center;
+  }
+
+  ul, ol {
+    margin-left: 1.5em;
   }
 `;

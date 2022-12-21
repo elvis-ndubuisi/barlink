@@ -3,21 +3,18 @@ import Header, { HeaderBtn } from "./Header";
 import Divider from "./Divider";
 import SliderGroup from "./SliderGroup";
 import Input from "./Input";
-import { GoDash, GoPlusSmall } from "react-icons/go";
+import { GoChevronUp, GoChevronDown } from "react-icons/go";
 import QRContext from "../../context/QRContext";
 
 const QRAdvSettings = () => {
   const { state, dispatch } = React.useContext(QRContext);
   const [active, setActive] = React.useState(false);
 
-  function advancedSetting(): void {
-    setActive(!active);
-  }
   return (
     <section>
       <Header onClick={() => setActive(!active)} style={{ cursor: "pointer" }}>
         <span>Advanced</span>
-        {active ? <GoDash size={20} /> : <GoPlusSmall size={20} />}
+        {active ? <GoChevronUp size={20} /> : <GoChevronDown size={20} />}
       </Header>
       <Divider />
       {active && (
@@ -26,24 +23,46 @@ const QRAdvSettings = () => {
             <SliderGroup>
               <p>style</p>
               <select
-                value="checked value select"
-                onChange={(event) => console.log(event.target.value)}
+                value={state.qrStyle}
+                onChange={(event) =>
+                  dispatch({
+                    type: "MOD_STYLE",
+                    payload: { qrStyle: event.target.value },
+                  })
+                }
               >
-                <option value="option 1">Option 1</option>
-                <option value="option 2" selected>
-                  Option 2
-                </option>
+                <option value="squares">Squares</option>
+                <option value="dots">Dots</option>
               </select>
             </SliderGroup>
             <SliderGroup>
               <p>error correction</p>
+              <select
+                value={state.ecLevel}
+                onChange={(event) =>
+                  dispatch({
+                    type: "MOD_EC_LEVEL",
+                    payload: { ecLevel: event.target.value },
+                  })
+                }
+              >
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="Q">Q</option>
+                <option value="H">H</option>
+              </select>
             </SliderGroup>
             <SliderGroup>
               <label htmlFor="">enable CORS</label>
               <Input
                 type="checkbox"
-                checked={true}
-                onChange={(event) => console.log(event.target.value)}
+                checked={state.enableCORs}
+                onChange={(event) =>
+                  dispatch({
+                    type: "MOD_CORS",
+                    payload: { enableCORs: event.target.checked },
+                  })
+                }
               />
             </SliderGroup>
             <SliderGroup>

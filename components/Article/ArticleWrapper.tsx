@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Heading from "./Heading";
-import Wrapper from "./Wrapper";
+import Heading from "../Heading";
+import Wrapper from "../Wrapper";
 
 const StyledWrapper = styled.section`
   padding: 2em 0;

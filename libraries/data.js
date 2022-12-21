@@ -19,17 +19,17 @@ export let generate_qrcode = [
   {
     id: 2,
     title: "Fill in the details",
-    desc: "Fill in the details provided in 'Enter details' section. You can always switch back to a different type if nedded.",
+    desc: "Fill in the details provided in 'Enter details' section. You can always switch back to a different type if needed.",
   },
   {
     id: 3,
     title: "Customise QR code",
-    desc: "Barlink gives you total control with easy customisation options. Tweak your generated QR code to you preferece.",
+    desc: "Barlink gives you total control with easy customisation options. Tweak your generated QR code to you preference.",
   },
   {
     id: 4,
     title: "Download QR Code",
-    desc: "QR lcode preview will always update in real-time. Once done, download your QR code in any selected format.",
+    desc: "QR code preview will always update in real-time. Once done, download your QR code in any selected format.",
   },
 ];
 
@@ -101,6 +101,18 @@ export let faqShorten = [
       "Your shortened links created using Barlink never expires. It stays as long as Barlink lives.\nAlthough, Barlinks doesn't provide any means of managing links YET, you can always contact Barlink to remove your links.",
   },
   {
+    question:
+      "I forgot the shortened link i generated earlier, how can i get it back?",
+    answer:
+      "In cases where you forgot the shorten links you have generated earlier, re-generating a new url using the exact old long url always returns the old shortened version IF the old url already has a shortened version.",
+  },
+  {
+    question:
+      "I get the same shortened version each time o try generating a new one",
+    answer:
+      "Long urls with shortened version in Barlink will always return the old shortened version(s) (except for customized urls) when every you try to generate a new one.",
+  },
+  {
     question: "Can i customize my links?",
     answer:
       "Yes. You can use the customization button to set a custom link name before generating a short link.",
@@ -129,21 +141,23 @@ export let faqQrcode = [
       "Yes, all QR codes generated with Barlink are free and can be used for whatever you want.",
   },
   {
-    question: "Do Barlink save any of my data?",
+    question: "Do Barlink save any of my personal data?",
     answer:
       "No. Barlink doesn't send any of your data to its server. All input generates your QR code and gets lost when you close your tab or refresh the page.",
   },
   {
-    question: "",
+    question: "How many times can I generate a QR code in Barlink?",
+    answer:
+      "You can generate your QRcodes as many times as possible. Barlink doesn't limit your use of this service.",
+  },
+  {
+    question: "QRcode not working properly",
     answer: "",
   },
   {
-    question: "",
-    answer: "",
-  },
-  {
-    question: "",
-    answer: "",
+    question: "Do QR code have to be black and white?",
+    answer:
+      "No. Most important is a good contrast between the light and dark modules / pixels. Furthermore, a colorized QR code should be no negative (in terms of color, the actually black pixels / modules have to be darker than the normally white pixels) as the dark modules / pixels contain the data and a negative will confuse many QR code readers. You can create colored QR codes with goQR.me for free. Just choose a background and / or a foreground color in the download, embed or shop dialogue. ",
   },
   {
     question: "",

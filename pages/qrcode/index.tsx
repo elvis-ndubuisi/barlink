@@ -1,4 +1,4 @@
-import QRCodeEditor from "../../components/QRCodeEditor";
+import QRCodeEditor from "../../components/QR/QRCodeEditor";
 import Footer from "../../components/Footer";
 import Head from "next/head";
 import Heading from "../../components/Heading";
@@ -12,7 +12,7 @@ import FaqWrapper from "../../components/FaqWrapper";
 import StepWrapper from "../../components/StepWrapper";
 import { Parag } from "../shortenurl";
 import { generate_qrcode, faqQrcode } from "../../libraries/data.js";
-import MobileQRCodeEditor from "../../components/MobileQRCodeEditor";
+import MobileQRCodeEditor from "../../components/QR/MobileQRCodeEditor";
 import React from "react";
 import { QRProvider } from "../../context/QRContext";
 

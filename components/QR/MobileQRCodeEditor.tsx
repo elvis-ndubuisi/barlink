@@ -1,15 +1,15 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { initialTabs as tabs } from "../libraries/barcodeOptions";
+import { initialTabs as tabs } from "../../libraries/barcodeOptions";
 import styled from "styled-components";
-import SelectType from "./QR/SelectType";
-import InputGroup from "./QR/InputGroup";
-import QRLogo from "./QR/QRLogo";
+import SelectType from "./SelectType";
+import InputGroup from "./InputGroup";
+import QRLogo from "./QRLogo";
 import QRPreview from "./QRPreview";
-import QRAdvSettings from "./QR/QRAdvSettings";
-import EyeRadius from "./QR/EyeRadius";
-import ColorMenu from "./QR/ColorMenu";
-import DownloadSection from "./QR/DownloadSection";
+import QRAdvSettings from "./QRAdvSettings";
+import EyeRadius from "./EyeRadius";
+import ColorMenu from "./ColorMenu";
+import DownloadSection from "./DownloadSection";
 
 const MobileBarcodeEditor = () => {
   const [selectedTab, setSelectedTab] = React.useState(tabs[0]);

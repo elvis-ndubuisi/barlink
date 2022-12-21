@@ -1,34 +1,37 @@
-import Buttons from "./Buttons";
-import Container from "./QR/Container";
-import ColorMenu from "./QR/ColorMenu";
-import DownloadSection from "./QR/DownloadSection";
-import EyeRadius from "./QR/EyeRadius";
-import InputGroup from "./QR/InputGroup";
+import Buttons from "../Buttons";
+import Container from "./Container";
+import ColorMenu from "./ColorMenu";
+import DownloadSection from "./DownloadSection";
+import EyeRadius from "./EyeRadius";
+import InputGroup from "./InputGroup";
 import React from "react";
-import SelectType from "./QR/SelectType";
+import SelectType from "./SelectType";
 import styled from "styled-components";
 import QRPreview from "./QRPreview";
-import QRLogo from "./QR/QRLogo";
-import QRAdvSettings from "./QR/QRAdvSettings";
+import QRLogo from "./QRLogo";
+import QRAdvSettings from "./QRAdvSettings";
+import { QTypeProvider } from "../../context/QTypeContext";
 
 const QRCodeEditor = () => {
   return (
     <StyledWrapper>
-      <Container noJustify={true}>
-        <SelectType />
-        {/* Logo menu */}
-        <QRLogo />
-      </Container>
+      <QTypeProvider>
+        <Container noJustify={true}>
+          <SelectType />
+          {/* Logo menu */}
+          <QRLogo />
+        </Container>
 
-      <Container>
-        {/* Enter Details */}
-        <InputGroup />
-        <section>
-          <QRPreview />
-        </section>
-        {/* Advanced Settings */}
-        <QRAdvSettings />
-      </Container>
+        <Container>
+          {/* Enter Details */}
+          <InputGroup />
+          <section>
+            <QRPreview />
+          </section>
+          {/* Advanced Settings */}
+          <QRAdvSettings />
+        </Container>
+      </QTypeProvider>
 
       <Container noJustify={true}>
         {/* EyeRadius Menu */}

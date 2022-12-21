@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import Divider from "./Divider";
 import Header, { HeaderBtn } from "./Header";
 import SliderGroup from "./SliderGroup";
@@ -9,10 +9,12 @@ import QRContext from "../../context/QRContext";
 
 const QRLogo = () => {
   const [addImage, setAddImage] = React.useState(false);
+  const [addedLogo, setAddedLogo] = React.useState(false);
   const { state, dispatch } = React.useContext(QRContext);
 
   function handleLogo(): void {
     setAddImage(!addImage);
+    addImage === false && dispatch({ type: "REMOVE_LOGO" });
   }
 
   return (
@@ -93,7 +95,13 @@ const QRLogo = () => {
             <p>remove code behind logo ?</p>
             <Input
               type="checkbox"
-              // defaultValue={state?.removeQrCodeBehindLogo}
+              checked={state.removeQrCodeBehindLogo}
+              onChange={(event) =>
+                dispatch({
+                  type: "MOD_LOGO_BG",
+                  payload: { removeQrCodeBehindLogo: event.target.checked },
+                })
+              }
             />
           </SliderGroup>
         </section>

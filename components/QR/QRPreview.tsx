@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { QRCode } from "react-qrcode-logo";
-import QRContext from "../context/QRContext";
+import QRContext from "../../context/QRContext";
 
 export const Preview = styled.div`
   border-radius: 5px;
   width: 300px;
   max-width: 350px;
   aspect-ratio: 1;
-  background-color: var(--clr-white);
+  background-color: var(--clr-dark-gray);
   font-weight: var(--fw-exbold);
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const Preview = styled.div`
 
   h3 {
     font-size: 1.1rem;
-    color: var(--clr-dark);
+    color: var(--clr-white);
     margin: 0.5em 0;
   }
 
