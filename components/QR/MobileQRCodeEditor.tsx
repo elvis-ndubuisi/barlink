@@ -10,6 +10,7 @@ import QRAdvSettings from "./QRAdvSettings";
 import EyeRadius from "./EyeRadius";
 import ColorMenu from "./ColorMenu";
 import DownloadSection from "./DownloadSection";
+import { QTypeProvider } from "../../context/QTypeContext";
 
 const MobileBarcodeEditor = () => {
   const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
@@ -18,8 +19,10 @@ const MobileBarcodeEditor = () => {
     if (label === "Details") {
       return (
         <>
-          <SelectType />
-          <InputGroup />
+          <QTypeProvider>
+            <SelectType />
+            <InputGroup />
+          </QTypeProvider>
         </>
       );
     } else if (label === "Customize") {
