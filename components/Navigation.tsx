@@ -5,8 +5,8 @@ import Button, { IconButton } from "./Buttons";
 import Wrapper from "./Wrapper";
 import React from "react";
 import { motion } from "framer-motion";
-// import Modal from "./Modal";
-// import Scan from "./Scan";
+import Scan from "./Modal/Scan";
+import Portal from "./Modal/Portal";
 
 const variants = {
   open: {
@@ -19,9 +19,9 @@ const variants = {
 const Navigation: React.FC = () => {
   let pageWidth = React.useRef(0);
   let navigation = React.useRef<HTMLElement>(null);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false); /* is mobile nav open */
   const [mobile, setMobile] = React.useState(false);
-  const [scanModal, setScanModal] = React.useState(true);
+  const [scanModal, setScanModal] = React.useState(false);
 
   // Functions
   function handleNavigation(): void {
@@ -62,7 +62,15 @@ const Navigation: React.FC = () => {
 
               <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
-                <Button primary={true}>Scan</Button>
+                <Button
+                  primary={true}
+                  handleClick={() => {
+                    setScanModal(true);
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  Scan
+                </Button>
               </BtnWrap>
             </motion.nav>
           ) : (
@@ -84,7 +92,9 @@ const Navigation: React.FC = () => {
 
           <BtnWrap>
             <Button primary={false}>Unshorten</Button>
-            <Button primary={true}>Scan</Button>
+            <Button primary={true} handleClick={() => setScanModal(true)}>
+              Scan
+            </Button>
           </BtnWrap>
           {mobile && (
             <IconButton onClick={() => handleNavigation()}>
@@ -93,9 +103,9 @@ const Navigation: React.FC = () => {
           )}
         </Wrapper>
       </StyledHeader>
-      {/* <Modal onClose={() => setScanModal(false)} showModal={scanModal}>
+      <Portal showModal={scanModal} onClose={() => setScanModal(false)}>
         <Scan />
-      </Modal> */}
+      </Portal>
     </>
   );
 };

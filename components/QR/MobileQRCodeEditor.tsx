@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { initialTabs as tabs } from "../../libraries/barcodeOptions";
 import styled from "styled-components";
 import SelectType from "./SelectType";
-import InputGroup from "./InputGroup";
+import QRInput from "./QRInput";
 import QRLogo from "./QRLogo";
 import QRPreview from "./QRPreview";
 import QRAdvSettings from "./QRAdvSettings";
@@ -21,7 +21,7 @@ const MobileBarcodeEditor = () => {
         <>
           <QTypeProvider>
             <SelectType />
-            <InputGroup />
+            <QRInput />
           </QTypeProvider>
         </>
       );

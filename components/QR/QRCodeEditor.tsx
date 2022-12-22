@@ -1,9 +1,8 @@
-import Buttons from "../Buttons";
 import Container from "./Container";
 import ColorMenu from "./ColorMenu";
 import DownloadSection from "./DownloadSection";
 import EyeRadius from "./EyeRadius";
-import InputGroup from "./InputGroup";
+import QRInput from "./QRInput";
 import React from "react";
 import SelectType from "./SelectType";
 import styled from "styled-components";
@@ -24,7 +23,7 @@ const QRCodeEditor = () => {
 
         <Container>
           {/* Enter Details */}
-          <InputGroup />
+          <QRInput />
           <section>
             <QRPreview />
           </section>

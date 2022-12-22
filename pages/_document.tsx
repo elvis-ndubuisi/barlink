@@ -66,7 +66,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <section id="modal"></section>
+          <section id="portal"></section>
         </body>
       </Html>
     );

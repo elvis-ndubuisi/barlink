@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Wrapper from "../components/Wrapper";
+import Heading from "../components/Heading";
 
 export default function Privacy() {
   return (
@@ -9,7 +10,7 @@ export default function Privacy() {
       <Navigation />
       <main>
         <Wrapper>
-          <h2>Privacy Policy</h2>
+          <Heading>Privacy Policy</Heading>
           <small>Effective October, 2022</small>
 
           <p>

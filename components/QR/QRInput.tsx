@@ -5,13 +5,10 @@ import Header from "./Header";
 import Divider from "./Divider";
 import Input, { Label, Textarea } from "./Input";
 import InputWrapper, { Input50 } from "./InputWrapper";
-import QRContext from "../../context/QRContext";
-import QTypeContext, {
-  QTypeProvider,
-  qrType,
-} from "../../context/QTypeContext";
+import QTypeContext, { qrType } from "../../context/QTypeContext";
+import type { iEmail, iCard, iWifi } from "../../types/qrtype-value";
 
-const InputGroup = () => {
+const QRInput = () => {
   const { type, setType } = React.useContext<{
     type: qrType;
     setType: React.Dispatch<React.SetStateAction<qrType>>;
@@ -19,12 +16,55 @@ const InputGroup = () => {
 
   let Field;
 
+  /*
+   * Field Input valud state
+   */
+  // website
+  const [web, setWeb] = React.useState("");
+  // text
+  const [text, setText] = React.useState("");
+  // email
+  const [mail, setMail] = React.useState<iEmail>({
+    email: "",
+    subject: "",
+    message: "",
+  });
+  // upload
+  // vCard
+  const [vCard, setvCard] = React.useState<iCard>({
+    firstname: "",
+    lastname: "",
+    mobile: "",
+    phone: "",
+    fax: "",
+    company: "",
+    website: "",
+    email: "",
+    job: "",
+    street: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: "",
+  });
+  // wifi
+  const [wifi, setWifi] = React.useState<iWifi>({
+    ssid: "",
+    hidden: true,
+    password: "",
+    encryption: "none",
+  });
+
   switch (type) {
     case "website":
       Field = (
         <>
           <InputWrapper>
-            <Input type="text" placeholder="Enter your url" />
+            <Input
+              type="text"
+              placeholder="Enter your url"
+              onChange={(event) => setWeb(event.target.value.trim())}
+            />
           </InputWrapper>
         </>
       );
@@ -33,7 +73,10 @@ const InputGroup = () => {
     case "text":
       Field = (
         <>
-          <Textarea placeholder="Text..." />
+          <Textarea
+            placeholder="Text..."
+            onChange={(event) => setText(event.target.value.trim())}
+          />
         </>
       );
       break;
@@ -42,9 +85,26 @@ const InputGroup = () => {
       Field = (
         <>
           <InputWrapper>
-            <Input type="text" placeholder="Your email" />
-            <Input type="text" placeholder="Subject" />
-            <Textarea placeholder="Message..." />
+            <Input
+              type="text"
+              placeholder="Your email"
+              onChange={(event) =>
+                setMail({ ...mail, email: event.target.value.trim() })
+              }
+            />
+            <Input
+              type="text"
+              placeholder="Subject"
+              onChange={(event) =>
+                setMail({ ...mail, subject: event.target.value.trim() })
+              }
+            />
+            <Textarea
+              placeholder="Message..."
+              onChange={(event) =>
+                setMail({ ...mail, message: event.target.value.trim() })
+              }
+            />
           </InputWrapper>
         </>
       );
@@ -65,16 +125,40 @@ const InputGroup = () => {
         <>
           <InputWrapper>
             <Input50>
-              <Input type="text" placeholder="Network Name: SSID" />
+              <Input
+                type="text"
+                placeholder="Network Name: SSID"
+                onChange={(event) =>
+                  setWifi({ ...wifi, ssid: event.target.value.trim() })
+                }
+              />
               <Label>
-                <Input type="checkbox" placeholder="hidden" />
+                <Input
+                  type="checkbox"
+                  placeholder="hidden"
+                  checked={wifi.hidden}
+                  onChange={(event) =>
+                    setWifi({ ...wifi, hidden: event.target.checked })
+                  }
+                />
                 Hidden
               </Label>
             </Input50>
-            <Input type="password" placeholder="Password" />
+            <Input
+              type="password"
+              placeholder="Password"
+              onChange={(event) =>
+                setWifi({ ...wifi, password: event.target.value.trim() })
+              }
+            />
             <Label>
               Encryption:
-              <select>
+              <select
+                value={wifi.encryption}
+                onChange={(event) =>
+                  setWifi({ ...wifi, encryption: event.target.value })
+                }
+              >
                 <option value="none">None</option>
                 <option value="WEP">WEP</option>
                 <option value="WAP/WPA2">WAP/WPA2</option>
@@ -168,4 +252,4 @@ const InputGroup = () => {
   );
 };
 
-export default InputGroup;
+export default QRInput;

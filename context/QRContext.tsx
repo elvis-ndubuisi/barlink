@@ -1,26 +1,5 @@
 import React from "react";
-
-type EyeColor = string;
-type EyeRadi = number;
-
-interface iInitial {
-  value: string;
-  bgColor: string;
-  fgColor: string;
-  qrStyle: "squares" | "dots";
-  quietZone: number;
-  size: number;
-  ecLevel: "L" | "M" | "Q" | "H";
-  enableCORs: boolean;
-  logoImage?: string;
-  logoOpacity?: number;
-  logoHeight?: number;
-  logoWidth?: number;
-  removeQrCodeBehindLogo?: boolean;
-  eyeColor?: EyeColor | [EyeColor, EyeColor, EyeColor];
-  eyeRadius?: EyeRadi | [EyeRadi, EyeRadi, EyeRadi];
-  id?: string;
-}
+import type iInitial from "../types/qrcontext";
 
 let initialState: iInitial = {
   value: "https://barlink.vercel.app",
@@ -124,15 +103,74 @@ function reducer(state: any, action: any) {
       return { ...state, eyeRadius: qrDefaults.eyeRadius };
 
     case "PRESET_01":
-      return {};
+      return {
+        ...state,
+        eyeRadius: [5, 10, 5] /* top/left top/right bottom/left */,
+      };
     case "PRESET_02":
-      return {};
+      return {
+        ...state,
+        eyeRadius: [
+          [10, 10, 0, 10], // top/left eye
+          [10, 10, 10, 0], // top/right eye
+          [10, 0, 10, 10], // bottom/left eye
+        ],
+      };
     case "PRESET_03":
-      return {};
+      return {
+        ...state,
+        eyeRadius: [
+          {
+            // top/left eye
+            outer: [10, 10, 0, 10],
+            inner: [0, 10, 10, 10],
+          },
+          [10, 10, 10, 0], // top/right eye
+          [10, 0, 10, 10], // bottom/left
+        ],
+      };
     case "PRESET_04":
-      return {};
+      return {
+        ...state,
+        eyeRadius: [
+          {
+            // top/left eye
+            outer: [0, 0, 10, 10],
+            inner: [0, 0, 10, 10],
+          },
+          {
+            // top/right eye
+            inner: [0, 0, 10, 10],
+            outer: [0, 0, 10, 10],
+          },
+          {
+            // bottom/left eye
+            outer: [0, 0, 10, 10],
+            inner: [0, 0, 10, 10],
+          },
+        ],
+      };
     case "PRESET_05":
-      return {};
+      return {
+        ...state,
+        eyeRadius: [
+          {
+            // top/let eye
+            outer: [5, 5, 5, 5],
+            innter: [0, 0, 10, 10],
+          },
+          // top/right eye
+          {
+            // top/let eye
+            outer: [10, 10, 10, 10],
+            inner: [10, 10, 10, 10],
+          },
+          {
+            outer: [0, 0, 10, 10],
+            inner: [0, 0, 10, 10],
+          },
+        ],
+      };
 
     /* Colors */
     case "RESET_FG_COLOR":

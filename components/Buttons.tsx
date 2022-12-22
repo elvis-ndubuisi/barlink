@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 
 interface iButton {
   primary?: boolean;
+  dark?: boolean;
 }
 
 interface iProps {
   primary?: boolean;
   children: any;
   handleClick?: Function;
+  dark?: boolean;
 }
 
 export const StyledButton = styled(motion.button)<iButton>`
@@ -89,7 +91,7 @@ const Button = styled(StyledButton)<iButton>`
   min-width: 80px;
   font-size: 0.9375rem;
   font-weight: var(--fw-smbold);
-  color: var(--clr-white);
+  color: ${(props) => (props.dark ? "var(--clr-dark)" : "var(--clr-white)")};
   padding: 8px 14px;
   background-color: ${(props) =>
     props.primary ? "var(--clr-main)" : "var(--clr-darker)"};
@@ -101,9 +103,13 @@ const Button = styled(StyledButton)<iButton>`
   }
 `;
 
-const Buttons = ({ primary, children, handleClick }: iProps) => {
+const Buttons = ({ primary, children, handleClick, dark }: iProps) => {
   return (
-    <Button primary={primary} onClick={() => handleClick && handleClick()}>
+    <Button
+      primary={primary}
+      onClick={() => handleClick && handleClick()}
+      dark={dark}
+    >
       {children}
     </Button>
   );
