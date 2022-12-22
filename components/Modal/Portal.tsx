@@ -2,8 +2,9 @@ import React, { MouseEvent } from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
 import { GoX } from "react-icons/go";
+import { motion } from "framer-motion";
 
-const Styled = styled.div`
+const Styled = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +14,7 @@ const Styled = styled.div`
   display: flex;
   place-items: center;
   place-content: center;
-  z-index: 2;
+  z-index: 5;
 `;
 
 const ModalWrapper = styled.div`
@@ -49,6 +50,15 @@ interface iProps {
   showModal: boolean;
 }
 
+let variants = {
+  open: {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+  },
+  closed: { opacity: 0, x: "-100%" },
+};
+
 const Portal = ({ children, onClose, showModal }: iProps) => {
   const portalBg = React.useRef<HTMLDivElement | null>(null);
   const [isBrowser, setIsBrowser] = React.useState<boolean>(false);
@@ -66,7 +76,24 @@ const Portal = ({ children, onClose, showModal }: iProps) => {
   const Component = showModal ? (
     <>
       (
-      <Styled onClick={(event) => handleClose(event)} ref={portalBg}>
+      <Styled
+        onClick={(event) => handleClose(event)}
+        ref={portalBg}
+        animate={showModal ? "open" : "closed"}
+        variants={variants}
+        // onDrop={(event) => {
+        //   event.preventDefault();
+        //   event.stopPropagation();
+        // }}
+        // onDragEnter={(event) => {
+        //   event.stopPropagation();
+        //   event.preventDefault();
+        // }}
+        // onDragOver={(event) => {
+        //   event.stopPropagation();
+        //   event.preventDefault();
+        // }}
+      >
         <ModalWrapper>
           <CloseBtn onClick={onClose}>
             <GoX size={24} />

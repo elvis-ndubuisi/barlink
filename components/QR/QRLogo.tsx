@@ -1,4 +1,4 @@
-import React, { FormEvent } from "react";
+import React from "react";
 import Divider from "./Divider";
 import Header, { HeaderBtn } from "./Header";
 import SliderGroup from "./SliderGroup";
@@ -9,16 +9,29 @@ import QRContext from "../../context/QRContext";
 
 const QRLogo = () => {
   const [addImage, setAddImage] = React.useState(false);
-  const [addedLogo, setAddedLogo] = React.useState(false);
+  const [addedImage, setAddedImage] = React.useState(false);
   const { state, dispatch } = React.useContext(QRContext);
 
   function handleLogo(): void {
     setAddImage(!addImage);
-    addImage === false && dispatch({ type: "REMOVE_LOGO" });
+    addedImage === true && dispatch({ type: "REMOVE_LOGO" });
   }
 
   return (
-    <section>
+    <section
+      onDragEnter={(event: React.DragEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+      }}
+      onDragLeave={(event: React.DragEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+      }}
+      onDragOver={(event: React.DragEvent<HTMLElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
+      }}
+    >
       <Header>
         <h4>Logo</h4>
         <HeaderBtn onClick={() => handleLogo()}>
@@ -38,7 +51,7 @@ const QRLogo = () => {
       <Divider />
       {addImage && (
         <section>
-          <DropZone />
+          <DropZone addedImage={setAddedImage} />
           {/* other settings */}
           <SliderGroup>
             <p>opacity</p>

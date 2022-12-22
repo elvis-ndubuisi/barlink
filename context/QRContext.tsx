@@ -69,7 +69,7 @@ function reducer(state: any, action: any) {
 
     /* Logo Image Setting */
     case "MOD_LOGO_IMAGE":
-      return { ...state, size: payload?.logoImage };
+      return { ...state, logoImage: payload?.logoImage };
 
     case "MOD_LOGO_OPACITY":
       return { ...state, logoOpacity: payload?.logoOpacity };

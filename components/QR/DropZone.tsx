@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import QRContext from "../../context/QRContext";
 
-const DropZone = ({ children }: any) => {
-  let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+interface iProp {
+  addedImage: Function;
+}
+
+const DropZone = ({ addedImage }: iProp) => {
   let browseFile = React.useRef<HTMLInputElement>(null);
   let zone = React.useRef<HTMLDivElement>(null);
-  let file = React.useRef<any>(null);
   let [dropText, setDropText] = React.useState<string>("Drag & Drop file");
-  const [dropped, setDropped] = React.useState(false);
 
-  // function fileDragDrop(event: any): void {
-  //   console.log(event);
-  //   let file = event.dataTransfer.files[0];
-  // }
+  const { dispatch } = React.useContext(QRContext);
 
-  function fileDragEnter(event: React.FormEvent<HTMLInputElement>): void {
+  function fileDragEnter(event: React.DragEvent<HTMLInputElement>): void {
     event.preventDefault();
     event.stopPropagation();
   }
@@ -38,13 +37,7 @@ const DropZone = ({ children }: any) => {
     event.preventDefault();
 
     const data = event.dataTransfer.files[0];
-
     handleData(data);
-  }
-
-  function selectedFile(event: any): void {
-    file.current = event.target?.files[0];
-    handleData(file.current);
   }
 
   function handleData(data: any): void {
@@ -52,12 +45,18 @@ const DropZone = ({ children }: any) => {
     let validType = ["image/jpeg", "image/png", "image/png", "image/svg+xml"];
     if (validType.includes(type)) {
       /* user seected wanted format */
-      setDropText(name);
+      setDropText(`${name.slice(0, 15)}...`);
       zone.current && zone.current?.classList.add("dropped");
       // read file
       const reader = new FileReader();
-      reader.onload = (e) => console.log(e);
       reader.readAsDataURL(data);
+      reader.onloadend = (event) => {
+        dispatch({
+          type: "MOD_LOGO_IMAGE",
+          payload: { logoImage: reader.result },
+        });
+        addedImage(true);
+      };
     } else {
       /* unwanted format selected */
       if (zone.current) {
@@ -87,7 +86,7 @@ const DropZone = ({ children }: any) => {
         type="file"
         hidden
         ref={browseFile}
-        onChange={(event) => selectedFile(event)}
+        onChange={(event) => handleData(event.target?.files[0])}
       />
     </Styled>
   );

@@ -29,10 +29,6 @@ const Navigation: React.FC = () => {
     setIsOpen(!isOpen);
   }
 
-  function hm() {
-    setScanModal(true);
-  }
-
   React.useEffect(() => {
     // Check if screen fits mobile view.
     pageWidth.current = window.innerWidth;

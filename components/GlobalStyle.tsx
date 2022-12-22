@@ -15,12 +15,6 @@ const GlobalStyle = createGlobalStyle`
     --clr-gray: #2e2f2f;
     --clr-gray-light: #8a8a8a;
 
-    /* --clr-main-lighter: #373864;
-    --clr-dark: #252332;
-    --clr-darker: #100f1b;
-    --clr-light: #ffffff;
-    --clr-stroke: #585470; */
-
     --max-width: 1440px;
 
     /* Spacing */
