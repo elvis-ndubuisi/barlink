@@ -1,4 +1,12 @@
-import type { iWifi, iCard } from "../types/qrtype-value";
+import type { iWifi, iCard, iEmail, iSms } from "../types/qrtype-value";
+
+function formatWeb(data: string): string {
+  if (data.trim().startsWith("https://") || data.trim().startsWith("http://")) {
+    return data.trim();
+  } else {
+    return `https://${data.trim()}`;
+  }
+}
 
 function formatWifi(data: iWifi): string {
   let format: string = `WIFI:S:${data.ssid};T:${data.encryption};P:=${data.password};H:${data.hidden};`;
@@ -25,8 +33,16 @@ function formatCard(data: iCard): string {
   return format;
 }
 
-function formatEmail(): string {
+function formatEmail(data: iEmail): string {
   return "";
 }
 
-export { formatWifi, formatCard, formatEmail };
+function formatPhone(): string {
+  return "";
+}
+
+function formatSms(data: iSms): string {
+  return "";
+}
+
+export { formatWeb, formatWifi, formatCard, formatEmail };

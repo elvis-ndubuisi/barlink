@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import QRContext from "../../context/QRContext";
+import { toast } from "react-toastify";
 
 interface iProp {
   addedImage: Function;
@@ -59,6 +60,7 @@ const DropZone = ({ addedImage }: iProp) => {
       };
     } else {
       /* unwanted format selected */
+      toast.error("Invalid file format");
       if (zone.current) {
         zone.current?.classList.remove("dropped");
         zone.current?.classList.add("error");
@@ -86,7 +88,9 @@ const DropZone = ({ addedImage }: iProp) => {
         type="file"
         hidden
         ref={browseFile}
-        onChange={(event) => handleData(event.target?.files[0])}
+        onChange={(event) =>
+          handleData(event.target.files && event.target.files[0])
+        }
       />
     </Styled>
   );

@@ -64,14 +64,12 @@ export default function Home({ articles }: { articles: [object] }) {
         {/* showcase */}
         <Showcase ref={showcase}>
           <Wrapper>
-            <LandingSubTitle ref={showcaseSubtitle}>
-              Your all-in-one Generator
-            </LandingSubTitle>
-            <LandingTitle ref={showcaseTitle}>
+            <LandingSubTitle>Your all-in-one Generator</LandingSubTitle>
+            <LandingTitle>
               Generate <span>Dynamic QR codes</span>, <span>Barcodes</span> and{" "}
               <span>Shorten Links</span>.
             </LandingTitle>
-            <LandiingCaption ref={showcaseCaption}>
+            <LandiingCaption>
               Create fully customizable QR codes with your brand colors and
               logo, product barcodes. Turn long boring iinks to short momizable
               links. Download generated contents in several printable formats

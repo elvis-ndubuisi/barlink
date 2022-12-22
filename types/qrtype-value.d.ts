@@ -14,16 +14,16 @@ export interface iWifi {
 export interface iCard {
   firstname: string;
   lastname: string;
-  mobile: number;
-  phone?: number;
-  fax?: number;
+  mobile: string;
+  phone?: string;
+  fax?: string;
   email: string;
   website: string;
   company: string;
   job: string;
   street: string;
   city: string;
-  zip?: number;
+  zip?: string;
   state: string;
   country: string;
 }
@@ -33,4 +33,12 @@ export interface iSms {
   area: string;
   phone: number;
   message: string;
+}
+
+export interface iPhone {
+  mobile: number;
+}
+
+export interface iAppleStore {
+  url: string;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Header, { HeaderBtn } from "./Header";
 import Divider from "./Divider";
 import SliderGroup from "./SliderGroup";
-import Input from "./Input";
+import Input, { Select } from "./Input";
 import { GoChevronUp, GoChevronDown } from "react-icons/go";
 import QRContext from "../../context/QRContext";
 
@@ -22,7 +22,7 @@ const QRAdvSettings = () => {
           <section>
             <SliderGroup>
               <p>style</p>
-              <select
+              <Select
                 value={state.qrStyle}
                 onChange={(event) =>
                   dispatch({
@@ -33,11 +33,11 @@ const QRAdvSettings = () => {
               >
                 <option value="squares">Squares</option>
                 <option value="dots">Dots</option>
-              </select>
+              </Select>
             </SliderGroup>
             <SliderGroup>
               <p>error correction</p>
-              <select
+              <Select
                 value={state.ecLevel}
                 onChange={(event) =>
                   dispatch({
@@ -50,7 +50,7 @@ const QRAdvSettings = () => {
                 <option value="M">M</option>
                 <option value="Q">Q</option>
                 <option value="H">H</option>
-              </select>
+              </Select>
             </SliderGroup>
             <SliderGroup>
               <label htmlFor="">enable CORS</label>

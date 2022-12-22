@@ -3,22 +3,23 @@
 import React from "react";
 import Header from "./Header";
 import Divider from "./Divider";
-import Input, { Label, Textarea } from "./Input";
+import Input, { Label, Select, Textarea } from "./Input";
 import InputWrapper, { Input50 } from "./InputWrapper";
 import QTypeContext, { qrType } from "../../context/QTypeContext";
+import QRContext from "../../context/QRContext";
 import type { iEmail, iCard, iWifi } from "../../types/qrtype-value";
+import * as flatten from "../../libraries/formatters";
 
 const QRInput = () => {
   const { type, setType } = React.useContext<{
     type: qrType;
     setType: React.Dispatch<React.SetStateAction<qrType>>;
   }>(QTypeContext);
+  const { state, dispatch } = React.useContext(QRContext);
 
   let Field;
 
-  /*
-   * Field Input valud state
-   */
+  /* All Field's input state */
   // website
   const [web, setWeb] = React.useState("");
   // text
@@ -29,7 +30,6 @@ const QRInput = () => {
     subject: "",
     message: "",
   });
-  // upload
   // vCard
   const [vCard, setvCard] = React.useState<iCard>({
     firstname: "",
@@ -54,6 +54,108 @@ const QRInput = () => {
     password: "",
     encryption: "none",
   });
+
+  React.useEffect(() => {
+    switch (type) {
+      case "website":
+        // reset previews input field state values
+        dispatch({ type: "RESET_VALUE" });
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.formatWeb(web) },
+        });
+        break;
+
+      case "text":
+        dispatch({ type: "MOD_VALUE", payload: { value: text } });
+        break;
+
+      case "wifi":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.formatWifi(wifi) },
+        });
+        break;
+
+      case "email":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.formatEmail(mail) },
+        });
+        break;
+
+      case "vCard":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.formatCard(vCard) },
+        });
+        break;
+
+      case "phone":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format phone input" },
+        });
+        break;
+
+      case "sms":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format sms input" },
+        });
+        break;
+
+      case "geolocation":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format geolocation input" },
+        });
+        break;
+
+      case "crypto":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format crypto input" },
+        });
+        break;
+
+      case "upload":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format upload input" },
+        });
+        break;
+
+      case "facebook":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format facebook input" },
+        });
+        break;
+
+      case "twitter":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format twitter input" },
+        });
+        break;
+
+      default:
+        break;
+    }
+  }, [
+    web,
+    setWeb,
+    text,
+    setText,
+    wifi,
+    setWifi,
+    mail,
+    setMail,
+    vCard,
+    setvCard,
+    dispatch,
+  ]);
 
   switch (type) {
     case "website":
@@ -153,16 +255,22 @@ const QRInput = () => {
             />
             <Label>
               Encryption:
-              <select
+              <Select
                 value={wifi.encryption}
                 onChange={(event) =>
-                  setWifi({ ...wifi, encryption: event.target.value })
+                  setWifi({
+                    ...wifi,
+                    encryption: event.target.value.trim() as
+                      | "none"
+                      | "WEP"
+                      | "WAP/WPA2",
+                  })
                 }
               >
                 <option value="none">None</option>
                 <option value="WEP">WEP</option>
                 <option value="WAP/WPA2">WAP/WPA2</option>
-              </select>
+              </Select>
             </Label>
           </InputWrapper>
         </>
@@ -175,30 +283,150 @@ const QRInput = () => {
           {" "}
           <InputWrapper>
             <Input50>
-              <Input type="text" placeholder="First Name" />
-              <Input type="text" placeholder="Last Name" />
+              <Input
+                type="text"
+                placeholder="First Name"
+                onChange={(event) =>
+                  setvCard({ ...vCard, firstname: event.target.value.trim() })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Last Name"
+                onChange={(event) =>
+                  setvCard({ ...vCard, lastname: event.target.value.trim() })
+                }
+              />
             </Input50>
-            <Input type="tel" placeholder="Mobile" />
+            <Input
+              type="tel"
+              placeholder="Mobile"
+              onChange={(event) =>
+                setvCard({
+                  ...vCard,
+                  mobile: event.target.value.trim(),
+                })
+              }
+            />
             <Input50>
-              <Input type="text" placeholder="Phone" />
-              <Input type="text" placeholder="Fax" />
+              <Input
+                type="text"
+                placeholder="Phone"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    phone: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Fax"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    fax: event.target.value.trim(),
+                  })
+                }
+              />
             </Input50>
             <Input50>
-              <Input type="email" placeholder="Email - your@email.com" />
-              <Input type="url" placeholder="Website - www.yourwebsite.com" />
+              <Input
+                type="email"
+                placeholder="Email - your@email.com"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    email: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="url"
+                placeholder="Website - www.yourwebsite.com"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    website: event.target.value.trim(),
+                  })
+                }
+              />
             </Input50>
             <Input50>
-              <Input type="text" placeholder="Company" />
-              <Input type="text" placeholder="Job Title" />
+              <Input
+                type="text"
+                placeholder="Company"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    company: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Job Title"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    job: event.target.value.trim(),
+                  })
+                }
+              />
             </Input50>
-            <Input type="text" placeholder="Street" />
+            <Input
+              type="text"
+              placeholder="Street"
+              onChange={(event) =>
+                setvCard({
+                  ...vCard,
+                  street: event.target.value.trim(),
+                })
+              }
+            />
             <Input50>
-              <Input type="text" placeholder="City" />
-              <Input type="text" placeholder="ZIP/Postal Code" />
+              <Input
+                type="text"
+                placeholder="City"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    city: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="ZIP/Postal Code"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    zip: event.target.value.trim(),
+                  })
+                }
+              />
             </Input50>
             <Input50>
-              <Input type="text" placeholder="State" />
-              <Input type="text" placeholder="Country" />
+              <Input
+                type="text"
+                placeholder="State"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    state: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Country"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    country: event.target.value.trim(),
+                  })
+                }
+              />
             </Input50>
           </InputWrapper>
         </>

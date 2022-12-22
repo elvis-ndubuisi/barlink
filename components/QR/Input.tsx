@@ -211,4 +211,20 @@ export const Label = styled.label`
   gap: 0.4em;
 `;
 
+export const Select = styled.select`
+  outline: 0;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  borde: none;
+  padding: 0 0.3em;
+  font-family: inherit;
+
+  option {
+    color: var(--clr-dark);
+    padding: 0 0.3em;
+  }
+`;
+
 export default Input;

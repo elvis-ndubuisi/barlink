@@ -1,31 +1,52 @@
-// import { toJpeg, toPng, toSvg } from "html-to-image";
+import * as toImage from "html-to-image";
+import { toast } from "react-toastify";
 
-// export const downloadJpeg = (name: string, quality: number = 0.95) => {
-//   toJpeg(document.querySelector("#qr-code") as any, { quality: quality }).then(
-//     (dataUri) => {
-//       const link = document.createElement("a");
-//       link.download = `${name}.jpg` || "qr-gen.jpg";
-//       link.href = dataUri;
-//       link.click();
-//     }
-//   );
-// };
+function link(dataurl: any, name: string, type: string): void {
+  const link = document.createElement("a");
+  link.download = `${name}.${type}`;
+  link.href = dataurl;
+  link.click();
+}
 
-// export const downloadPng = (name: string) => {
-//   toPng(document.querySelector("#qr-code") as any).then((dataUri) => {
-//     const link = document.createElement("a");
-//     link.download = `${name}.png` || "qr-gen.png";
-//     link.href = dataUri;
-//     link.click();
-//   });
-// };
+function checkDom(elem: string): HTMLElement | null {
+  let domElem = document.querySelector(`#${elem}`) as HTMLElement;
+  if (domElem) {
+    return domElem;
+  } else {
+    toast.error("download DOM");
+    return null;
+  }
+}
 
-// export const downloadSvg = (name: string) => {
-//   toPng(document.querySelector("#qr-code") as any).then((dataUri) => {
-//     const link = document.createElement("a");
-//     link.download = `${name}.svg` || "qr-gen.svg";
-//     link.href = dataUri;
-//     link.click();
-//   });
-// };
-export {};
+function download(format: "png" | "jpeg" | "svg", name: string): void {
+  switch (format) {
+    case "jpeg":
+      toImage
+        .toJpeg(document.querySelector("#qrcode") as HTMLElement)
+        .then((dataurl) => {
+          const link = document.createElement("a");
+          link.download = `${name}.jpeg`;
+          link.href = dataurl;
+          link.click();
+        });
+      break;
+
+    case "png":
+      toImage
+        .toPng(document.querySelector("#qrcode") as HTMLElement)
+        .then((dataurl) => link(dataurl, name, "png"));
+      break;
+
+    case "svg":
+      toImage
+        .toSvg(document.querySelector("#qrcode") as HTMLElement)
+        .then((dataurl) => link(dataurl, name, "svg"));
+      break;
+
+    default:
+      toast.error("Format not supported yet!");
+      break;
+  }
+}
+
+export default download;

@@ -85,7 +85,7 @@ const Scan = () => {
       const reader = new FileReader();
       reader.readAsDataURL(data);
       reader.onloadend = (event) => {
-        console.log(event.result);
+        console.log(event);
       };
     } else {
       // file not supported
@@ -115,7 +115,9 @@ const Scan = () => {
           type="file"
           hidden
           ref={bfile}
-          onChange={(event) => handleData(event.target?.files[0])}
+          onChange={(event) =>
+            handleData(event.target.files && event.target.files[0])
+          }
         />
       </DropZone>
       <div

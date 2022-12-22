@@ -17,7 +17,7 @@ let initialState: iInitial = {
   removeQrCodeBehindLogo: false,
   eyeColor: "black",
   eyeRadius: 0,
-  id: "",
+  id: "qrcode",
 };
 
 let qrDefaults: iInitial = {
@@ -31,12 +31,12 @@ let qrDefaults: iInitial = {
   enableCORs: true,
   logoImage: "",
   logoOpacity: 1,
-  logoHeight: 5,
-  logoWidth: 5,
+  logoHeight: 150 * 0.2,
+  logoWidth: 150 * 0.2,
   removeQrCodeBehindLogo: false,
   eyeColor: "black",
   eyeRadius: 0,
-  id: "",
+  id: "qrcode",
 };
 
 function reducer(state: any, action: any) {
@@ -45,6 +45,9 @@ function reducer(state: any, action: any) {
   switch (type) {
     case "MOD_VALUE":
       return { ...state, value: payload?.value };
+
+    case "RESET_VALUE":
+      return { ...state, value: "" };
 
     case "MOD_BG_COLOR":
       return { ...state, bgColor: payload?.bgColor };

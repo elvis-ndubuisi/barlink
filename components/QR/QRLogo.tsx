@@ -15,6 +15,7 @@ const QRLogo = () => {
   function handleLogo(): void {
     setAddImage(!addImage);
     addedImage === true && dispatch({ type: "REMOVE_LOGO" });
+    addImage === false && dispatch({ type: "REMOVE_LOGO" });
   }
 
   return (
@@ -77,7 +78,7 @@ const QRLogo = () => {
               defaultValue={state?.logoWidth}
               min={30}
               step={5}
-              max={200}
+              max={state.size - 100}
               onChange={(event) =>
                 dispatch({
                   type: "MOD_LOGO_WIDTH",
@@ -94,7 +95,7 @@ const QRLogo = () => {
               defaultValue={state?.logoHeight}
               min={30}
               step={5}
-              max={200}
+              max={state.size - 100}
               onChange={(event) =>
                 dispatch({
                   type: "MOD_LOGO_HEIGHT",
