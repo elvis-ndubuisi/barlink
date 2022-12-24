@@ -43,15 +43,31 @@ export default function Home() {
   const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
   const [value, setValue] = React.useState("");
 
+  async function handler() {
+    let response = await fetch("/api/urlservice/shorten");
+    console.log(response);
+  }
+
   function handleCustonization(event: SyntheticEvent): void {
     event.preventDefault();
   }
 
   async function handleShortenURL() {
     // TODO: validate input first
-    const response = await fetch("/api/urlservice/shorten");
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await fetch("/api/urlservice/shorten", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ custom: "asdfjaf", link: "ldsjf" }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleInputUpdate(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -107,7 +123,7 @@ export default function Home() {
                 </Customize>
                 <Shorten
                   type="submit"
-                  disabled={disableBtn}
+                  disabled={false}
                   onClick={() => handleShortenURL()}
                 >
                   Shorten URL
