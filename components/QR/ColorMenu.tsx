@@ -39,17 +39,27 @@ const ColorMenu = () => {
                 onClick={() =>
                   dispatch({
                     type: "MOD_BG_COLOR",
-                    payload: { bgColor: "greenyellow" },
+                    payload: { bgColor: "#ff7700" },
                   })
                 }
               >
-                <ColorIcon swatchColor="greenyellow" />
+                <ColorIcon swatchColor="#ff7700" />
               </ColorSwatch>
               <ColorSwatch
                 onClick={() =>
                   dispatch({
                     type: "MOD_BG_COLOR",
-                    payload: { bgColor: "greenyellow" },
+                    payload: { bgColor: "#FF0000" },
+                  })
+                }
+              >
+                <ColorIcon swatchColor="#FF0000" />
+              </ColorSwatch>
+              <ColorSwatch
+                onClick={() =>
+                  dispatch({
+                    type: "MOD_BG_COLOR",
+                    payload: { bgColor: "yellow" },
                   })
                 }
               >
@@ -59,21 +69,11 @@ const ColorMenu = () => {
                 onClick={() =>
                   dispatch({
                     type: "MOD_BG_COLOR",
-                    payload: { bgColor: "greenyellow" },
+                    payload: { bgColor: "green" },
                   })
                 }
               >
-                <ColorIcon swatchColor="pink" />
-              </ColorSwatch>
-              <ColorSwatch
-                onClick={() =>
-                  dispatch({
-                    type: "MOD_BG_COLOR",
-                    payload: { bgColor: "greenyellow" },
-                  })
-                }
-              >
-                <ColorIcon swatchColor="orange" />
+                <ColorIcon swatchColor="green" />
               </ColorSwatch>
               <ColorSwatch onClick={() => BgColor.current?.click()}>
                 <Input
@@ -101,41 +101,41 @@ const ColorMenu = () => {
                 onClick={() =>
                   dispatch({
                     type: "MOD_FG_COLOR",
-                    payload: { fgColor: "greenyellow" },
+                    payload: { fgColor: "#FF0000" },
                   })
                 }
               >
-                <ColorIcon swatchColor="greenyellow" />
+                <ColorIcon swatchColor="#FF0000" />
               </ColorSwatch>
               <ColorSwatch
                 onClick={() =>
                   dispatch({
                     type: "MOD_FG_COLOR",
-                    payload: { fgColor: "greenyellow" },
+                    payload: { fgColor: "#3b5998" },
                   })
                 }
               >
-                <ColorIcon swatchColor="yellow" />
+                <ColorIcon swatchColor="#3b5998" />
               </ColorSwatch>
               <ColorSwatch
                 onClick={() =>
                   dispatch({
                     type: "MOD_FG_COLOR",
-                    payload: { fgColor: "greenyellow" },
+                    payload: { fgColor: "#34B7F1" },
                   })
                 }
               >
-                <ColorIcon swatchColor="pink" />
+                <ColorIcon swatchColor="#34B7F1" />
               </ColorSwatch>
               <ColorSwatch
                 onClick={() =>
                   dispatch({
                     type: "MOD_FG_COLOR",
-                    payload: { fgColor: "greenyellow" },
+                    payload: { fgColor: "#8a3ab9" },
                   })
                 }
               >
-                <ColorIcon swatchColor="orange" />
+                <ColorIcon swatchColor="#8a3ab9" />
               </ColorSwatch>
               <ColorSwatch onClick={() => FgColor.current?.click()}>
                 <Input
@@ -152,70 +152,6 @@ const ColorMenu = () => {
                 <HiSwatch size={24} />
               </ColorSwatch>
             </Grid>
-            {/* <p style={{ marginBottom: "0.53em", marginTop: "0.53em" }}>
-              Eye Color
-            </p>
-            <Grid colorGrid={true}>
-              <ColorSwatch
-                onClick={() => dispatch({ type: "RESET_EYE_COLOR" })}
-              >
-                <HiXMark size={24} />
-              </ColorSwatch>
-              <ColorSwatch
-                onClick={() =>
-                  dispatch({
-                    type: "MOD_EYE_COLOR",
-                    payload: { eyeColor: "greenyellow" },
-                  })
-                }
-              >
-                <ColorIcon swatchColor="greenyellow" />
-              </ColorSwatch>
-              <ColorSwatch
-                onClick={() =>
-                  dispatch({
-                    type: "MOD_EYE_COLOR",
-                    payload: { eyeColor: "greenyellow" },
-                  })
-                }
-              >
-                <ColorIcon swatchColor="yellow" />
-              </ColorSwatch>
-              <ColorSwatch
-                onClick={() =>
-                  dispatch({
-                    type: "MOD_EYE_COLOR",
-                    payload: { eyeColor: "greenyellow" },
-                  })
-                }
-              >
-                <ColorIcon swatchColor="pink" />
-              </ColorSwatch>
-              <ColorSwatch
-                onClick={() =>
-                  dispatch({
-                    type: "MOD_EYE_COLOR",
-                    payload: { eyeColor: "greenyellow" },
-                  })
-                }
-              >
-                <ColorIcon swatchColor="orange" />
-              </ColorSwatch>
-              <ColorSwatch onClick={() => EyeColor.current?.click()}>
-                <Input
-                  type="color"
-                  hidden
-                  ref={EyeColor}
-                  onChange={(event) =>
-                    dispatch({
-                      type: "MOD_EYE_COLOR",
-                      payload: { eyeColor: event.target.value },
-                    })
-                  }
-                />
-                <HiSwatch size={24} />
-              </ColorSwatch>
-            </Grid> */}
           </section>
         </>
       )}

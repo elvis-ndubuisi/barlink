@@ -36,6 +36,7 @@ export const DownloadFormat = styled.button<iDownloadFormat>`
 const DownloadSection = () => {
   const [format, setFormat] = React.useState<any>("png");
   const name = `barlink_qrcode.${format}`; /* downloaded qrcode name + ext */
+  const hd = React.useRef<HTMLSelectElement>(null);
 
   return (
     <SdownloadSection>
@@ -64,6 +65,7 @@ const DownloadSection = () => {
           <option value="utf-8">UTF-8</option>
         </Select>
       </div>
+
       {/* <span
         style={{
           display: "inline-flex",

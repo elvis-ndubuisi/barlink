@@ -53,41 +53,41 @@ const EyeRadius = () => {
           onClick={() =>
             dispatch({
               type: "MOD_EYE_COLOR",
-              payload: { eyeColor: "greenyellow" },
+              payload: { eyeColor: "#ff7700" },
             })
           }
         >
-          <ColorIcon swatchColor="greenyellow" />
+          <ColorIcon swatchColor="#ff7700" />
         </ColorSwatch>
         <ColorSwatch
           onClick={() =>
             dispatch({
               type: "MOD_EYE_COLOR",
-              payload: { eyeColor: "greenyellow" },
+              payload: { eyeColor: "#34B7F1" },
+            })
+          }
+        >
+          <ColorIcon swatchColor="#34B7F1" />
+        </ColorSwatch>
+        <ColorSwatch
+          onClick={() =>
+            dispatch({
+              type: "MOD_EYE_COLOR",
+              payload: { eyeColor: "#FF0000" },
+            })
+          }
+        >
+          <ColorIcon swatchColor="#FF0000" />
+        </ColorSwatch>
+        <ColorSwatch
+          onClick={() =>
+            dispatch({
+              type: "MOD_EYE_COLOR",
+              payload: { eyeColor: "yellow" },
             })
           }
         >
           <ColorIcon swatchColor="yellow" />
-        </ColorSwatch>
-        <ColorSwatch
-          onClick={() =>
-            dispatch({
-              type: "MOD_EYE_COLOR",
-              payload: { eyeColor: "greenyellow" },
-            })
-          }
-        >
-          <ColorIcon swatchColor="pink" />
-        </ColorSwatch>
-        <ColorSwatch
-          onClick={() =>
-            dispatch({
-              type: "MOD_EYE_COLOR",
-              payload: { eyeColor: "greenyellow" },
-            })
-          }
-        >
-          <ColorIcon swatchColor="orange" />
         </ColorSwatch>
         <ColorSwatch onClick={() => EyeColor.current?.click()}>
           <Input
