@@ -12,6 +12,13 @@ const Wrap = styled.span`
   text-transform: lowercase;
   text-align: center;
   gap: 2px;
+
+  small {
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+    max-width: 50px;
+    font-weight: var(--fw-regular);
+  }
 `;
 
 const Styled = styled.button`
@@ -22,7 +29,7 @@ const Styled = styled.button`
   background-color: var(--clr-white);
   color: var(--clr-dark);
   aspect-ratio: 1;
-  width: 48px;
+  width: 42px;
   margin: auto;
   display: grid;
   place-items: center;

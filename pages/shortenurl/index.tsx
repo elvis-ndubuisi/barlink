@@ -48,6 +48,7 @@ export default function Home() {
   }
 
   async function handleShortenURL() {
+    // TODO: validate input first
     const response = await fetch("/api/urlservice/shorten");
     const data = await response.json();
     console.log(data);

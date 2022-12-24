@@ -12,6 +12,28 @@ import {
   GoCloudUpload,
   GoPerson,
 } from "react-icons/go";
+import {
+  FaYoutube,
+  FaSpotify,
+  FaInstagram,
+  FaTwitter,
+  FaIdCard,
+  FaWifi,
+  FaUpload,
+  FaFileUpload,
+  FaGlobe,
+  FaSms,
+  FaApple,
+  FaGooglePlay,
+  FaSoundcloud,
+  FaLocationArrow,
+  FaMapMarkedAlt,
+  FaMapPin,
+  FaMapMarker,
+  FaMapMarkerAlt,
+  FaCalendarAlt,
+  FaFacebookF,
+} from "react-icons/fa";
 
 const SelectType = () => {
   const { type, setType } = React.useContext<{
@@ -19,18 +41,13 @@ const SelectType = () => {
     setType: React.Dispatch<React.SetStateAction<qrType>>;
   }>(QTypeContext);
 
-  function handleState(state: qrType): void {
-    setType(state);
-    console.log(type);
-  }
-
   return (
     <section>
       <Header>Select Type</Header>
       <Divider />
       <Grid>
         <OptionButton type="website" handlePreset={() => setType("website")}>
-          <GoGlobe fontSize={30} />
+          <FaGlobe fontSize={30} />
         </OptionButton>
         <OptionButton type="text" handlePreset={() => setType("text")}>
           <GoTextSize fontSize={30} />
@@ -38,14 +55,53 @@ const SelectType = () => {
         <OptionButton type="email" handlePreset={() => setType("email")}>
           <GoMail fontSize={30} />
         </OptionButton>
-        <OptionButton type="upload file" handlePreset={() => setType("upload")}>
-          <GoCloudUpload fontSize={30} />
+        <OptionButton type="sms" handlePreset={() => setType("sms")}>
+          <FaSms fontSize={30} />
         </OptionButton>
         <OptionButton type="vCard" handlePreset={() => setType("vCard")}>
-          <GoPerson fontSize={30} />
+          <FaIdCard fontSize={30} />
         </OptionButton>
         <OptionButton type="wifi" handlePreset={() => setType("wifi")}>
-          <HiWifi fontSize={30} />
+          <FaWifi fontSize={30} />
+        </OptionButton>
+        <OptionButton
+          type="location"
+          handlePreset={() => setType("geolocation")}
+        >
+          <FaMapMarkerAlt fontSize={30} />
+        </OptionButton>
+        <OptionButton type="calender" handlePreset={() => setType("calender")}>
+          <FaCalendarAlt fontSize={30} />
+        </OptionButton>
+        <OptionButton type="apple" handlePreset={() => setType("apple")}>
+          <FaApple fontSize={30} />
+        </OptionButton>
+        <OptionButton type="store" handlePreset={() => setType("playstore")}>
+          <FaGooglePlay fontSize={30} />
+        </OptionButton>
+        <OptionButton type="Youtube" handlePreset={() => setType("youtube")}>
+          <FaYoutube fontSize={30} />
+        </OptionButton>
+        <OptionButton type="spotify" handlePreset={() => setType("spotify")}>
+          <FaSpotify fontSize={30} />
+        </OptionButton>
+        <OptionButton type="twitter" handlePreset={() => setType("twitter")}>
+          <FaTwitter fontSize={30} />
+        </OptionButton>
+        <OptionButton
+          type="instagram"
+          handlePreset={() => setType("instagram")}
+        >
+          <FaInstagram fontSize={30} />
+        </OptionButton>
+        <OptionButton
+          type="soundcloud"
+          handlePreset={() => setType("soundcloud")}
+        >
+          <FaSoundcloud fontSize={30} />
+        </OptionButton>
+        <OptionButton type="facebook" handlePreset={() => setType("facebook")}>
+          <FaFacebookF fontSize={30} />
         </OptionButton>
       </Grid>
     </section>

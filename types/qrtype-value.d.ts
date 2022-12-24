@@ -1,6 +1,7 @@
 export interface iEmail {
   email: string;
-  subject?: string;
+  cc: string;
+  subject: string;
   message: string;
 }
 
@@ -14,23 +15,22 @@ export interface iWifi {
 export interface iCard {
   firstname: string;
   lastname: string;
-  mobile: string;
-  phone?: string;
-  fax?: string;
+  phone: string;
   email: string;
+  street: string; // address
+  country: string;
+  state: string;
+  city: string;
+  zip: string;
   website: string;
   company: string;
   job: string;
-  street: string;
-  city: string;
-  zip?: string;
-  state: string;
-  country: string;
+  birthday: string;
+  nickname: string;
+  note: string;
 }
 
 export interface iSms {
-  country: string;
-  area: string;
   phone: number;
   message: string;
 }
@@ -40,5 +40,27 @@ export interface iPhone {
 }
 
 export interface iAppleStore {
-  url: string;
+  type?: string;
+  id?: number;
+  name?: string;
+}
+
+export interface iYoutube {}
+
+export interface iGeo {}
+
+export interface iFacebook {}
+
+export interface iInstagram {}
+
+export interface iSportify {}
+
+export interface iTwitter {}
+
+export interface iWhatsapp {}
+
+export interface iCalender {
+  summary: string;
+  sDate: unknown;
+  eDate: unknown;
 }

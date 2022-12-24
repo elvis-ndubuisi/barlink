@@ -12,7 +12,15 @@ export type qrType =
   | "crypto"
   | "phone"
   | "sms"
-  | "geolocation";
+  | "geolocation"
+  | "youtube"
+  | "whatsapp"
+  | "spotify"
+  | "instagram"
+  | "calender"
+  | "apple"
+  | "playstore"
+  | "soundcloud";
 
 let initialType: qrType = "website";
 

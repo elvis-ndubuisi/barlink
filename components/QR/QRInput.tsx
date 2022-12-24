@@ -7,156 +7,86 @@ import Input, { Label, Select, Textarea } from "./Input";
 import InputWrapper, { Input50 } from "./InputWrapper";
 import QTypeContext, { qrType } from "../../context/QTypeContext";
 import QRContext from "../../context/QRContext";
-import type { iEmail, iCard, iWifi } from "../../types/qrtype-value";
+import {
+  iEmail,
+  iCard,
+  iWifi,
+  iSms,
+  iAppleStore,
+  iCalender,
+} from "../../types/qrtype-value";
 import * as flatten from "../../libraries/formatters";
 
 const QRInput = () => {
+  // QRcode and Input Type Context
   const { type, setType } = React.useContext<{
     type: qrType;
     setType: React.Dispatch<React.SetStateAction<qrType>>;
   }>(QTypeContext);
   const { state, dispatch } = React.useContext(QRContext);
 
-  let Field;
+  const [iosHolder, setIosHolder] = React.useState("Album-name");
 
-  /* All Field's input state */
-  // website
+  // Input Type state value.
+  /* WEBSITE */
   const [web, setWeb] = React.useState("");
-  // text
+  /* TEXT */
   const [text, setText] = React.useState("");
-  // email
+  /* MAIL */
   const [mail, setMail] = React.useState<iEmail>({
     email: "",
     subject: "",
     message: "",
+    cc: "",
   });
-  // vCard
+  /* V-CARD */
   const [vCard, setvCard] = React.useState<iCard>({
     firstname: "",
     lastname: "",
-    mobile: "",
     phone: "",
-    fax: "",
-    company: "",
-    website: "",
     email: "",
-    job: "",
     street: "",
-    city: "",
-    state: "",
     country: "",
+    state: "",
+    city: "",
     zip: "",
+    website: "",
+    company: "",
+    job: "",
+    birthday: "",
+    nickname: "",
+    note: "",
   });
-  // wifi
+  /* WIFI */
   const [wifi, setWifi] = React.useState<iWifi>({
     ssid: "",
     hidden: true,
     password: "",
     encryption: "none",
   });
+  /* SMS */
+  const [sms, setSms] = React.useState<iSms>({ message: "", phone: 0 });
+  /* Apple */
+  const [apple, setApple] = React.useState<iAppleStore>({
+    id: 0,
+    name: "",
+    type: "book",
+  });
+  /* Playstore */
+  const [playstore, setPlaystore] = React.useState<string>("");
+  /* Geolocation */
+  const [geo, setGeo] = React.useState<{ latitude: number; longitude: number }>(
+    { latitude: 0, longitude: 0 }
+  );
+  /* Calender */
+  const [date, setDate] = React.useState<iCalender>({
+    eDate: "",
+    sDate: "",
+    summary: "",
+  });
 
-  React.useEffect(() => {
-    switch (type) {
-      case "website":
-        // reset previews input field state values
-        dispatch({ type: "RESET_VALUE" });
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: flatten.formatWeb(web) },
-        });
-        break;
-
-      case "text":
-        dispatch({ type: "MOD_VALUE", payload: { value: text } });
-        break;
-
-      case "wifi":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: flatten.formatWifi(wifi) },
-        });
-        break;
-
-      case "email":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: flatten.formatEmail(mail) },
-        });
-        break;
-
-      case "vCard":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: flatten.formatCard(vCard) },
-        });
-        break;
-
-      case "phone":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format phone input" },
-        });
-        break;
-
-      case "sms":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format sms input" },
-        });
-        break;
-
-      case "geolocation":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format geolocation input" },
-        });
-        break;
-
-      case "crypto":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format crypto input" },
-        });
-        break;
-
-      case "upload":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format upload input" },
-        });
-        break;
-
-      case "facebook":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format facebook input" },
-        });
-        break;
-
-      case "twitter":
-        dispatch({
-          type: "MOD_VALUE",
-          payload: { value: "format twitter input" },
-        });
-        break;
-
-      default:
-        break;
-    }
-  }, [
-    web,
-    setWeb,
-    text,
-    setText,
-    wifi,
-    setWifi,
-    mail,
-    setMail,
-    vCard,
-    setvCard,
-    dispatch,
-  ]);
-
+  // selects -- Field (Input) Component Content
+  let Field;
   switch (type) {
     case "website":
       Field = (
@@ -187,6 +117,7 @@ const QRInput = () => {
       Field = (
         <>
           <InputWrapper>
+            {/* email */}
             <Input
               type="text"
               placeholder="Your email"
@@ -194,6 +125,15 @@ const QRInput = () => {
                 setMail({ ...mail, email: event.target.value.trim() })
               }
             />
+            {/* cc */}
+            <Input
+              type="text"
+              placeholder="cc (seperated by commas)"
+              onChange={(event) =>
+                setMail({ ...mail, cc: event.target.value.trim() })
+              }
+            />
+            {/* subject */}
             <Input
               type="text"
               placeholder="Subject"
@@ -201,22 +141,13 @@ const QRInput = () => {
                 setMail({ ...mail, subject: event.target.value.trim() })
               }
             />
+            {/* body */}
             <Textarea
-              placeholder="Message..."
+              placeholder="Body..."
               onChange={(event) =>
                 setMail({ ...mail, message: event.target.value.trim() })
               }
             />
-          </InputWrapper>
-        </>
-      );
-      break;
-
-    case "upload":
-      Field = (
-        <>
-          <InputWrapper>
-            <Input type="url" placeholder="Upload URL" />
           </InputWrapper>
         </>
       );
@@ -282,6 +213,7 @@ const QRInput = () => {
         <>
           {" "}
           <InputWrapper>
+            {/* firstname & lastname */}
             <Input50>
               <Input
                 type="text"
@@ -298,19 +230,10 @@ const QRInput = () => {
                 }
               />
             </Input50>
-            <Input
-              type="tel"
-              placeholder="Mobile"
-              onChange={(event) =>
-                setvCard({
-                  ...vCard,
-                  mobile: event.target.value.trim(),
-                })
-              }
-            />
+            {/* phone & email */}
             <Input50>
               <Input
-                type="text"
+                type="tel"
                 placeholder="Phone"
                 onChange={(event) =>
                   setvCard({
@@ -320,24 +243,92 @@ const QRInput = () => {
                 }
               />
               <Input
-                type="text"
-                placeholder="Fax"
-                onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    fax: event.target.value.trim(),
-                  })
-                }
-              />
-            </Input50>
-            <Input50>
-              <Input
                 type="email"
                 placeholder="Email - your@email.com"
                 onChange={(event) =>
                   setvCard({
                     ...vCard,
                     email: event.target.value.trim(),
+                  })
+                }
+              />
+            </Input50>
+            {/* contry, state, & city */}
+            <Input50>
+              <Input
+                type="text"
+                placeholder="Country"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    country: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="State"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    state: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="City"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    city: event.target.value.trim(),
+                  })
+                }
+              />
+            </Input50>
+            {/* company & role */}
+            <Input50>
+              <Input
+                type="text"
+                placeholder="Company"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    company: event.target.value.trim(),
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Role"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    job: event.target.value.trim(),
+                  })
+                }
+              />
+            </Input50>
+            {/* street */}
+            <Input
+              type="text"
+              placeholder="Street"
+              onChange={(event) =>
+                setvCard({
+                  ...vCard,
+                  street: event.target.value.trim(),
+                })
+              }
+            />
+            {/* zipcode & website */}
+            <Input50>
+              <Input
+                type="text"
+                placeholder="ZIP/Postal Code"
+                onChange={(event) =>
+                  setvCard({
+                    ...vCard,
+                    zip: event.target.value.trim(),
                   })
                 }
               />
@@ -352,79 +343,160 @@ const QRInput = () => {
                 }
               />
             </Input50>
+            {/* birthday & nickname */}
             <Input50>
               <Input
-                type="text"
-                placeholder="Company"
+                type="month"
+                placeholder="birthday"
                 onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    company: event.target.value.trim(),
-                  })
+                  setvCard({ ...vCard, birthday: event.target.value.trim() })
                 }
               />
               <Input
                 type="text"
-                placeholder="Job Title"
+                placeholder="Nickname"
                 onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    job: event.target.value.trim(),
-                  })
+                  setvCard({ ...vCard, nickname: event.target.value.trim() })
                 }
               />
+            </Input50>
+            {/* notes */}
+            <Textarea
+              placeholder="Notes...(200 characters)"
+              maxLength={200}
+              onChange={(event) =>
+                setvCard({ ...vCard, note: event.target.value.trim() })
+              }
+            />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "facebook":
+      Field = (
+        <>
+          <InputWrapper>
+            <input />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "twitter":
+      Field = (
+        <>
+          <InputWrapper>
+            <input />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "sms":
+      Field = (
+        <>
+          <InputWrapper>
+            <Input
+              type="number"
+              placeholder="Phone number"
+              onChange={(event) =>
+                setSms({ ...sms, phone: event.target.valueAsNumber })
+              }
+            />
+            <Textarea
+              placeholder="text"
+              onChange={(event) =>
+                setSms({ ...sms, message: event.target.value.trim() })
+              }
+            />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "apple":
+      Field = (
+        <>
+          <InputWrapper>
+            <Input50>
+              <Input
+                type="number"
+                placeholder="ID number"
+                onChange={(event) =>
+                  setApple({ ...apple, id: event.target.valueAsNumber })
+                }
+              />
+              <Select
+                value={apple.type}
+                onChange={(event) => {
+                  setApple({ ...apple, type: event.target.value });
+                  switch (event.target.value) {
+                    case "book":
+                      setIosHolder("Book title");
+                      break;
+                    case "itune":
+                      setIosHolder("ITune album name");
+                      break;
+                    case "app":
+                      setIosHolder("App name");
+                      break;
+                    case "album":
+                      setIosHolder("Apple Music album name");
+                      break;
+
+                    default:
+                      break;
+                  }
+                }}
+              >
+                <option value="itune">iTunes</option>
+                <option value="book">iBooks</option>
+                <option value="app">App Store</option>
+                <option value="album">Apple Music</option>
+              </Select>
             </Input50>
             <Input
               type="text"
-              placeholder="Street"
+              placeholder={iosHolder}
               onChange={(event) =>
-                setvCard({
-                  ...vCard,
-                  street: event.target.value.trim(),
-                })
+                setApple({ ...apple, name: event.target.value.trim() })
               }
             />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "playstore":
+      Field = (
+        <>
+          <Input
+            type="text"
+            placeholder="Package name -  foo.google.com"
+            onChange={(event) => setPlaystore(event.target.value.trim())}
+          />
+        </>
+      );
+      break;
+
+    case "geolocation":
+      Field = (
+        <>
+          <InputWrapper>
             <Input50>
               <Input
-                type="text"
-                placeholder="City"
+                type="number"
+                placeholder="Latitude"
                 onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    city: event.target.value.trim(),
-                  })
+                  setGeo({ ...geo, latitude: event.target.valueAsNumber })
                 }
               />
               <Input
-                type="text"
-                placeholder="ZIP/Postal Code"
+                type="number"
+                placeholder="Longitude"
                 onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    zip: event.target.value.trim(),
-                  })
-                }
-              />
-            </Input50>
-            <Input50>
-              <Input
-                type="text"
-                placeholder="State"
-                onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    state: event.target.value.trim(),
-                  })
-                }
-              />
-              <Input
-                type="text"
-                placeholder="Country"
-                onChange={(event) =>
-                  setvCard({
-                    ...vCard,
-                    country: event.target.value.trim(),
-                  })
+                  setGeo({ ...geo, longitude: event.target.valueAsNumber })
                 }
               />
             </Input50>
@@ -433,28 +505,41 @@ const QRInput = () => {
       );
       break;
 
-    case "phone":
-      break;
-
-    case "facebook":
-      break;
-
-    case "twitter":
-      break;
-
-    case "crypto":
-      break;
-
-    case "sms":
+    case "calender":
       Field = (
         <>
           <InputWrapper>
+            <Textarea
+              placeholder="Summary..."
+              onChange={(event) =>
+                setDate({ ...date, summary: event.target.value.trim() })
+              }
+              maxLength={200}
+            />
             <Input50>
-              <Input type="text" placeholder="Country Code" />
-              <Input type="text" placeholder="Area Code" />
+              <Input
+                type="date"
+                onChange={(event) =>
+                  setDate({ ...date, sDate: event.target.valueAsDate })
+                }
+              />
+              <Input
+                type="date"
+                onChange={(event) =>
+                  setDate({ ...date, eDate: event.target.valueAsDate })
+                }
+              />
             </Input50>
-            <Input type="number" placeholder="Phone number" />
-            <Textarea placeholder="text" />
+          </InputWrapper>
+        </>
+      );
+      break;
+
+    case "youtube":
+      Field = (
+        <>
+          <InputWrapper>
+            <input />
           </InputWrapper>
         </>
       );
@@ -471,9 +556,135 @@ const QRInput = () => {
       break;
   }
 
+  React.useEffect(() => {
+    switch (type) {
+      case "website":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.web(web) },
+        });
+        break;
+
+      case "text":
+        dispatch({ type: "MOD_VALUE", payload: { value: text } });
+        break;
+
+      case "wifi":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.wifi(wifi) },
+        });
+        break;
+
+      case "email":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.email(mail) },
+        });
+        break;
+
+      case "vCard":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.card(vCard) },
+        });
+        break;
+
+      case "calender":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.calender(date) },
+        });
+        break;
+
+      case "sms":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.sms(sms) },
+        });
+        break;
+
+      case "apple":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.appleStore(apple) },
+        });
+        break;
+
+      case "playstore":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.playstore(playstore) },
+        });
+        break;
+
+      case "geolocation":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: flatten.geolocation(geo) },
+        });
+        break;
+
+      case "crypto":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format crypto input" },
+        });
+        break;
+
+      case "upload":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format upload input" },
+        });
+        break;
+
+      case "facebook":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format facebook input" },
+        });
+        break;
+
+      case "twitter":
+        dispatch({
+          type: "MOD_VALUE",
+          payload: { value: "format twitter input" },
+        });
+        break;
+
+      default:
+        break;
+    }
+  }, [
+    web,
+    setWeb,
+    text,
+    setText,
+    wifi,
+    setWifi,
+    mail,
+    setMail,
+    vCard,
+    setvCard,
+    sms,
+    setSms,
+    apple,
+    setApple,
+    playstore,
+    setPlaystore,
+    geo,
+    setGeo,
+    date,
+    setDate,
+    dispatch,
+  ]);
+
   return (
     <section>
-      <Header>{`Enter details - ${type}`}</Header>
+      <Header>{`Enter details - ${
+        type.charAt(0).toUpperCase() + type.slice(1)
+      }`}</Header>
       <Divider />
       {Field}
     </section>
