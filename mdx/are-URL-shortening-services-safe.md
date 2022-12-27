@@ -1,7 +1,7 @@
 ---
 title: "Are URL shortening services safe?"
 excerpt: "URL shorteners are a platforms/services that converts long and complex URLs easily to short versions of that URL. But are you sure? As the Internet becomes more and more..."
-tag: "general url"
+tag: "home url"
 image: ""
 ---
 

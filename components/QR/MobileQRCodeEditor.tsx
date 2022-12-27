@@ -40,7 +40,12 @@ const MobileBarcodeEditor = () => {
         </>
       );
     } else {
-      return null;
+      return (
+        <>
+          <QRPreview />
+          <DownloadSection />
+        </>
+      );
     }
   };
 
@@ -74,7 +79,6 @@ const MobileBarcodeEditor = () => {
             {selectedTab ? TabContent(selectedTab.label) : "😋"}
           </Div>
         </AnimatePresence>
-        <DownloadSection />
       </Main>
     </StyledWrapper>
   );
@@ -94,6 +98,8 @@ const StyledWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   margin: 3em auto;
+  position: relative;
+  z-index: 1;
 
   .underline {
     position: absolute;

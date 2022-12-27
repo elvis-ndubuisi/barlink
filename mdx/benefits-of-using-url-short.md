@@ -1,7 +1,7 @@
 ---
 title: "Benefits of Using URL Shorteners"
 excerpt: "Long and complex URLs are cumbersome to share online and require the use of link shortening services. It's worth noting that the length of a URL and the number of characters..."
-tag: "url"
+tag: "home url"
 image: "/assets/elvis_ndubuisi.jpeg"
 ---
 

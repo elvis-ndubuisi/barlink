@@ -3,9 +3,10 @@ import Head from "next/head";
 import connectMongo from "../libraries/mongodb";
 
 export async function getServerSideProps(request: NextApiRequest) {
-  const hash = request.query.hash as string;
+  const hash = request.query.redirect as string;
   const database = await connectMongo();
-  const campaign = await database.collection("url").findOne({ uid: hash });
+  const campaign = await database.collection("url").findOne({ hash: hash });
+  console.log(campaign?.link);
 
   if (campaign) {
     return {

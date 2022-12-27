@@ -6,14 +6,14 @@ export const allOptions = [
   { label: "Details" },
   { label: "Customize" },
   { label: "Advanced" },
-  { label: "Carrot" },
+  { label: "Preview" },
   { label: "Banana" },
   { label: "Blueberries" },
   { label: "Champers?" },
 ];
 
-const [details, customize, advanced] = allOptions;
-export const initialTabs = [details, customize, advanced];
+const [details, customize, advanced, preview] = allOptions;
+export const initialTabs = [details, customize, advanced, preview];
 
 export function getNextOption(
   options: BarcodeOptions[]

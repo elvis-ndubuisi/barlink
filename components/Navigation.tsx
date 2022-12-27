@@ -52,15 +52,16 @@ const Navigation: React.FC = () => {
               variants={variants}
             >
               <Link href="/">Home</Link>
-              <Link href="/shortenurl">Shorten URL</Link>
+              <Link href="/shortenurl">Shorten</Link>
               <Link href="/qrcode">QR code</Link>
+              <Link href="/article">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
               <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
                 <Button
                   primary={true}
-                  handleClick={() => {
+                  onClick={() => {
                     setScanModal(true);
                     setIsOpen(!isOpen);
                   }}
@@ -73,13 +74,14 @@ const Navigation: React.FC = () => {
             // Desktop Nav
             <motion.nav ref={navigation}>
               <Link href="/">Home</Link>
-              <Link href="/shortenurl">Shorten URL</Link>
+              <Link href="/shortenurl">Shorten</Link>
               <Link href="/qrcode">QR code</Link>
+              <Link href="/article">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
               <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
-                <Button primary={true} handleClick={() => setScanModal(true)}>
+                <Button primary={true} onClick={() => setScanModal(true)}>
                   Scan
                 </Button>
               </BtnWrap>
@@ -88,7 +90,7 @@ const Navigation: React.FC = () => {
 
           <BtnWrap>
             <Button primary={false}>Unshorten</Button>
-            <Button primary={true} handleClick={() => setScanModal(true)}>
+            <Button primary={true} onClick={() => setScanModal(true)}>
               Scan
             </Button>
           </BtnWrap>

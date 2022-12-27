@@ -16,7 +16,7 @@ async function connectMongo(): Promise<Db> {
     options as MongoClientOptions
   );
   await client.connect();
-  const db: Db = client.db("shortens");
+  const db: Db = client.db("shorten");
   cachedDB = db;
   return cachedDB;
 }

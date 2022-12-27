@@ -21,7 +21,7 @@ const QRCodeEditor = () => {
           <QRLogo />
         </Container>
 
-        <Container>
+        <Container noJustify={true}>
           {/* Enter Details */}
           <QRInput />
           <section>

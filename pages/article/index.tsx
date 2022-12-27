@@ -28,7 +28,7 @@ const SearchBar = styled.div`
   border-radius: var(--radius-10);
   background-color: var(--clr-white);
   color: var(--clr-dark);
-  padding: 1em 1em;
+  padding: 0 1em;
   border: solid 2px transparent;
 
   :hover,
@@ -41,6 +41,8 @@ const SearchBar = styled.div`
     outline: 0;
     border: none;
     font-weight: var(--fw-regular);
+    width: 100%;
+    padding: 1em 0;
   }
 `;
 
@@ -69,6 +71,8 @@ export async function getStaticProps() {
       frontMatter,
     };
   });
+
+  // FIXME: paginated article.
 
   return {
     props: {

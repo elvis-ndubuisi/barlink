@@ -1,20 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { IProps } from "react-qrcode-logo";
 
 interface iButton {
   primary?: boolean;
   dark?: boolean;
 }
 
-interface iProps {
-  primary?: boolean;
-  children: any;
-  handleClick?: Function;
-  dark?: boolean;
-}
-
-export const StyledButton = styled(motion.button)<iButton>`
+export const StyledButton = styled.button<iButton>`
   outline: 0;
   display: flex;
   flex-direction: row;
@@ -71,7 +65,7 @@ export const BigButton = styled(StyledButton)<iButton>`
   }
 `;
 
-export const IconButton = styled(StyledButton)<iButton>`
+export const IconButton = styled(StyledButton)`
   display: grid;
   place-items: center;
   place-content: center;
@@ -103,16 +97,17 @@ const Button = styled(StyledButton)<iButton>`
   }
 `;
 
-const Buttons = ({ primary, children, handleClick, dark }: iProps) => {
-  return (
-    <Button
-      primary={primary}
-      onClick={() => handleClick && handleClick()}
-      dark={dark}
-    >
-      {children}
-    </Button>
-  );
-};
+// const Buttons = ({ children, handleClick, isPrimary }: IProps) => {
+//   return (
+//     <Button
+//       // primary={primary}
+//       primary={!isPrimary ? false : isPrimary}
+//       onClick={() => handleClick && handleClick()}
+//       // dark={dark}
+//     >
+//       {children}
+//     </Button>
+//   );
+// };
 
-export default Buttons;
+export default Button;

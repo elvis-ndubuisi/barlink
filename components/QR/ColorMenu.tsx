@@ -13,12 +13,12 @@ const ColorMenu = () => {
   const [show, setShow] = React.useState<boolean>(false);
   const BgColor = React.useRef<HTMLInputElement>(null);
   const FgColor = React.useRef<HTMLInputElement>(null);
-  const EyeColor = React.useRef<HTMLInputElement>(null);
+
   return (
     <section>
-      <Header>
+      <Header onClick={() => setShow(!show)}>
         <h4>Color</h4>
-        <HeaderBtn onClick={() => setShow(!show)}>
+        <HeaderBtn>
           {show ? (
             <HiChevronUp fontSize={24} />
           ) : (

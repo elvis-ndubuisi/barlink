@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const StepWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  place-items: center;
   gap: 10px;
   margin-top: 1em;
 

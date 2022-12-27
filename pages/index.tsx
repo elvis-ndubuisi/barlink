@@ -34,6 +34,8 @@ export async function getStaticProps() {
     };
   });
 
+  // FIXME: filter articles tagged 'home'
+
   return {
     props: {
       articles: articles,
@@ -42,13 +44,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ articles }: { articles: [object] }) {
-  let noteWrapper = React.useRef<HTMLDivElement>(null);
-  let showcase = React.useRef<HTMLDivElement>(null);
-  let showcaseSubtitle = React.useRef<HTMLHeadElement>(null);
-  let showcaseTitle = React.useRef<HTMLHeadElement>(null);
-  let showcaseCaption = React.useRef<HTMLParagraphElement>(null);
-  let showcaseButons = React.useRef<HTMLDivElement>(null);
-
   return (
     <>
       <Head>
@@ -62,7 +57,7 @@ export default function Home({ articles }: { articles: [object] }) {
       <Navigation />
       <>
         {/* showcase */}
-        <Showcase ref={showcase}>
+        <Showcase>
           <Wrapper>
             <LandingSubTitle>Your all-in-one Generator</LandingSubTitle>
             <LandingTitle>
@@ -76,7 +71,7 @@ export default function Home({ articles }: { articles: [object] }) {
               and high-quality.
             </LandiingCaption>
 
-            <ShowcaseButtons ref={showcaseButons}>
+            <ShowcaseButtons>
               <BigButton primary={true}>
                 Get started <BiChevronRight size={25} />
               </BigButton>
@@ -97,7 +92,7 @@ export default function Home({ articles }: { articles: [object] }) {
         </CaptionSection>
         {/* product detail */}
         <NoteSection>
-          <Wrapper ref={noteWrapper}>
+          <Wrapper>
             <Note>
               <Heading>Full Customisable QR Code</Heading>
               <p>

@@ -20,6 +20,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import validateUrl from "../../libraries/validateUrl";
+import { toast } from "react-toastify";
 
 export async function getStaticProps() {
   // Read markdows from directory
@@ -41,39 +42,47 @@ export default function Home() {
   const [disableBtn, setDisableBtn] = React.useState(true); //  Enables / Disables submit button
   const [allow, setAllow] = React.useState(false);
   const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
-  const [value, setValue] = React.useState("");
-
-  async function handler() {
-    let response = await fetch("/api/urlservice/shorten");
-    console.log(response);
-  }
+  const [fetching, setFetching] = React.useState(false);
+  const [link, setLink] = React.useState("");
+  const [custom, setCustom] = React.useState("");
 
   function handleCustonization(event: SyntheticEvent): void {
     event.preventDefault();
   }
 
   async function handleShortenURL() {
-    // TODO: validate input first
-    try {
-      const response = await fetch("/api/urlservice/shorten", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ custom: "asdfjaf", link: "ldsjf" }),
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    // TODO: automatically append https to link if absent.
+    if (link !== "" || !validateUrl(link)) {
+      setFetching(true);
+      try {
+        const response = await fetch("/api/urlservice/shorten", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            custom: custom ? custom : "",
+            link: link,
+          }),
+        });
+        const data = await response.json();
+        // TODO: display data; remove console.log
+      } catch (error) {
+        // TODO: add dark toast error with appropriate message.
+        // TODO: remove console.log
+        toast.error("query error");
+        console.log(error);
+      }
+    } else {
+      toast.error("Input not accepted");
     }
+    setFetching(false);
   }
 
   function handleInputUpdate(event: React.ChangeEvent<HTMLInputElement>): void {
-    setValue(event.target.value);
-    let isValid = validateUrl(value);
-    if (isValid && value.length > 40) {
+    setLink(event.target.value);
+    if (validateUrl(link) && link.length > 30) {
       setDisableBtn(false); //  enable submit button
     } else {
       setDisableBtn(true);
@@ -105,7 +114,7 @@ export default function Home() {
                     type="text"
                     placeholder="https://paste-your-long-url-here..."
                     required={true}
-                    defaultValue={value}
+                    defaultValue={link}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                       handleInputUpdate(event)
                     }
@@ -123,17 +132,16 @@ export default function Home() {
                 </Customize>
                 <Shorten
                   type="submit"
-                  disabled={false}
+                  disabled={fetching}
                   onClick={() => handleShortenURL()}
                 >
                   Shorten URL
                 </Shorten>
-                <Error>Invalid input. Please provide a valid URL</Error>
               </section>
               <small>
                 By clicking “Shorten URL” you agree to barlink&#8216;s{" "}
-                <Link href="/shortenurl/terms-of-use">Terms of use</Link> and{" "}
-                <Link href="/shortenurl/pricary-policy">Privacy Policy</Link>.
+                <Link href="/terms-of-use">Terms of use</Link> and{" "}
+                <Link href="/privacy">Privacy Policy</Link>.
               </small>
             </ShortenForm>
           </Wrapper>
@@ -321,16 +329,4 @@ export const Parag = styled.div`
   margin-inline: auto;
   margin-bottom: 2em;
   text-align: center;
-`;
-
-const Error = styled.p`
-  background-color: red;
-  color: var(--clr-white);
-  font-size: 0.875rem;
-  padding: 0.5em;
-  border-radius: inherit;
-  position: absolute;
-  top: -50%;
-  left: 1.5em;
-  z-index: 3;
 `;

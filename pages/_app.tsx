@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
       <ToastContainer
         className="impct-toast"
-        position="top-center"
+        position="top-right"
         autoClose={3000}
         hideProgressBar
         newestOnTop
@@ -19,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
         pauseOnFocusLoss={true}
         draggable={false}
         pauseOnHover
+        theme="dark"
         transition={Slide}
       />
     </>

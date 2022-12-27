@@ -159,12 +159,4 @@ export let faqQrcode = [
     answer:
       "No. Most important is a good contrast between the light and dark modules / pixels. Furthermore, a colorized QR code should be no negative (in terms of color, the actually black pixels / modules have to be darker than the normally white pixels) as the dark modules / pixels contain the data and a negative will confuse many QR code readers. You can create colored QR codes with goQR.me for free. Just choose a background and / or a foreground color in the download, embed or shop dialogue. ",
   },
-  {
-    question: "",
-    answer: "",
-  },
-  {
-    question: "",
-    answer: "",
-  },
 ];

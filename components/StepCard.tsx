@@ -14,6 +14,9 @@ const Styled = styled.div`
   gap: 0.625em;
   color: var(--clr-white);
   text-align: center;
+  background-color: var(--clr-dark);
+  padding: 1em;
+  border-radius: 0.3em;
 
   span {
     color: var(--clr-main);

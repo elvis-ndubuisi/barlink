@@ -15,6 +15,7 @@ const Styled = styled(motion.div)`
   place-items: center;
   place-content: center;
   z-index: 5;
+  padding: 0.5em;
 `;
 
 const ModalWrapper = styled.div`
