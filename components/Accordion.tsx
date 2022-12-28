@@ -13,12 +13,18 @@ const Accordion = ({ question, answer }: iProp) => {
 
   return (
     <StyledAccordion>
-      <AccordionBar onClick={() => setIsOpen(!isOpen)}>
+      <AccordionBar
+        onClick={() => setIsOpen(!isOpen)}
+        whileTap={{ scale: 0.9 }}
+      >
         <h4>{question}</h4>
         {!isOpen ? <GoPlus size={24} /> : <GoDash size={24} />}
       </AccordionBar>
       {isOpen && (
-        <AccordionContent>
+        <AccordionContent
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
           {answer.split("\n").map((ans, idx) => (
             <p key={idx}>{ans}</p>
           ))}
@@ -32,7 +38,7 @@ const StyledAccordion = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const AccordionBar = styled.section`
+const AccordionBar = styled(motion.section)`
   background-color: var(--clr-light);
   height: 45px;
   width: 100%;
@@ -72,6 +78,8 @@ const AccordionContent = styled(motion.article)`
   max-width: 97%;
   margin-inline: auto;
   padding-top: 0.7em;
+  // for animation
+  opacity: 0;
 
   > * {
     margin-bottom: 1em;

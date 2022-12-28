@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
-import Wrapper from "../../components/Wrapper";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -61,8 +60,7 @@ export default function Article({
 
 // Styled Component
 const StyledArticle = styled.main`
-  background-color: var(--clr-white);
-  color: var(--clr-dark-gray);
+  color: var(--clr-white);
   max-width: 1080px;
   margin: 2em auto;
   padding: 1em;
@@ -70,14 +68,26 @@ const StyledArticle = styled.main`
 
 
   h2 {
-    font-weight: var(--fw-bold);
-    font-size: 2.4rem;
-    text-align: center;
-    background-colr: blue;
-    color: yellow;
+    font-size: 2rem;
+  font-weight: var(--fw-bold);
+  text-align: center;
+  margin-bottom: 0.4em;
   }
   p {
-    font-weight: var(--fw-regular);
+    max-width: 1000px;
+  text-align: justify;
+  font-weight: var(--fw-regular);
+  font-size: 1rem;
+  margin: 0.8em auto;
+
+  a {
+    text-decoration: underline;
+    color: var(--clr-main);
+
+    :hover {
+      color: var(--clr-white);
+    }
+  }
   }
   a {
     text-decoration: underline;
@@ -94,5 +104,16 @@ const StyledArticle = styled.main`
 
   ul, ol {
     margin-left: 1.5em;
+  }
+
+  li {
+    padding: 0 1.4em;
+    margin: 0.5em 0;
+    list-style: none;
+
+    strong {
+      color: var(--clr-main);
+      font-size: 1.05rem;
+    }
   }
 `;

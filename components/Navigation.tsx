@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
               <Link href="/">Home</Link>
               <Link href="/shortenurl">Shorten</Link>
               <Link href="/qrcode">QR code</Link>
-              <Link href="/article">Articles</Link>
+              <Link href="/articles">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
               <BtnWrap>
@@ -76,7 +76,7 @@ const Navigation: React.FC = () => {
               <Link href="/">Home</Link>
               <Link href="/shortenurl">Shorten</Link>
               <Link href="/qrcode">QR code</Link>
-              <Link href="/article">Articles</Link>
+              <Link href="/articles">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
               <BtnWrap>

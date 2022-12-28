@@ -9,6 +9,8 @@ import Wrapper from "../../components/Wrapper";
 import styled from "styled-components";
 import { GoSearch } from "react-icons/go";
 import Button from "../../components/Buttons";
+import useFilter from "../../hooks/useFilter";
+import Image from "next/image";
 
 interface iPost {
   slug: string;
@@ -55,7 +57,24 @@ const Paginate = styled.div`
   gap: 1em;
 `;
 
-const Main = styled.main``;
+const Main = styled.main`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
+  justify-content: center;
+  gap: 1em;
+  min-height: 80vh;
+  margin-bottom: 2em;
+  align-items: stretch;
+`;
+
+const NoArticle = styled.main`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 80vh;
+`;
 
 export async function getStaticProps() {
   /* Get markdown files from mdx directory */
@@ -82,22 +101,50 @@ export async function getStaticProps() {
 }
 
 export default function Home({ articles }: { articles: [object] }) {
+  const [filter, setFilter] = React.useState("");
+  const filteredArticles = useFilter(articles, filter);
+
   return (
     <>
       <Navigation />
       <Wrapper>
         <SearchBar>
           <GoSearch fontSize={24} />
-          <input type="text" placeholder="Filter Articles" />
+          <input
+            type="text"
+            placeholder="Filter Articles"
+            onChange={(event) => setFilter(event.target.value)}
+          />
         </SearchBar>
-        <Main>
-          {articles.map((post: any) => (
-            <Article key={post.slug} meta={post.frontMatter} slug={post.slug} />
-          ))}
-        </Main>
-        <Paginate>
-          <Button>Load More</Button>
-        </Paginate>
+        {!(filteredArticles.length < 1) ? (
+          <>
+            <Main>
+              {filteredArticles.map((post: any) => (
+                <Article
+                  key={post.slug}
+                  meta={post.frontMatter}
+                  slug={post.slug}
+                />
+              ))}
+            </Main>
+          </>
+        ) : (
+          <>
+            <NoArticle>
+              <Image
+                src="/assets/bloom-a-man-looks-at-a-blank-sheet-of-paper-in-puzzlement.png"
+                alt="a-man-looks-at-a-blank-sheet-of-paper-in-puzzlement"
+                width={300}
+                height={300}
+                style={{ objectFit: "contain" }}
+              />
+              <h2>No Article name matched: {filter}</h2>
+            </NoArticle>
+          </>
+        )}
+        {/* <Paginate>
+                <Button>Load More</Button>
+              </Paginate> */}
       </Wrapper>
       <Footer />
     </>

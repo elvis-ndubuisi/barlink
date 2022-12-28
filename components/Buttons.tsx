@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { IProps } from "react-qrcode-logo";
 
 interface iButton {
   primary?: boolean;
@@ -96,18 +94,5 @@ const Button = styled(StyledButton)<iButton>`
     transition: all 0.6s;
   }
 `;
-
-// const Buttons = ({ children, handleClick, isPrimary }: IProps) => {
-//   return (
-//     <Button
-//       // primary={primary}
-//       primary={!isPrimary ? false : isPrimary}
-//       onClick={() => handleClick && handleClick()}
-//       // dark={dark}
-//     >
-//       {children}
-//     </Button>
-//   );
-// };
 
 export default Button;

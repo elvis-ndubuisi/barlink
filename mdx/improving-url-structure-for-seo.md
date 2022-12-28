@@ -1,8 +1,8 @@
 ---
-title: "Improving your URL structure for SEO"
+title: "Improving Your URL Structure For SEO"
 excerpt: "Remember when you found miles of web addresses with complex sequences of letters, numbers, and special characters? Such long URLs are not only unsightly, but can also..."
 tag: "home url"
-image: "/assets/elvis_ndubuisi.jpeg"
+image: "/assets/articles/diggity-marketing-s8HyIEe7lF0-unsplash.jpg"
 ---
 
 Remember when you found miles of web addresses with complex sequences of letters, numbers, and special characters? Such long URLs are not only unsightly, but can also negatively affect your search engine rankings.

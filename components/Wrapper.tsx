@@ -8,7 +8,7 @@ const StyledWrapper = styled(motion.div)`
   padding-inline: 0.9375em;
 `;
 
-const Wrapper = ({ children }: any) => {
+const Wrapper = ({ children, variants }: any) => {
   return <StyledWrapper>{children}</StyledWrapper>;
 };
 

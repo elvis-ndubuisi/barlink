@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledSubTitle = styled.h2`
+const StyledSubTitle = styled(motion.h2)`
   color: var(--clr-main);
   font-weight: var(--fw-medium);
   font-size: 1.8rem;
@@ -15,7 +16,7 @@ const StyledSubTitle = styled.h2`
   }
 `;
 
-const LandingSubTitle = ({ children }: any) => {
+const LandingSubTitle = ({ children, variants }: any) => {
   return <StyledSubTitle>{children}</StyledSubTitle>;
 };
 

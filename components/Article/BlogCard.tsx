@@ -8,7 +8,7 @@ interface iProp {
 const BlogCard = ({ article }: iProp) => {
   const { title, excerpt } = article.frontMatter;
   return (
-    <StyledCard href={`article/${article.slug}`}>
+    <StyledCard href={`articles/${article.slug}`}>
       <h3>{title}</h3>
       <p>{excerpt}</p>
       <p>Learn more</p>
@@ -21,14 +21,14 @@ const StyledCard = styled(Link)`
   padding: 10px 16px;
   display: inline-block;
   border: solid 1px var(--clr-main);
-  
+
   :hover,
   :focus,
   :focus-within {
     background-color: var(--clr-light);
     color: var(--clr-dark);
   }
-  
+
   h3 {
     text-align: center;
     font-weight: var(--fw-smbold);

@@ -18,6 +18,13 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { useInView } from "react-intersection-observer";
+import { useAnimation, motion } from "framer-motion";
+
+const caption_variants = {
+  hidden: { opacity: 0, x: -40, transition: { duration: 0.9 } },
+  visible: { opacity: 1, x: 0 },
+};
 
 export async function getStaticProps() {
   /* Get markdown files from mdx directory */
@@ -35,15 +42,26 @@ export async function getStaticProps() {
   });
 
   // FIXME: filter articles tagged 'home'
+  const selected = await articles.filter((file) =>
+    file.frontMatter?.tag.includes("home")
+  );
 
   return {
     props: {
-      articles: articles,
+      articles: selected,
     },
   };
 }
 
 export default function Home({ articles }: { articles: [object] }) {
+  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
+  const ctrl = useAnimation();
+
+  React.useEffect(() => {
+    if (inView) ctrl.start("visible");
+    if (!inView) ctrl.start("hidden");
+  }, [ctrl, inView]);
+
   return (
     <>
       <Head>
@@ -82,7 +100,12 @@ export default function Home({ articles }: { articles: [object] }) {
         {/* caption */}
         <CaptionSection>
           <Wrapper>
-            <CaptionText>
+            <CaptionText
+              variants={caption_variants}
+              animate={ctrl}
+              initial="hidden"
+              ref={ref}
+            >
               Your all-in-one platform to build interactive experience with your
               audience. Generate QR codes for sharing and embeding into your
               websites. Printable Barcodes for your products labeling. Provides
@@ -173,7 +196,7 @@ const CaptionSection = styled.section`
   padding: 0.5em 0;
 `;
 
-const CaptionText = styled.p`
+const CaptionText = styled(motion.p)`
   max-width: 740px;
   font-weight: var(--fw-smbold);
   font-size: 1.875rem;

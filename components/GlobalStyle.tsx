@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+// provides Global styling for all pages
+
 const GlobalStyle = createGlobalStyle`
   :root {
     /* Colors */
