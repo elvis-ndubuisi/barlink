@@ -15,24 +15,39 @@ import { generate_qrcode, faqQrcode } from "../../libraries/data.js";
 import MobileQRCodeEditor from "../../components/QR/MobileQRCodeEditor";
 import React from "react";
 import { QRProvider } from "../../context/QRContext";
+import path from "path";
+import fs from "fs";
+import matter from "gray-matter";
+import ArticleWrapper from "../../components/Article/ArticleWrapper";
+import BlogCard from "../../components/Article/BlogCard";
 
-const Landing = styled.section`
-  min-height: calc(var(--landing-height) / 2);
-  // background-color: var(--clr-white);
-  // color: var(--clr-dark);
+export async function getStaticProps() {
+  /* Get markdown files from mdx directory */
+  const files = fs.readdirSync(path.join("mdx"));
+  /* Return filenames as slugs */
+  const articles = files.map((filename) => {
+    const slug = filename.replace(".md", "");
+    const mdxMeta = fs.readFileSync(path.join("mdx", filename), "utf-8");
+    const { data: frontMatter } = matter(mdxMeta);
 
-  > * {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5em;
-    min-height: inherit;
-  }
-`;
+    return {
+      slug,
+      frontMatter,
+    };
+  });
 
-export default function Home() {
+  const selected = await articles.filter((file) =>
+    file.frontMatter?.tag.includes("qrcode")
+  );
+
+  return {
+    props: {
+      articles: selected,
+    },
+  };
+}
+
+export default function Home({ articles }: { articles: [object] }) {
   let screenSize = React.useRef(0);
   const [isSmallScreen, setIsSmallScreen] = React.useState(true);
 
@@ -85,9 +100,36 @@ export default function Home() {
             </StepWrapper>
           </Wrapper>
         </section>
+
+        <ArticleWrapper>
+          {/* render 4 out of 5 qrcode tagged article */}
+          {articles
+            .map((article: any, idx: any) => (
+              <BlogCard key={idx} article={article} />
+            ))
+            .slice(1)}
+        </ArticleWrapper>
+
         <FaqWrapper data={faqQrcode} />
       </>
       <Footer />
     </>
   );
 }
+
+// Styled Components
+const Landing = styled.section`
+  min-height: calc(var(--landing-height) / 2);
+  // background-color: var(--clr-white);
+  // color: var(--clr-dark);
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5em;
+    min-height: inherit;
+  }
+`;

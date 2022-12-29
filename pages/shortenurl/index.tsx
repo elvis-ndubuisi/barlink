@@ -11,7 +11,7 @@ import styled from "styled-components";
 import LandingTitle from "../../components/LandingTitle";
 import React, { SyntheticEvent } from "react";
 import Wrapper from "../../components/Wrapper";
-import { StyledButton } from "../../components/Buttons";
+import Button, { StyledButton } from "../../components/Buttons";
 import { AiOutlineLink } from "react-icons/ai";
 import { GoSettings } from "react-icons/go";
 import LandiingCaption from "../../components/LandiingCaption";
@@ -21,6 +21,11 @@ import path from "path";
 import matter from "gray-matter";
 import validateUrl from "../../libraries/validateUrl";
 import { toast } from "react-toastify";
+import CustomQuery from "../../components/Modal/CustomQuery";
+import Portal from "../../components/Modal/Portal";
+import UrlResponse from "../../components/Modal/UrlResponse";
+import BlogCard from "../../components/Article/BlogCard";
+import HistoryList from "../../components/Modal/HistoryList";
 
 export async function getStaticProps() {
   // Read markdows from directory
@@ -32,29 +37,44 @@ export async function getStaticProps() {
 
     return { slug, frontMatter };
   });
+  const selected = await articles.filter((file) =>
+    file.frontMatter?.tag.includes("url")
+  );
 
   return {
-    props: { articles },
+    props: { articles: selected },
   };
 }
 
-export default function Home() {
-  const [disableBtn, setDisableBtn] = React.useState(true); //  Enables / Disables submit button
-  const [allow, setAllow] = React.useState(false);
-  const [hasCustomUrl, setHasCustomUrl] = React.useState(false);
+export default function Home({ articles }: { articles: [object] }) {
+  const cache: string = "response";
+  const [history, setHistory] = React.useState<any>([]);
+  const [historyModal, setHistoryModal] = React.useState(false);
   const [fetching, setFetching] = React.useState(false);
-  const [link, setLink] = React.useState("");
+  let [link, setLink] = React.useState("");
   const [custom, setCustom] = React.useState("");
+  const [customModal, setCustomModal] = React.useState(false);
+  let indicator = custom !== "" ? "active" : "";
+  const [responseModal, setResponseModal] = React.useState(false);
+  const [response, setResponse] = React.useState<{
+    type: string;
+    message?: string;
+    result: { link: string; shortlink: string; altLink: string };
+  }>({ type: "", result: { link: "", shortlink: "", altLink: "" } });
 
   function handleCustonization(event: SyntheticEvent): void {
     event.preventDefault();
+    setCustomModal(true);
   }
 
   async function handleShortenURL() {
-    // TODO: automatically append https to link if absent.
     if (link !== "" || !validateUrl(link)) {
       setFetching(true);
+
       try {
+        if (!link.startsWith("http")) {
+          link = `http://${link}`;
+        }
         const response = await fetch("/api/urlservice/shorten", {
           method: "POST",
           mode: "no-cors",
@@ -67,12 +87,16 @@ export default function Home() {
           }),
         });
         const data = await response.json();
-        // TODO: display data; remove console.log
+        // Check if an error response was received
+        data?.type.includes("ERR")
+          ? toast.error(`${data.message}`)
+          : toast.success("Successful");
+
+        // Pass data to UrlResponse Modal
+        data?.result && handleResponseModal(data);
+        data?.result && cacheResponse(data);
       } catch (error) {
-        // TODO: add dark toast error with appropriate message.
-        // TODO: remove console.log
         toast.error("query error");
-        console.log(error);
       }
     } else {
       toast.error("Input not accepted");
@@ -80,13 +104,37 @@ export default function Home() {
     setFetching(false);
   }
 
+  function handleCustomModal(): void {
+    setCustom("");
+    setCustomModal(false);
+  }
+
   function handleInputUpdate(event: React.ChangeEvent<HTMLInputElement>): void {
     setLink(event.target.value);
-    if (validateUrl(link) && link.length > 30) {
-      setDisableBtn(false); //  enable submit button
-    } else {
-      setDisableBtn(true);
-    }
+  }
+
+  function handleResponseModal(data: {
+    type: string;
+    message?: string;
+    result: { link: string; shortlink: string; altLink: string };
+  }): void {
+    setResponse(data);
+    // Cache data to sessionStorage
+    setResponseModal(true);
+    let timer = setTimeout(() => {
+      setResponseModal(false);
+    }, 7000);
+    toast.info("Your links are saved to history");
+    // Clear input
+    setCustom("");
+    setLink("");
+  }
+
+  function cacheResponse(response: any): void {
+    // Cache to sessionStorage.
+    sessionStorage.setItem("response", JSON.stringify(response.result));
+    // Add the response to the history array.
+    setHistory((prev: any) => [...prev, response.result]);
   }
 
   return (
@@ -114,7 +162,7 @@ export default function Home() {
                     type="text"
                     placeholder="https://paste-your-long-url-here..."
                     required={true}
-                    defaultValue={link}
+                    value={link}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                       handleInputUpdate(event)
                     }
@@ -122,12 +170,12 @@ export default function Home() {
                 </Input>
                 <Customize
                   as="div"
-                  hasCustomUrl={hasCustomUrl}
                   onClick={(event: SyntheticEvent) =>
                     handleCustonization(event)
                   }
                   title="customize URL"
                 >
+                  <span className={indicator}></span>
                   <GoSettings size={30} />
                 </Customize>
                 <Shorten
@@ -135,7 +183,7 @@ export default function Home() {
                   disabled={fetching}
                   onClick={() => handleShortenURL()}
                 >
-                  Shorten URL
+                  {fetching ? "Generating Link" : "Shorten URL"}
                 </Shorten>
               </section>
               <small>
@@ -144,6 +192,14 @@ export default function Home() {
                 <Link href="/privacy">Privacy Policy</Link>.
               </small>
             </ShortenForm>
+            {/* Show history button is reponse data was cached to sessionStorage earlier */}
+            {!(history.length < 1) && (
+              <>
+                <History role="button" onClick={() => setHistoryModal(true)}>
+                  View History
+                </History>
+              </>
+            )}
           </Wrapper>
         </Showcase>
 
@@ -170,19 +226,30 @@ export default function Home() {
         </section>
 
         <ArticleWrapper>
-          {/* <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard /> */}
+          {articles.map((post: any, idx: any) => (
+            <BlogCard key={idx} article={post} />
+          ))}
         </ArticleWrapper>
 
         <FaqWrapper data={faqShorten} />
       </>
       <Footer />
+
+      <Portal showModal={customModal} onClose={() => handleCustomModal()}>
+        <CustomQuery
+          custom={custom}
+          setter={setCustom}
+          hideModal={setCustomModal}
+        />
+      </Portal>
+
+      <Portal showModal={responseModal} onClose={() => setResponseModal(false)}>
+        <UrlResponse data={response} />
+      </Portal>
+
+      <Portal showModal={historyModal} onClose={() => setHistoryModal(false)}>
+        <HistoryList history={history} />
+      </Portal>
     </>
   );
 }
@@ -272,21 +339,19 @@ const Input = styled.div`
     opacity: 0.5;
   }
 `;
-interface custom {
-  hasCustomUrl: boolean;
-}
-const Customize = styled(StyledButton)<custom>`
+
+const Customize = styled(StyledButton)`
   height: 3.75em;
   aspect-ratio: 1;
   border-radius: var(--url-radius);
   display: grid;
   place-items: center;
   place-content: center;
-  background-color: ${(props) =>
-    props.hasCustomUrl ? "var(--clr-white)" : "var(--clr-darker)"};
+  background-color: var(--clr-darker);
   cursor: pointer;
   border: solid var(--url-border-size) transparent;
   transition: var(--url-transition);
+  position: relative;
 
   > * {
     color: var(--clr-main);
@@ -295,6 +360,22 @@ const Customize = styled(StyledButton)<custom>`
   :hover,
   :focus {
     border-color: var(--clr-main);
+  }
+
+  span {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    z-index: 2;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: greenyellow;
+    display: none;
+
+    &.active {
+      display: inline-block;
+    }
   }
 `;
 
@@ -329,4 +410,12 @@ export const Parag = styled.div`
   margin-inline: auto;
   margin-bottom: 2em;
   text-align: center;
+`;
+
+const History = styled.span`
+  text-decoration: underline;
+  color: var(--clr-main);
+  cursor: pointer;
+  font-weight: var(--fw-regular);
+  font-size: 0.9rem;
 `;

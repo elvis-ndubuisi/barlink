@@ -3,9 +3,19 @@ import connectMongo from "../../../libraries/mongodb";
 import validateUrl from "../../../libraries/validateUrl";
 import { nanoid } from "nanoid";
 
+type Data = {
+  type: string;
+  message?: string;
+  result?: {
+    link: string;
+    shortlink: string;
+    altLink: string;
+  };
+};
+
 export default async function shorten(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<Data>
 ) {
   // Check request method. Accepts only POST request.
   if (req.method !== "POST") {
@@ -19,7 +29,7 @@ export default async function shorten(
   if (!link) {
     return res
       .status(400)
-      .json({ type: "ERR_Input", message: "Expected string URL" });
+      .json({ type: "ERR_Input", message: "Expected string" });
   }
   // validate URL
   if (!validateUrl(link)) {
@@ -32,14 +42,16 @@ export default async function shorten(
     const database = await connectMongo();
     const collection = database.collection("url");
     /* Check if passed URL or custom string already exist */
-    let foundLink = await collection.findOne({ link: link });
+    let foundLink = await collection.findOne({
+      $or: [{ link: link }, { custom: custom }],
+    });
     if (foundLink) {
-      //  TODO: custom database search not implemented.
       return res.status(200).json({
         type: "FOUND",
         result: {
+          link: foundLink.link,
           shortlink: foundLink.shortlink,
-          alt: foundLink.altShortlink,
+          altLink: foundLink.altShortlink,
         },
       });
     } else {
@@ -52,11 +64,15 @@ export default async function shorten(
           altShortlink: `${process.env.ALT_HOST}/${custom}`,
           hash: custom,
         });
+        // FindQuery is Skip to save 1 write operation. YEEEEEEEHAAA!!!
         if (result) {
           return res.status(201).json({
             type: "SUCCESS_INSERT",
-            result: { link: `${process.env.HOST}/${custom}` },
-            altLink: `${process.env.ALT_HOST}/${custom}`,
+            result: {
+              link: link,
+              shortlink: `${process.env.HOST}/${custom}`,
+              altLink: `${process.env.ALT_HOST}/${custom}`,
+            },
           });
         }
         return res
@@ -74,7 +90,8 @@ export default async function shorten(
           return res.status(201).json({
             type: "SUCCESS_INSERT",
             result: {
-              link: `${process.env.HOST}/${hash}`,
+              link: link,
+              shortlink: `${process.env.HOST}/${hash}`,
               altLink: `${process.env.ALT_HOST}/${hash}`,
             },
           });

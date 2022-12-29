@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const StyledSubTitle = styled(motion.h2)`
-  color: var(--clr-main);
+  color: var(--clr-white);
   font-weight: var(--fw-medium);
   font-size: 1.8rem;
 

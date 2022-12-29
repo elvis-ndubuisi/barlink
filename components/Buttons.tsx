@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface iButton {
@@ -32,10 +31,10 @@ export const BigButton = styled(StyledButton)<iButton>`
   justify-content: center;
   letter-spacing: 2px;
   background-color: ${(props) =>
-    props.primary ? "var(--clr-white)" : "transparent"};
+    props.primary ? "var(--clr-main)" : "transparent"};
   border-color: ${(props) =>
-    props.primary ? "var(--clr-white)" : "transparent"};
-  color: ${(props) => (props.primary ? "var(--clr-dark)" : "var(--clr-main)")};
+    props.primary ? "var(--clr-main)" : "transparent"};
+  color: ${(props) => (props.primary ? "var(--clr-white)" : "var(--clr-main)")};
 
   ::before {
     content: "";
@@ -60,6 +59,41 @@ export const BigButton = styled(StyledButton)<iButton>`
 
   &:hover::before {
     transform: scaleX(1) skewX(35deg);
+  }
+`;
+
+export const DonateButton = styled.a`
+  // Initial StyledButton styles
+  outline: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+  font-size: 1em;
+  font-weight: var(--fw-medium);
+  background-color: transparent;
+  border: solid 2px var(--clr-main);
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  // Styles -- Lazy me
+  border-color: var(--clr-white);
+  color: var(--clr-white);
+  padding: 0.3em 1.3em;
+  dislay: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5em;
+  font-weight: (--fw-regular);
+  font-size: 0.8rem;
+
+  &:hover {
+    color: #ffc0cb;
+    border-color: #ffc0cb;
   }
 `;
 

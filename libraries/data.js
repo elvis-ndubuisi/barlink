@@ -108,9 +108,9 @@ export let faqShorten = [
   },
   {
     question:
-      "I get the same shortened version each time o try generating a new one",
+      "I get the same shortened version each time i try generating a new one",
     answer:
-      "Long urls with shortened version in Barlink will always return the old shortened version(s) (except for customized urls) when every you try to generate a new one.",
+      "Long urls with shortened version in Barlink will always return the old shortened version(s) (except for customized urls) when ever you try to generate a new one.",
   },
   {
     question: "Can i customize my links?",

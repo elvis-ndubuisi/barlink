@@ -10,7 +10,7 @@ import Navigation from "../components/Navigation";
 import Wrapper from "../components/Wrapper";
 import styled from "styled-components";
 import { BiChevronRight } from "react-icons/bi";
-import { BigButton } from "../components/Buttons";
+import { BigButton, DonateButton } from "../components/Buttons";
 import MeProfile from "../components/MeProfile";
 import Heading from "../components/Heading";
 import { faqHome } from "../libraries/data.js";
@@ -20,6 +20,7 @@ import path from "path";
 import matter from "gray-matter";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import { HiOutlineHeart } from "react-icons/hi2";
 
 const caption_variants = {
   hidden: { opacity: 0, x: -40, transition: { duration: 0.9 } },
@@ -41,7 +42,6 @@ export async function getStaticProps() {
     };
   });
 
-  // FIXME: filter articles tagged 'home'
   const selected = await articles.filter((file) =>
     file.frontMatter?.tag.includes("home")
   );
@@ -93,7 +93,13 @@ export default function Home({ articles }: { articles: [object] }) {
               <BigButton primary={true}>
                 Get started <BiChevronRight size={25} />
               </BigButton>
-              <BigButton primary={false}>Scan QR-code</BigButton>
+              <DonateButton
+                href="https://www.buymeacoffee.com/simplyelvis"
+                target="_blank"
+              >
+                <HiOutlineHeart size={24} />
+                <span>Donate</span>
+              </DonateButton>
             </ShowcaseButtons>
           </Wrapper>
         </Showcase>
@@ -178,16 +184,10 @@ const Showcase = styled.section`
 
 const ShowcaseButtons = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 1.25em;
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 300px;
-  }
+  justify-content: center;
+  gap: 1em;
 `;
 
 const CaptionSection = styled.section`

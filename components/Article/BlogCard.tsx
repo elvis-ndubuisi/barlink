@@ -11,7 +11,6 @@ const BlogCard = ({ article }: iProp) => {
     <StyledCard href={`articles/${article.slug}`}>
       <h3>{title}</h3>
       <p>{excerpt}</p>
-      <p>Learn more</p>
     </StyledCard>
   );
 };
@@ -41,10 +40,6 @@ const StyledCard = styled(Link)`
 
   p {
     text-align: left;
-  }
-
-  p:last-child {
-    color: var(--clr-main);
   }
 `;
 

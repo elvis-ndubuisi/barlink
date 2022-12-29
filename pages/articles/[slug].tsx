@@ -69,32 +69,35 @@ const StyledArticle = styled.main`
 
   h2 {
     font-size: 2rem;
-  font-weight: var(--fw-bold);
-  text-align: center;
-  margin-bottom: 0.4em;
+    font-weight: var(--fw-bold);
+    text-align: center;
+    margin-bottom: 0.4em;
   }
+
   p {
     max-width: 1000px;
-  text-align: justify;
-  font-weight: var(--fw-regular);
-  font-size: 1rem;
-  margin: 0.8em auto;
+    text-align: justify;
+    font-weight: var(--fw-regular);
+    font-size: 1rem;
+    margin: 0.8em auto;
 
-  a {
-    text-decoration: underline;
-    color: var(--clr-main);
+    a {
+      text-decoration: underline;
+      color: var(--clr-main);
 
-    :hover {
-      color: var(--clr-white);
+      &:hover {
+        color: var(--clr-white);
+      }
     }
   }
-  }
+
   a {
     text-decoration: underline;
     text-color: var(--clr-main);
     font-family; inherit;
     font-weight: inherit;
   }
+
   img {
     display: block
     max-width: 100%;
@@ -107,7 +110,6 @@ const StyledArticle = styled.main`
   }
 
   li {
-    padding: 0 1.4em;
     margin: 0.5em 0;
     list-style: none;
 
