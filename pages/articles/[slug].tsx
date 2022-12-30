@@ -9,7 +9,7 @@ import { marked } from "marked";
 import Heading from "../../components/Heading";
 
 interface iProps {
-  frontMatter: { title: string };
+  frontMatter: { title: string; image: string; excerpt: string };
   slug: string;
   content: string;
 }
@@ -42,7 +42,7 @@ export async function getStaticProps({
 }
 
 export default function Article({
-  frontMatter: { title },
+  frontMatter: { title, image, excerpt },
   slug,
   content,
 }: iProps) {
@@ -50,6 +50,17 @@ export default function Article({
     <>
       <Navigation />
       <StyledArticle>
+        <img
+          src={image}
+          alt={image}
+          style={{
+            width: "100%",
+            height: "20rem",
+            objectFit: "cover",
+            objectPosition: "center",
+            borderRadius: "5px",
+          }}
+        />
         <Heading>{title}</Heading>
         <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
       </StyledArticle>
