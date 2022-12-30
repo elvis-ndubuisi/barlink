@@ -26,6 +26,7 @@ import Portal from "../../components/Modal/Portal";
 import UrlResponse from "../../components/Modal/UrlResponse";
 import BlogCard from "../../components/Article/BlogCard";
 import HistoryList from "../../components/Modal/HistoryList";
+import { pageview } from "../../libraries/analytics";
 
 export async function getStaticProps() {
   // Read markdows from directory
@@ -136,6 +137,10 @@ export default function Home({ articles }: { articles: [object] }) {
     // Add the response to the history array.
     setHistory((prev: any) => [...prev, response.result]);
   }
+
+  React.useEffect(() => {
+    pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <>

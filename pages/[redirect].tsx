@@ -1,6 +1,8 @@
 import { NextApiRequest } from "next";
 import Head from "next/head";
 import connectMongo from "../libraries/mongodb";
+import React from "react";
+import { pageview } from "../libraries/analytics";
 
 export async function getServerSideProps(request: NextApiRequest) {
   const hash = request.query.redirect as string;
@@ -22,6 +24,9 @@ export async function getServerSideProps(request: NextApiRequest) {
 }
 
 export default function Redirect() {
+  React.useEffect(() => {
+    pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <>
       <div>

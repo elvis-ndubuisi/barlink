@@ -20,6 +20,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import ArticleWrapper from "../../components/Article/ArticleWrapper";
 import BlogCard from "../../components/Article/BlogCard";
+import { pageview } from "../../libraries/analytics";
 
 export async function getStaticProps() {
   /* Get markdown files from mdx directory */
@@ -52,6 +53,7 @@ export default function Home({ articles }: { articles: [object] }) {
   const [isSmallScreen, setIsSmallScreen] = React.useState(true);
 
   React.useEffect(() => {
+    pageview(window.location.pathname + window.location.search);
     screenSize.current = window.innerWidth;
     screenSize.current < 768 ? setIsSmallScreen(true) : setIsSmallScreen(false);
   }, []);

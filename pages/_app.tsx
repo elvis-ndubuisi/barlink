@@ -10,9 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     // Initialize the Google Analytics library
     initGA("G-9MQ25W06EQ");
-
     // Send a pageview event to Google Analytics
-    pageview(window.location.pathname);
+    pageview(window.location.pathname + window.location.search);
     return () => {
       // Close the connection to the MongoDB database when the component unmounts
       // closeDb();

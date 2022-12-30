@@ -11,6 +11,7 @@ import { GoSearch } from "react-icons/go";
 import Button from "../../components/Buttons";
 import useFilter from "../../hooks/useFilter";
 import Image from "next/image";
+import { pageview } from "../../libraries/analytics";
 
 interface iPost {
   slug: string;
@@ -103,6 +104,10 @@ export async function getStaticProps() {
 export default function Home({ articles }: { articles: [object] }) {
   const [filter, setFilter] = React.useState("");
   const filteredArticles = useFilter(articles, filter);
+
+  React.useEffect(() => {
+    pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <>
