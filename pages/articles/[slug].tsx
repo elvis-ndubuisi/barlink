@@ -7,7 +7,6 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import Heading from "../../components/Heading";
-import { pageview } from "../../libraries/analytics";
 
 interface iProps {
   frontMatter: { title: string };
@@ -47,9 +46,6 @@ export default function Article({
   slug,
   content,
 }: iProps) {
-  React.useEffect(() => {
-    pageview(window.location.pathname + window.location.search);
-  }, []);
   return (
     <>
       <Navigation />

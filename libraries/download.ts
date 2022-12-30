@@ -1,5 +1,6 @@
 import * as toImage from "html-to-image";
 import { toast } from "react-toastify";
+import { event } from "nextjs-google-analytics";
 
 function link(dataurl: any, name: string, type: string): void {
   const link = document.createElement("a");
@@ -47,6 +48,10 @@ function download(format: "png" | "jpeg" | "svg", name: string): void {
       toast.error("Format not supported yet!");
       break;
   }
+  event("Download QR Code", {
+    category: "qrcode",
+    label: `Downloaded Qr Code in ${format} format`,
+  });
 }
 
 export default download;

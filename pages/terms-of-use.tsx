@@ -9,12 +9,8 @@ import Container, {
   Paragraph,
   SubHeading,
 } from "../components/Policy/Container";
-import { pageview } from "../libraries/analytics";
 
 export default function Terms() {
-  React.useEffect(() => {
-    pageview(window.location.pathname + window.location.search);
-  }, []);
   return (
     <>
       <Navigation />

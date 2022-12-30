@@ -21,7 +21,6 @@ import path from "path";
 import matter from "gray-matter";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
-import { pageview } from "../libraries/analytics";
 
 const caption_variants = {
   hidden: { opacity: 0, x: -40, transition: { duration: 0.9 } },
@@ -62,10 +61,6 @@ export default function Home({ articles }: { articles: [object] }) {
     if (inView) ctrl.start("visible");
     if (!inView) ctrl.start("hidden");
   }, [ctrl, inView]);
-
-  React.useEffect(() => {
-    pageview(window.location.pathname + window.location.search);
-  }, []);
 
   return (
     <>
