@@ -39,7 +39,7 @@ const Styled = styled(Link)`
   border-radius: var(--radius-10);
   cursor: pointer;
   background-color: var(--clr-white);
-  max-width: 300px;
+  max-width: 320px;
   overflow: hidden;
   color: var(--clr-dark);
   text-align: left;

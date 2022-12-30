@@ -57,7 +57,7 @@ const Navigation: React.FC = () => {
               <Link href="/articles">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
-              <BtnWrap>
+              {/* <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
                 <Button
                   primary={true}
@@ -68,7 +68,7 @@ const Navigation: React.FC = () => {
                 >
                   Scan
                 </Button>
-              </BtnWrap>
+              </BtnWrap> */}
             </motion.nav>
           ) : (
             // Desktop Nav
@@ -79,21 +79,21 @@ const Navigation: React.FC = () => {
               <Link href="/articles">Articles</Link>
               {/* <Link href="/barcode">Barcode</Link> */}
 
-              <BtnWrap>
+              {/* <BtnWrap>
                 <Button primary={false}>Unshorten</Button>
                 <Button primary={true} onClick={() => setScanModal(true)}>
                   Scan
                 </Button>
-              </BtnWrap>
+              </BtnWrap> */}
             </motion.nav>
           )}
 
-          <BtnWrap>
+          {/* <BtnWrap>
             <Button primary={false}>Unshorten</Button>
             <Button primary={true} onClick={() => setScanModal(true)}>
               Scan
             </Button>
-          </BtnWrap>
+          </BtnWrap> */}
           {mobile && (
             <IconButton onClick={() => handleNavigation()}>
               {isOpen ? <BiX size={25} /> : <BiMenuAltRight size={25} />}

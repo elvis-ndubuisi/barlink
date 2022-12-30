@@ -17,11 +17,11 @@ const HistoryList = ({ history }: { history: any }) => {
             return (
               <>
                 <Log key={idx}>
-                  <Field>
+                  <Field key={log?.link}>
                     <Label>link:</Label>
                     <Span>{log?.link}</Span>
                   </Field>
-                  <Field>
+                  <Field key={log?.shortlink}>
                     <Label>short link:</Label>
                     <Span>{log?.shortlink}</Span>
                     <Copy
@@ -41,7 +41,7 @@ const HistoryList = ({ history }: { history: any }) => {
                       )}
                     </Copy>
                   </Field>
-                  <Field>
+                  <Field key={log?.altLink}>
                     <Label>Alt link:</Label>
                     <Span>{log?.altLink}</Span>
                     <Copy
