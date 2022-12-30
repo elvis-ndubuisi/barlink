@@ -9,8 +9,12 @@ import Container, {
   SubHeading,
 } from "../components/Policy/Container";
 import Link from "next/link";
+import { pageview } from "../libraries/analytics";
 
 export default function Privacy() {
+  React.useEffect(() => {
+    pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <>
       <Navigation />
