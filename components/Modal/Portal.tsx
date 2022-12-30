@@ -5,7 +5,7 @@ import { GoX } from "react-icons/go";
 import { motion } from "framer-motion";
 
 const Styled = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -22,7 +22,7 @@ const ModalWrapper = styled.div`
   background-color: var(--clr-white);
   border-radius: 0.5em;
   width: inherit;
-  max-width: 500px;
+  max-width: 600px;
   padding: 2.5em 1em 1em 1em;
   position: relative;
   color: var(--clr-dark);

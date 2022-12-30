@@ -8,15 +8,15 @@ function link(dataurl: any, name: string, type: string): void {
   link.click();
 }
 
-function checkDom(elem: string): HTMLElement | null {
-  let domElem = document.querySelector(`#${elem}`) as HTMLElement;
-  if (domElem) {
-    return domElem;
-  } else {
-    toast.error("download DOM");
-    return null;
-  }
-}
+// function checkDom(elem: string): HTMLElement | null {
+//   let domElem = document.querySelector(`#${elem}`) as HTMLElement;
+//   if (domElem) {
+//     return domElem;
+//   } else {
+//     toast.error("download DOM");
+//     return null;
+//   }
+// }
 
 function download(format: "png" | "jpeg" | "svg", name: string): void {
   switch (format) {

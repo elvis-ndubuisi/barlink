@@ -61,7 +61,7 @@ const DownloadSection = () => {
           <option value="svg">SVG</option>
           <option value="jpeg">Jpeg</option>
           <option value="png">Png</option>
-          <option value="utf-8">UTF-8</option>
+          {/* <option value="utf-8">UTF-8</option> */}
         </Select>
       </div>
     </SdownloadSection>

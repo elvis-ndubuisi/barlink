@@ -10,7 +10,8 @@ import Navigation from "../components/Navigation";
 import Wrapper from "../components/Wrapper";
 import styled from "styled-components";
 import { BiChevronRight } from "react-icons/bi";
-import { BigButton, DonateButton } from "../components/Buttons";
+import { BigButton } from "../components/Buttons";
+import Donate from "../components/Donate";
 import MeProfile from "../components/MeProfile";
 import Heading from "../components/Heading";
 import { faqHome } from "../libraries/data.js";
@@ -20,7 +21,6 @@ import path from "path";
 import matter from "gray-matter";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
-import { HiOutlineHeart } from "react-icons/hi2";
 
 const caption_variants = {
   hidden: { opacity: 0, x: -40, transition: { duration: 0.9 } },
@@ -84,22 +84,23 @@ export default function Home({ articles }: { articles: [object] }) {
             </LandingTitle>
             <LandiingCaption>
               Create fully customizable QR codes with your brand colors and
-              logo, product barcodes. Turn long boring iinks to short momizable
-              links. Download generated contents in several printable formats
-              and high-quality.
+              logo, product barcodes. Turn long boring links to short
+              memorizable links. Download generated contents in several
+              printable formats and high-quality.
             </LandiingCaption>
 
             <ShowcaseButtons>
-              <BigButton primary={true}>
+              {/* <BigButton primary={true}>
                 Get started <BiChevronRight size={25} />
-              </BigButton>
-              <DonateButton
+              </BigButton> */}
+              {/* <DonateButton
                 href="https://www.buymeacoffee.com/simplyelvis"
                 target="_blank"
               >
                 <HiOutlineHeart size={24} />
                 <span>Donate</span>
-              </DonateButton>
+              </DonateButton> */}
+              <Donate />
             </ShowcaseButtons>
           </Wrapper>
         </Showcase>
@@ -140,7 +141,7 @@ export default function Home({ articles }: { articles: [object] }) {
               <Heading>Short URLs - Simple & Fast</Heading>
               <p>
                 Barlink transforms long, ugly looking links from top sites on
-                the internet into nice, memorable, short URLs. just paste the
+                the internet into nice, memorable, short URLs. Just paste the
                 long URL and with the click of a button, your short URL is
                 generated.
               </p>

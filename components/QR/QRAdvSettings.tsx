@@ -56,7 +56,7 @@ const QRAdvSettings = () => {
               <label htmlFor="">enable CORS</label>
               <Input
                 type="checkbox"
-                checked={state.enableCORs}
+                checked={true}
                 onChange={(event) =>
                   dispatch({
                     type: "MOD_CORS",
@@ -65,7 +65,7 @@ const QRAdvSettings = () => {
                 }
               />
             </SliderGroup>
-            <SliderGroup>
+            {/* <SliderGroup>
               <p>size</p>
               <Input
                 type="range"
@@ -81,7 +81,7 @@ const QRAdvSettings = () => {
                 }
               />
               <span>{state?.size}</span>
-            </SliderGroup>
+            </SliderGroup> */}
             <SliderGroup>
               <p>quiet zone</p>
               <Input

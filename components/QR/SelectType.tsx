@@ -3,15 +3,8 @@ import Divider from "./Divider";
 import Header from "./Header";
 import Grid from "./Grid";
 import OptionButton from "./OptionButton";
-import { HiWifi } from "react-icons/hi2";
 import QTypeContext, { qrType } from "../../context/QTypeContext";
-import {
-  GoGlobe,
-  GoTextSize,
-  GoMail,
-  GoCloudUpload,
-  GoPerson,
-} from "react-icons/go";
+import { GoTextSize, GoMail } from "react-icons/go";
 import {
   FaYoutube,
   FaSpotify,
@@ -19,17 +12,11 @@ import {
   FaTwitter,
   FaIdCard,
   FaWifi,
-  FaUpload,
-  FaFileUpload,
   FaGlobe,
   FaSms,
   FaApple,
   FaGooglePlay,
   FaSoundcloud,
-  FaLocationArrow,
-  FaMapMarkedAlt,
-  FaMapPin,
-  FaMapMarker,
   FaMapMarkerAlt,
   FaCalendarAlt,
   FaFacebookF,
@@ -79,7 +66,7 @@ const SelectType = () => {
         <OptionButton type="store" handlePreset={() => setType("playstore")}>
           <FaGooglePlay fontSize={30} />
         </OptionButton>
-        <OptionButton type="Youtube" handlePreset={() => setType("youtube")}>
+        {/* <OptionButton type="Youtube" handlePreset={() => setType("youtube")}>
           <FaYoutube fontSize={30} />
         </OptionButton>
         <OptionButton type="spotify" handlePreset={() => setType("spotify")}>
@@ -102,7 +89,7 @@ const SelectType = () => {
         </OptionButton>
         <OptionButton type="facebook" handlePreset={() => setType("facebook")}>
           <FaFacebookF fontSize={30} />
-        </OptionButton>
+        </OptionButton> */}
       </Grid>
     </section>
   );

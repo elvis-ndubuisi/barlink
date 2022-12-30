@@ -13,4 +13,4 @@ const Donate = () => {
   );
 };
 
-export default DonateButton;
+export default Donate;

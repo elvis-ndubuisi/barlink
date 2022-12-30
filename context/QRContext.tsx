@@ -7,7 +7,7 @@ let initialState: iInitial = {
   fgColor: "black",
   qrStyle: "squares",
   quietZone: 5,
-  size: 150,
+  size: 200,
   ecLevel: "M",
   enableCORs: false,
   logoImage: "",
@@ -26,7 +26,7 @@ let qrDefaults: iInitial = {
   fgColor: "black",
   qrStyle: "squares",
   quietZone: 5,
-  size: 150,
+  size: 200,
   ecLevel: "M",
   enableCORs: true,
   logoImage: "",
@@ -61,8 +61,8 @@ function reducer(state: any, action: any) {
     case "MOD_QUIET_ZONE":
       return { ...state, quietZone: payload?.quietZone };
 
-    case "MOD_SIZE":
-      return { ...state, size: payload?.size };
+    // case "MOD_SIZE":
+    //   return { ...state, size: payload?.size };
 
     case "MOD_EC_LEVEL":
       return { ...state, ecLevel: payload?.ecLevel };
