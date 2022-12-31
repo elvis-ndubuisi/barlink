@@ -7,24 +7,43 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { StyledFooter, Socials } from "./StyledFooter";
+import Donate from "./Donate";
 
 const Footer = () => {
   return (
     <StyledFooter>
       <Wrapper>
-        <Link
-          href="/"
-          style={{ fontSize: "2rem", fontWeight: "var(--fw-bold)" }}
-        >
-          Barlink
-        </Link>
+        <div>
+          <Link
+            href="/"
+            style={{ fontSize: "2rem", fontWeight: "var(--fw-bold)" }}
+          >
+            Barlink
+          </Link>
+        </div>
 
-        <section>
+        <section
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            gap: "0.4em",
+          }}
+        >
           <Link href="/terms-of-use">Terms of use</Link>
           <Link href="/privacy">privacy</Link>
         </section>
 
-        <section>
+        <section
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+            gap: "0.4em",
+          }}
+        >
           <Socials>
             <p>Find Me</p>
             <a href={profile.twitter} target="_blank" rel="noreferrer">
@@ -37,6 +56,7 @@ const Footer = () => {
               <AiFillLinkedin size={25} />
             </a>
           </Socials>
+          <Donate />
         </section>
 
         <small>&#169; 2022, Ike Elvis Ndubuisi. All Right Reserved.</small>

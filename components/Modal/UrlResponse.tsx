@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { HiOutlineClipboard, HiCheck } from "react-icons/hi2";
 import clipboard from "../../libraries/clipboard";
+import Donate from "../Donate";
 
 // Accepts response data as props. NB: altLink with capital L must match with server response object
 function UrlResponse({
@@ -56,6 +57,7 @@ function UrlResponse({
         </Copy>
       </Field>
       <span>Thank you for using barlink services.</span>
+      <Donate />
     </Styled>
   );
 }

@@ -24,7 +24,7 @@ const text_variants = {
 
 const MeProfile = () => {
   const ctrl = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
 
   React.useEffect(() => {
     if (inView) ctrl.start("visible");
@@ -51,9 +51,9 @@ const MeProfile = () => {
             transition={{ delay: 0.2 }}
           >
             My name is Elvis Ndubuisi from Delta State, Nigeria. I&#8216;m the
-            maker of <Link href="/">BarLink</Link>. A self-taught
+            creator of <strong>BarLink</strong>. A full-stack
             JavaScript/Typescript web & mobile developer with passion for SaaS
-            projects, Open-source and undying love for Art and Games; and
+            projects, Open-source, and undying love for Art and Games; and
             currently making tutorial videos on{" "}
             <a href={profile_links.youtube} target="_blank" rel="noreferrer">
               YouTube
@@ -94,7 +94,22 @@ const MeProfile = () => {
             I first started my journey as a 3d artist, sculptor and Unity game
             developer, learnt C#, zBrush and how to draw by hand, bought and
             sold my first drawing tablet and finally i&#8216;m here; enjoying
-            launching fun and useful project.
+            launching fun and useful projects.
+          </motion.p>
+
+          <motion.p
+            ref={ref}
+            variants={text_variants}
+            initial="hidden"
+            animate={ctrl}
+            transition={{ delay: 0.8 }}
+          >
+            Help Barlink grow by using the platform, and sharing with your
+            friends and families. You can also{" "}
+            <a href="https://www.buymeacoffee.com/simplyelvis" target="_blank">
+              donate to the platform
+            </a>
+            .
           </motion.p>
 
           <motion.p

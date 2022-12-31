@@ -21,6 +21,8 @@ import path from "path";
 import matter from "gray-matter";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import { HiChevronLeft } from "react-icons/hi2";
+import Router from "next/router";
 
 const caption_variants = {
   hidden: { opacity: 0, x: -40, transition: { duration: 0.9 } },
@@ -56,6 +58,7 @@ export async function getStaticProps() {
 export default function Home({ articles }: { articles: [object] }) {
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: false });
   const ctrl = useAnimation();
+  const [gettingStarted, setGettingStarted] = React.useState(false);
 
   React.useEffect(() => {
     if (inView) ctrl.start("visible");
@@ -90,16 +93,38 @@ export default function Home({ articles }: { articles: [object] }) {
             </LandiingCaption>
 
             <ShowcaseButtons>
-              {/* <BigButton primary={true}>
-                Get started <BiChevronRight size={25} />
-              </BigButton> */}
-              {/* <DonateButton
-                href="https://www.buymeacoffee.com/simplyelvis"
-                target="_blank"
-              >
-                <HiOutlineHeart size={24} />
-                <span>Donate</span>
-              </DonateButton> */}
+              {!gettingStarted && (
+                <BigButton
+                  primary={true}
+                  onClick={() => setGettingStarted(!gettingStarted)}
+                >
+                  Get started <BiChevronRight size={25} />
+                </BigButton>
+              )}
+              {gettingStarted && (
+                <StartWrapper>
+                  <StartButton
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    onClick={() => Router.push("/shortenurl")}
+                  >
+                    <p>Shorten URL</p>
+                    <span>Generate short link easily</span>
+                  </StartButton>
+                  <StartButton
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    onClick={() => Router.push("/qrcode")}
+                  >
+                    <p>Create QR Code</p>
+                    <span>Fully customizable QR Code</span>
+                  </StartButton>
+
+                  <BackButton onClick={() => setGettingStarted(false)}>
+                    <HiChevronLeft size={24} />
+                  </BackButton>
+                </StartWrapper>
+              )}
               <Donate />
             </ShowcaseButtons>
           </Wrapper>
@@ -189,6 +214,62 @@ const ShowcaseButtons = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1em;
+  position: relative;
+`;
+
+const StartWrapper = styled.div`
+  // position: absolute;
+  // top: -80%;
+  // right: 50%;
+  // transform: translateX(50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  // z-index: 5;
+`;
+
+const StartButton = styled(motion.div)`
+  background-color: var(--clr-white);
+  border-radius: 0.3em;
+  padding: 0.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--clr-dark);
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+
+  :hover {
+    border: solid 2px var(--clr-main);
+  }
+
+  p {
+    font-weight: var(--fw-medium);
+    margin: 0;
+  }
+
+  span {
+    display: block;
+    font-weight: var(--fw-regular);
+    font-size: 0.8rem;
+  }
+`;
+
+const BackButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background-color: var(--clr-gray);
+  color: var(--clr-white);
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.9;
+  }
 `;
 
 const CaptionSection = styled.section`
