@@ -146,12 +146,12 @@ const StyledHeader = styled.header`
       flex: 1;
     }
     nav {
-      position: absolute;
-      top: 80px;
+      position: fixed;
+      bottom: 0;
       right: 0;
-      z-index: 10;
+      z-index: 5;
       width: 100%;
-      height: 60vh;
+      height: calc(100vh - 80px);
       background-color: var(--clr-dark-gray);
       color: var(--clr-white);
       // display: flex;
