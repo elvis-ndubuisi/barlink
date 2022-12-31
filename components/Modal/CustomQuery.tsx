@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../Buttons";
 import Input from "../QR/Input";
+import { event } from "nextjs-google-analytics";
 
 const Styled = styled.div`
   width: 100%;
@@ -65,7 +66,16 @@ const CustomQuery = ({
         }
       />
       <small>{`Custom URL: ${custom}`}</small>
-      <Button primary={true} onClick={() => hideModal(!true)}>
+      <Button
+        primary={true}
+        onClick={() => {
+          hideModal(!true);
+          event("Added custom URL", {
+            category: "shorten link",
+            label: `Generating short link with ${custom}`,
+          });
+        }}
+      >
         Save
       </Button>
     </Styled>

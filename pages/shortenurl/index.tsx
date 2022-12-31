@@ -26,6 +26,7 @@ import Portal from "../../components/Modal/Portal";
 import UrlResponse from "../../components/Modal/UrlResponse";
 import BlogCard from "../../components/Article/BlogCard";
 import HistoryList from "../../components/Modal/HistoryList";
+import { event } from "nextjs-google-analytics";
 
 export async function getStaticProps() {
   // Read markdows from directory
@@ -68,7 +69,10 @@ export default function Home({ articles }: { articles: [object] }) {
   }
 
   async function handleShortenURL() {
-    if (link !== "" || !validateUrl(link)) {
+    if (link === "" || !validateUrl(link)) {
+      toast.error("Input not accepted");
+      setFetching(false);
+    } else {
       setFetching(true);
 
       try {
@@ -95,11 +99,13 @@ export default function Home({ articles }: { articles: [object] }) {
         // Pass data to UrlResponse Modal
         data?.result && handleResponseModal(data);
         data?.result && cacheResponse(data);
+        event("Generated shortlink", {
+          category: "shorten link",
+          label: `Generated ${data?.shortlink} link`,
+        });
       } catch (error) {
         toast.error("query error");
       }
-    } else {
-      toast.error("Input not accepted");
     }
     setFetching(false);
   }
