@@ -79,6 +79,7 @@ const Field = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 10px;
   width: 100%;
   background-color: var(--clr-dark);
