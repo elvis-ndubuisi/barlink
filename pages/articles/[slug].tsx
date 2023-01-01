@@ -7,6 +7,7 @@ import path from "path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import Heading from "../../components/Heading";
+import Image from "next/image";
 
 interface iProps {
   frontMatter: { title: string; image: string; excerpt: string };
@@ -61,6 +62,7 @@ export default function Article({
             borderRadius: "5px",
           }}
         />
+
         <Heading>{title}</Heading>
         <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
       </StyledArticle>

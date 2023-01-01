@@ -106,7 +106,11 @@ const MeProfile = () => {
           >
             Help Barlink grow by using the platform, and sharing with your
             friends and families. You can also{" "}
-            <a href="https://www.buymeacoffee.com/simplyelvis" target="_blank">
+            <a
+              href="https://www.buymeacoffee.com/simplyelvis"
+              target="_blank"
+              rel="noreferrer"
+            >
               donate to the platform
             </a>
             .
