@@ -8,6 +8,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import Heading from "../../components/Heading";
 import Image from "next/image";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 
 interface iProps {
   frontMatter: { title: string; image: string; excerpt: string };
@@ -49,6 +50,26 @@ export default function Article({
 }: iProps) {
   return (
     <>
+      <NextSeo
+        title={`${title}`}
+        description={`${excerpt}`}
+        openGraph={{
+          title: `${title}`,
+          description: `${excerpt}`,
+          url: `https://www.example.com/articles/${title}`,
+          type: "article",
+        }}
+      />
+      <ArticleJsonLd
+        type="BlogPosting"
+        url="https://barlink.vercel.app/articles"
+        title={`${title}`}
+        images={[`https://example.com${image}`]}
+        datePublished="2015-02-05T08:00:00+08:00"
+        dateModified="2015-02-05T09:00:00+08:00"
+        authorName="Ike Elvis Ndubuisi"
+        description={excerpt}
+      />
       <Navigation />
       <StyledArticle>
         <img

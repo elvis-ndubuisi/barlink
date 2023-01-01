@@ -5,8 +5,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 import React from "react";
 import { closeDb } from "../libraries/mongodb";
 import { GoogleAnalytics, event } from "nextjs-google-analytics";
+import { DefaultSeo } from "next-seo";
 
-export function reportWebVitals({ id, name, label, value }:NextWebVitalsMetric) {
+export function reportWebVitals({
+  id,
+  name,
+  label,
+  value,
+}: NextWebVitalsMetric) {
   event(name, {
     category: label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
     value: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
@@ -28,6 +34,22 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <DefaultSeo
+        title="Barlink - Free URL shortener | Barcode and QR code generator"
+        titleTemplate="%s | Barlink"
+        defaultTitle="Barlink - Free URL shortener | Barcode and QR code generator"
+        openGraph={{
+          type: "website",
+          locale: "en_IE",
+          url: "https://www.url.ie/",
+          siteName: "Barlink",
+        }}
+        twitter={{
+          handle: "@tricthevick",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
+      />
       <GoogleAnalytics trackPageViews />
       <GlobalStyle />
       <Component {...pageProps} />
