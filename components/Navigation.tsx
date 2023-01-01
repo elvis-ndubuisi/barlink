@@ -95,9 +95,11 @@ const Navigation: React.FC = () => {
             </Button>
           </BtnWrap> */}
           {mobile && (
-            <IconButton onClick={() => handleNavigation()}>
-              {isOpen ? <BiX size={25} /> : <BiMenuAltRight size={25} />}
-            </IconButton>
+            <div style={{ zIndex: 10 }}>
+              <IconButton onClick={() => handleNavigation()}>
+                {isOpen ? <BiX size={25} /> : <BiMenuAltRight size={25} />}
+              </IconButton>
+            </div>
           )}
         </Wrapper>
       </StyledHeader>
