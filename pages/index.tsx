@@ -74,12 +74,13 @@ export default function Home({ articles }: { articles: [object] }) {
         </title>
       </Head> */}
       <NextSeo
-        description="This example uses more of the available config options."
-        canonical="https://www.canonical.ie/"
+        description="Barlink - Free URL shortener | Barcode and QR code generator"
+        canonical="https://barlink.vercel.app"
         openGraph={{
-          url: "https://www.url.ie/a",
-          title: "Open Graph Title",
-          description: "Open Graph Description",
+          url: "https://barlink.vercel.app/",
+          title: "Barlink - Free URL shortener | Barcode and QR code generator",
+          description:
+            "Barlink - Free URL shortener | Barcode and QR code generator",
           // images: [
           //   {
           //     url: "https://www.example.ie/og-image-01.jpg",
@@ -101,7 +102,7 @@ export default function Home({ articles }: { articles: [object] }) {
           siteName: "SiteName",
         }}
         twitter={{
-          handle: "@handle",
+          handle: "@trickthevick",
           site: "@site",
           cardType: "summary_large_image",
         }}
