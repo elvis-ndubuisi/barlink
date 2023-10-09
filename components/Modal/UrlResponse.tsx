@@ -57,7 +57,6 @@ function UrlResponse({
         </Copy>
       </Field>
       <span>Thank you for using barlink services.</span>
-      <Donate />
     </Styled>
   );
 }

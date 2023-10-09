@@ -56,7 +56,6 @@ const Footer = () => {
               <AiFillLinkedin size={25} />
             </a>
           </Socials>
-          <Donate />
         </section>
 
         <small>&#169; 2022, Ike Elvis Ndubuisi. All Right Reserved.</small>

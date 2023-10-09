@@ -2,11 +2,11 @@ import { BsGear } from "react-icons/bs";
 import { GoThumbsup, GoLinkExternal, GoShield } from "react-icons/go";
 
 export let profile_links = {
-  youtube: "https://www.youtube.com/@trickthevick",
-  twitter: "https://www.twitter.com/trickthevick",
-  portfolio: "https://elvis.js.cool",
+  youtube: "https://www.youtube.com/channel/UC3DXVg9geVpKQtcxlS10CrA",
+  twitter: "https://twitter.com/_elvis_ndubuisi",
+  portfolio: "https://elvis-ndubuisi.vercel.app",
   linkedin: "https://www.linkedin.com/in/elvisndubuisi/",
-  productHunt: "https://www.producthunt.com/@elvis_ndubuisi",
+  productHunt: "https://www.producthunt.com/",
 };
 
 export let generate_qrcode = [

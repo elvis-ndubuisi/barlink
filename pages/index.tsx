@@ -158,7 +158,6 @@ export default function Home({ articles }: { articles: [object] }) {
                   </BackButton>
                 </StartWrapper>
               )}
-              <Donate />
             </ShowcaseButtons>
           </Wrapper>
         </Showcase>
