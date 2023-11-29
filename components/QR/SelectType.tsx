@@ -4,7 +4,7 @@ import Header from "./Header";
 import Grid from "./Grid";
 import OptionButton from "./OptionButton";
 import QTypeContext, { qrType } from "../../context/QTypeContext";
-import { GoTextSize, GoMail } from "react-icons/go";
+import { GoTypography, GoMail } from "react-icons/go";
 import {
   FaYoutube,
   FaSpotify,
@@ -37,7 +37,7 @@ const SelectType = () => {
           <FaGlobe fontSize={30} />
         </OptionButton>
         <OptionButton type="text" handlePreset={() => setType("text")}>
-          <GoTextSize fontSize={30} />
+          <GoTypography fontSize={30} />
         </OptionButton>
         <OptionButton type="email" handlePreset={() => setType("email")}>
           <GoMail fontSize={30} />

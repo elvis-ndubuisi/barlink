@@ -13,7 +13,7 @@ import React, { SyntheticEvent } from "react";
 import Wrapper from "../../components/Wrapper";
 import Button, { StyledButton } from "../../components/Buttons";
 import { AiOutlineLink } from "react-icons/ai";
-import { GoSettings } from "react-icons/go";
+import { IoSettingsOutline } from "react-icons/io5";
 import LandiingCaption from "../../components/LandiingCaption";
 import { shortenUrl, faqShorten } from "../../libraries/data.js";
 import fs from "fs";
@@ -182,7 +182,7 @@ export default function Home({ articles }: { articles: [object] }) {
                   title="customize URL"
                 >
                   <span className={indicator}></span>
-                  <GoSettings size={30} />
+                  <IoSettingsOutline size={30} />
                 </Customize>
                 <Shorten
                   type="submit"
