@@ -3,7 +3,6 @@ import GlobalStyle from "../components/GlobalStyle";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import React from "react";
-import { closeDb } from "../libraries/mongodb";
 import { GoogleAnalytics, event } from "nextjs-google-analytics";
 import { DefaultSeo } from "next-seo";
 
