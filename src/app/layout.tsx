@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
-import { UIProvider } from "./contexts/ui-provider";
+import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/nav-header";
 
