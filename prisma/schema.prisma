@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Url {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  originalUrl String
+  shortUrlKey String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   fullname  String?
