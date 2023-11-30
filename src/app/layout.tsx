@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import { UIProvider } from "./contexts/ui-provider";
 import "./globals.css";
+import { NavHeader } from "@/components/nav-header";
 
 const quickSand = Quicksand({
   subsets: ["latin"],
@@ -19,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${quickSand.variable} font-sans font-normal`}>
+    <html lang="en" className="light">
+      <body
+        className={`${quickSand.variable} font-sans font-normal bg-blk-light text-blk-dark min-h-screen`}
+      >
+        <NavHeader />
         <UIProvider>{children}</UIProvider>
       </body>
     </html>
