@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import { UIProvider } from "./contexts/ui-provider";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const quickSand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className={`${quickSand.variable} font-sans font-normal`}>
         <UIProvider>{children}</UIProvider>
       </body>
     </html>
