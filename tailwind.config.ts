@@ -19,6 +19,12 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-quicksand)"],
       },
+      colors: {
+        "blk-light": "#f9f8ff",
+        "blk-dark": "#0a090c",
+        "blk-vanilla": "#fcf6b1",
+        "blk-blue": "#90ddf0",
+      },
     },
   },
   plugins: [nextui()],
