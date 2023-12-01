@@ -3,6 +3,7 @@ import { Quicksand } from "next/font/google";
 import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/nav-header";
+import { PageFooter } from "@/components/page-footer";
 
 const quickSand = Quicksand({
   subsets: ["latin"],
@@ -22,10 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${quickSand.variable} font-sans font-normal bg-blk-light text-blk-dark min-h-screen`}
+        className={`${quickSand.variable} font-sans font-normal bg-bg text-main min-h-screen`}
       >
-        <NavHeader />
-        <UIProvider>{children}</UIProvider>
+        <UIProvider>
+          <NavHeader />
+          {children}
+          <PageFooter />
+        </UIProvider>
       </body>
     </html>
   );
