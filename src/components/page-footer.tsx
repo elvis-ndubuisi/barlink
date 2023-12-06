@@ -8,26 +8,36 @@ export function PageFooter() {
       <section className="flex items-center justify-between max-w-screen-xl mx-auto px-4 md:px-0">
         <h2>barlink</h2>
 
-        <section>
-        <div className="flex items-center gap-3">
-          <Link
-            isExternal
-            className="text-main hover:text-tertiary"
-            href={siteConfig.author.twitter}
-          >
-            <Icons.twitter className="h-4 w-4" />
-          </Link>
-          <Link
-            isExternal
-            className="text-main hover:text-tertiary"
-            href={siteConfig.author.github}
-          >
-            <Icons.twitter className="h-4 w-4" />
-          </Link>
-        </div>
+        <section className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
+            <Link
+              isExternal
+              className="text-main hover:text-tertiary"
+              href={siteConfig.author.twitter}
+            >
+              <Icons.twitter className="h-4 w-4" />
+            </Link>
+            <Link
+              isExternal
+              className="text-main hover:text-tertiary"
+              href={siteConfig.author.github}
+            >
+              <Icons.twitter className="h-4 w-4" />
+            </Link>
+          </div>
 
-        <Link>Privacy policy</Link>
-        <Link>Terms of use</Link>
+          <Link
+            href="/"
+            className="text-highlight hover:text-tertiary cursor-pointer"
+          >
+            Privacy policy
+          </Link>
+          <Link
+            href="/"
+            className="text-highlight hover:text-tertiary cursor-pointer"
+          >
+            Terms of use
+          </Link>
         </section>
       </section>
     </footer>

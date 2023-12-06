@@ -7,11 +7,11 @@ export default function Home() {
     <>
       <section className="relative w-full h-screen max-h-[30em] grid place-content-center z-0">
         <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10" />
-        <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-2 leading-none justify-center">
-          <h1 className="font-semibold text-6xl text-center">
+        <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-5 leading-none justify-center">
+          <h1 className="font-semibold text-5xl text-center">
             Streamline Your Links with Barlink
           </h1>
-          <p className="text-lg font-medium text-center text-secondary">
+          <p className="text-lg font-medium text-center text-secondary max-w-xl">
             Barlink makes it effortless to generate QR codes and shorten URLs.
             Enhance user experience and engagement with our free and
             user-friendly services.
