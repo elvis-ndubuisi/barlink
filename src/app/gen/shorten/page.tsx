@@ -1,4 +1,5 @@
 import { ShortenInput } from "@/components/shorten-input";
+import Community from "@/components/community";
 
 export default function ShortenPage() {
   return (
@@ -21,19 +22,21 @@ export default function ShortenPage() {
         </section>
       </section>
 
-      <section className="my-8 flex flex-col space-y-4">
-        <h3 className="text-center text-2xl font-bold">
+      <section className="my-8 flex flex-col space-y-4 px-4 md:px-2">
+        <h3 className="text-center text-2xl font-bold max-w-md mx-auto">
           Simple & fast URL shortener
         </h3>
-        <p>
+        <p className="max-w-2xl mx-auto text-center">
           URLs shortened with Barlink URL shortener always remains the same so
           you don&apos;t have to worry about any redirect conflict. Your
           shortened URLs can be used in social media platforms, advertisements,
           blogs, instant messages, publications, forums and other locations.
         </p>
 
-        <div className="flex items-center space-x-3"></div>
+        {/* <div className="flex items-center space-x-3">adsfads</div> */}
       </section>
+
+      <Community />
     </main>
   );
 }

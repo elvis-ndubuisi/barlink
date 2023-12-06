@@ -7,7 +7,7 @@ import { Icons } from "./icons";
 export function NavHeader() {
   let user = null;
   return (
-    <header className="pt-3 pb-2 sticky top-0 w-full z-20 h-14 backdrop-blur-md bg-bg/20">
+    <header className="pt-3 pb-2 sticky top-0 w-full z-20 h-14 backdrop-blur-md bg-bg/20 border-b border-main/10">
       <section className="flex items-center justify-between mx-auto max-w-screen-xl px-4 md:px-0">
         <div className="flex items-center gap-2">
           <Icons.qrcode />
