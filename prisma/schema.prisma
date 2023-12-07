@@ -11,11 +11,13 @@ datasource db {
 }
 
 model Url {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   originalUrl String
   shortUrlKey String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  shortUrl String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  expiry      DateTime?
 }
 
 model User {
