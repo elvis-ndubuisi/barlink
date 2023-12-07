@@ -10,10 +10,27 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { Icons } from "./icons";
+import prisma from "@/db";
 // import confetti from 'canvas-confetti';
 
 export function ShortenInput() {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+
+  function shortenLink() {
+    fetch("http://localhost:3000/api/gen/shorten", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        longURL:
+          "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+      }),
+    }).then(async (res) => {
+      console.log(res);
+    });
+  }
+
   return (
     <>
       <div className="flex items-center gap-4">
@@ -21,7 +38,6 @@ export function ShortenInput() {
           <Icons.settings className="w-6 h-6" />
         </Button>
         <Input
-          isClearable
           type="text"
           label="Enter loooooooog url"
           size="sm"
@@ -30,11 +46,11 @@ export function ShortenInput() {
           onClear={() => console.log("input cleared")}
           className="hover:outline-tertiary focus-within:outline-primary bg-card-bg text-main"
         />
-
         <Button
           size="lg"
           radius="sm"
           className="font-medium bg-tertiary text-main"
+          onPress={() => shortenLink()}
         >
           Shorten It!
         </Button>
