@@ -7,7 +7,6 @@ export default function ShortenPage() {
       <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10" />
 
       <section className="h-screen max-h-[27em] grid place-content-center relative">
-        <section className="dot-bg flex items-center justify-center absolute top-0 left-0 right-0 bottom-0" />
         <section className="flex flex-col gap-3 px-2">
           <h1 className="text-center font-bold text-5xl">
             Simplify your URLs.
