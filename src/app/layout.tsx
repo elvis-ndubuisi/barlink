@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/nav-header";
 import { PageFooter } from "@/components/page-footer";
 
-const quickSand = Quicksand({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-quicksand",
+  variable: "--font-spacegrotesk",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${quickSand.variable} font-sans font-normal bg-bg text-main min-h-screen`}
+        className={`${spaceGrotesk.variable} font-sans font-normal bg-bg text-main min-h-screen`}
       >
         <UIProvider>
           <NavHeader />
