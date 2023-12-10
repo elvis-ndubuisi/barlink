@@ -8,12 +8,12 @@ export default function ShortenPage() {
 
       <section className="h-screen max-h-[27em] grid place-content-center relative">
         <section className="flex flex-col gap-3 px-2">
-          <h1 className="text-center font-bold text-5xl">
+          <h1 className="text-center font-bold text-3xl md:text-5xl">
             Simplify your URLs.
             <br />
             Easy way to share links.
           </h1>
-          <p className="text-center max-w-xl">
+          <p className="text-center max-w-xl opacity-80">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Repellendus suscipit, totam non similique reprehenderit natus animi
           </p>
@@ -25,7 +25,7 @@ export default function ShortenPage() {
         <h3 className="text-center text-2xl font-bold max-w-md mx-auto">
           Simple & fast URL shortener
         </h3>
-        <p className="max-w-2xl mx-auto text-center">
+        <p className="max-w-2xl mx-auto text-center p-3 rounded-md bg-card-bg/5 backdrop-blur-md border border-main/30">
           URLs shortened with Barlink URL shortener always remains the same so
           you don&apos;t have to worry about any redirect conflict. Your
           shortened URLs can be used in social media platforms, advertisements,
