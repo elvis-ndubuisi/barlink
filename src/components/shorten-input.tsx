@@ -10,11 +10,12 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { Icons } from "./icons";
-import prisma from "@/db";
+import React from "react";
 // import confetti from 'canvas-confetti';
 
 export function ShortenInput() {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
+  const [isInvalid, setIsInvalid] = React.useState<boolean>(false);
 
   function shortenLink() {
     fetch("http://localhost:3000/api/gen/shorten", {
@@ -37,6 +38,7 @@ export function ShortenInput() {
         <Button isIconOnly radius="sm" size="lg" onPress={onOpen}>
           <Icons.settings className="w-6 h-6" />
         </Button>
+
         <Input
           type="text"
           label="Enter loooooooog url"
@@ -44,7 +46,7 @@ export function ShortenInput() {
           labelPlacement="inside"
           variant="flat"
           onClear={() => console.log("input cleared")}
-          className="hover:outline-tertiary focus-within:outline-primary bg-card-bg text-main"
+          className="hover:outline-tertiary focus-within:outline-primary bg-card-bg text-main min-w-md"
         />
         <Button
           size="lg"
@@ -55,6 +57,15 @@ export function ShortenInput() {
           Shorten It!
         </Button>
       </div>
+      {isInvalid && (
+        <span className="text-xs text-center font-medium">
+          The shortened URL will be valid for only 30days.{" "}
+          <Link href="/" className="text-tertiary underline hover:no-underline">
+            Register
+          </Link>{" "}
+          to specify custom duration
+        </span>
+      )}
       <span className="text-xs text-center font-medium">
         The shortened URL will be valid for only 30days.{" "}
         <Link href="/" className="text-tertiary underline hover:no-underline">
