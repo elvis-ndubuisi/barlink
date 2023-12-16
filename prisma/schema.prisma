@@ -18,6 +18,8 @@ model Url {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   expiry      DateTime?
+
+  @@map("url")
 }
 
 model User {
