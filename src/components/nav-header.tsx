@@ -40,16 +40,17 @@ export function NavHeader() {
                 QRcode
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link
                 className="font-medium text-sm hover:underline underline-offset-4 text-main"
-                href={"/integration"}
+                // href={"/integration"}
+                href={"#"}
               >
                 Integration
               </Link>
-            </li> */}
+            </li>
           </ul>
-          {user ? <UserMenu /> : <Button size="sm">Sign In</Button>}
+          {/* {user ? <UserMenu /> : <Button size="sm">Sign In</Button>} */}
         </nav>
       </section>
     </header>

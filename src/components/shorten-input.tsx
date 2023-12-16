@@ -24,6 +24,7 @@ export function ShortenInput() {
   const [processing, setProcessing] = React.useState({
     processing: false,
     converted: false,
+    shortLink: "",
   });
 
   const isInvalid: boolean = React.useMemo(() => {
@@ -57,12 +58,15 @@ export function ShortenInput() {
       }),
     })
       .then(async (res) => {
-        setProcessing({ converted: true, processing: false });
+        setProcessing({ converted: true, processing: false, shortLink: "" });
         setPayload({ custom: "", url: "" });
         setCustomUrl({ hasCustom: false, isInvalid: false, value: "" });
-        console.log(await res.json());
+        const payload = await res.json();
+        setProcessing((prev) => ({ ...prev, shortLink: payload.short_link }));
       })
-      .catch(() => setProcessing({ converted: true, processing: false }));
+      .catch(() =>
+        setProcessing({ converted: true, processing: false, shortLink: "" })
+      );
   }
 
   return (
@@ -184,7 +188,7 @@ export function ShortenInput() {
 
       {processing.converted && !processing.processing && (
         <Snippet autoFocus size="lg" color="primary">
-          npm install @nextui-org/react
+          {processing.shortLink}
         </Snippet>
       )}
     </>
