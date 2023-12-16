@@ -1,5 +1,4 @@
 import prisma from "@/db";
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 import { generateShortkey } from "@/lib/url";
 
