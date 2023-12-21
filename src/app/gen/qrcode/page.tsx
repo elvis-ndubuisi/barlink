@@ -1,6 +1,16 @@
 import { QrAppEditor } from "@/components/qr-app-editor";
+import qrcode from "qrcode";
 
-export default function QRCode() {
+const generateQR = async (text: string) => {
+  try {
+    console.log(qrcode.toDataURL(text));
+  } catch (err: any) {
+    console.log(err);
+  }
+};
+
+export default async function QRCode() {
+  // await generateQR("someting");
   return (
     <main className="relative z-0">
       <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10" />
