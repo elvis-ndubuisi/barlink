@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <>
       <section className="relative w-full h-screen max-h-[30em] grid place-content-center z-0">
-        <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10" />
+        <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-20 opacity-30" />
         <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-5 leading-none justify-center">
-          <h1 className="font-semibold text-5xl text-center">
+          <h1 className="font-black text-5xl text-center">
             Streamline Your Links with Barlink
           </h1>
           <p className="text-lg font-medium text-center text-secondary max-w-xl">
@@ -21,7 +21,8 @@ export default function Home() {
               href="/gen/qrcode"
               as={Link}
               size="lg"
-              className="font-medium text-main bg-highlight"
+              radius="none"
+              className="rounded-md bg-dark text-light hover:outline-cinnabar"
             >
               Generate QR
             </Button>
@@ -30,7 +31,8 @@ export default function Home() {
               as={Link}
               variant="bordered"
               size="lg"
-              className="font-medium text-highlight border-highlight bg-bg"
+              radius="none"
+              className="rounded-md bg-light border-cinnabar border-1 font-medium hover:outline-cinnabar"
             >
               Shorten URL
             </Button>
@@ -38,13 +40,19 @@ export default function Home() {
         </section>
       </section>
 
-      <section className="space-y-4 bg-bg2 py-4">
-        <h2 className="text-center font-bold text-3xl">Key Features</h2>
+      <section className="space-y-4 bg-dark text-light py-4">
+        <h2 className="text-center font-bold text-3xl text-cinnabar">
+          Key Features
+        </h2>
         <section className="flex items-center gap-6 justify-center max-w-screen-xl mx-auto px-4 md:px-0">
           <Feature />
           <Feature />
           <Feature />
         </section>
+      </section>
+
+      <section className="h-48 bg-mid-light text-dark">
+        <h3>Title goes here</h3>
       </section>
     </>
   );

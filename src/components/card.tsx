@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Feature() {
   return (
-    <div className="rounded-md max-w-md p-3 bg-card-bg flex items-center flex-col space-y-3">
+    <div className="rounded-md max-w-md p-3 flex items-center flex-col space-y-3">
       <div className="flex items-start gap-3">
         <Image src={""} alt="feature 1" width={50} height={60} />
         <h3 className="font-semibold text-lg">Effortless QR Code Generation</h3>

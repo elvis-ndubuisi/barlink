@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/nav-header";
 import { PageFooter } from "@/components/page-footer";
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = Inter({
   subsets: ["latin"],
   variable: "--font-spacegrotesk",
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${spaceGrotesk.variable} font-sans font-normal bg-bg text-main min-h-screen`}
+        className={`${spaceGrotesk.variable} font-sans font-normal bg-light text-dark min-h-screen`}
       >
         <UIProvider>
           <NavHeader />

@@ -4,7 +4,7 @@ import Community from "@/components/community";
 export default function ShortenPage() {
   return (
     <main className="relative z-0">
-      <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10" />
+      <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-10 opacity-30" />
 
       <section className="h-screen max-h-[27em] grid place-content-center relative">
         <section className="flex flex-col gap-3 px-2">

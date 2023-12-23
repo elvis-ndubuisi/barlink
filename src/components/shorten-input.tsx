@@ -74,14 +74,14 @@ export function ShortenInput() {
       <div className="flex items-center gap-4 flex-wrapc">
         <Button
           isIconOnly
-          radius="sm"
+          radius="none"
           size="lg"
           onPress={onOpen}
-          className="relative overflow-visible"
+          className="rounded-md relative overflow-visible bg-cinnabar text-light"
         >
           <Icons.settings className="w-6 h-6" />
           {customUrl.hasCustom && (
-            <span className="absolute -top-1 -right-1 w-3 h-3 border border-bg rounded-full bg-red-500 z-10" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 border border-bg rounded-full bg-indigo z-10" />
           )}
         </Button>
 
@@ -93,22 +93,22 @@ export function ShortenInput() {
           labelPlacement="inside"
           variant="flat"
           isInvalid={isInvalid}
-          className="flex-1 hover:outline-tertiary focus-within:outline-primary bg-card-bg text-main min-w-md"
+          className="flex-1 focus-within:outline-primary bg-transparent text-main min-w-md"
           onChange={(e) =>
             setPayload((prev) => ({ ...prev, url: e.target.value }))
           }
         />
       </div>
       {isInvalid && (
-        <span className="text-xs text-center font-medium text-rose-500">
+        <span className="text-xs text-center font-medium text-cinnabar">
           Please enter a loooong url with https://, http:// or ftp://
         </span>
       )}
       <Button
         isLoading={processing.processing}
         size="lg"
-        radius="sm"
-        className="bg-tertiary/80 text-white"
+        radius="none"
+        className="rounded-md bg-indigo text-white"
         onPress={() => shortenLink()}
         disabled={
           !Boolean(payload.url && payload.url.length > 30 && !isInvalid)
@@ -119,13 +119,17 @@ export function ShortenInput() {
 
       <span className="text-xs text-center font-medium">
         The shortened URL will be valid for only 30days.{" "}
-        <Link href="/" className="text-tertiary underline hover:no-underline">
+        <Link href="/" className="text-cinnabar underline hover:no-underline">
           Register
         </Link>{" "}
         to specify custom duration
       </span>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="bg-bg2">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        className="bg-dark text-light"
+      >
         <ModalContent>
           {(onClose) => (
             <>
@@ -160,10 +164,10 @@ export function ShortenInput() {
               </ModalBody>
               <ModalFooter>
                 <Button
-                  color="danger"
+                  // color="danger"
                   variant="light"
                   onPress={() => {
-                    setCustomUrl((prev) => ({
+                    setCustomUrl(() => ({
                       hasCustom: false,
                       isInvalid: true,
                       value: "",
