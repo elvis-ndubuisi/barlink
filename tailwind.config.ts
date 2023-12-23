@@ -35,6 +35,7 @@ const config: Config = {
         indigo: "#550686",
         cinnabar: "#EF553B",
         "mid-light": "#e2e2e2",
+        "tangerine":"#feb822"
       },
     },
   },
