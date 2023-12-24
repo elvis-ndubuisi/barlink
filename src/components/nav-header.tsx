@@ -7,12 +7,12 @@ import { Icons } from "./icons";
 export function NavHeader() {
   let user = null;
   return (
-    <header className="pt-3 pb-2 sticky top-0 w-full z-20 h-14 backdrop-blur-md bg-light/10">
+    <header className="pt-3 pb-2 sticky top-0 w-full z-20 h-18 backdrop-blur-md bg-light/10 border-b border-mid-light">
       <section className="flex items-center justify-between mx-auto max-w-screen-xl px-4 md:px-0">
         <div className="flex items-center gap-2">
           <Icons.qrcode />
           <h1 className="font-bold text-2xl">Barlink</h1>
-          <Chip size="sm">v2.0.0</Chip>
+          <Chip size="sm" className="text-dark bg-mid-light">v2.0.0</Chip>
         </div>
         <nav className="flex items-center gap-6">
           <ul className="inline-flex items-center gap-3 font-medium">
@@ -27,7 +27,7 @@ export function NavHeader() {
             <li>
               <Link
                 className="font-medium text-sm hover:underline underline-offset-4 text-dark hover:text-cinnabar"
-                href={"/gen/shorten"}
+                href={"/shorten"}
               >
                 Shorten
               </Link>
@@ -51,6 +51,7 @@ export function NavHeader() {
             </li>
           </ul>
           {/* {user ? <UserMenu /> : <Button size="sm">Sign In</Button>} */}
+          <Button size="md" radius="none" className="bg-dark text-light rounded-md" >Get started</Button>
         </nav>
       </section>
     </header>
