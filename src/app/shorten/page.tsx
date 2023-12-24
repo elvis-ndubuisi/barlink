@@ -9,16 +9,21 @@ export default function ShortenPage() {
       <section className="h-screen max-h-[27em] grid place-content-center relative">
         <section className="flex flex-col gap-3 px-2">
           <h1 className="text-center font-bold text-3xl md:text-5xl">
-            Simplify your URLs.
-            <br />
-            Easy way to share links.
+          Shorten Links in a Flash
           </h1>
           <p className="text-center max-w-xl opacity-80">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Repellendus suscipit, totam non similique reprehenderit natus animi
+          Create memorable and trackable links instantly, no registration needed.
           </p>
           <ShortenInput />
         </section>
+      </section>
+
+      <section className="py-8 bg-lavender-blue">
+        <h2>Unlock More Features</h2>
+        <div>
+          <section>image</section>
+          <div></div>
+        </div>
       </section>
 
       <section className="my-8 flex flex-col space-y-4 px-4 md:px-2">
@@ -35,7 +40,19 @@ export default function ShortenPage() {
         {/* <div className="flex items-center space-x-3">adsfads</div> */}
       </section>
 
-      <Community />
+      <section className="bg-dark h-24 text-light">
+        <section className="max-w-screen-lg mx-auto px-4">
+          <h2>See How Others Are Succeeding</h2>
+          <div>testimonies</div>
+        </section>
+      </section>
+
+      <section className="max-w-screen-lg mx-auto px-4">
+        <h2>Frequently Asked Questions</h2>
+
+      </section>
+
+      {/* <Community /> */}
     </main>
   );
 }
