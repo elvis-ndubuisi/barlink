@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-// import QRcode from 'qrcode'
+import qrcode from "qrcode";
+import * as qrgenerator from "qrcode-generator";
 import {
   Button,
   ButtonGroup,
@@ -12,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { Icons } from "./icons";
+// import QRCode from "@/app/qrcode/page";
 
 type Qtype =
   | "wifi"
@@ -37,10 +39,13 @@ const btnTypes = [
   { title: "Custom Data", type: "custom" },
 ];
 
+const ctx =
+  "orem ipsum dolor sit amet consectetur adipisicing elit. Quos vitae, iusto, praesentium molestias enim eligendi hic eveniet nam esse, molestiae quam repellat amet facilis harum nemo? Maxime velit id enim repudiandae quibusdam itaque libero ipsa doloribus unde, ex autem amet, ab, corrupti sed odio sunt facere quis! Voluptatibus ex deleniti tenetur aliquam doloribus ipsa neque sit molestiae! Voluptate ab repudiandae nesciunt illum autem, dicta ipsum, hic iure vitae quae temporibus tempore doloribus veniam asperiores ut? Sint cumque fuga recusandae impedit, dolor beatae laboriosam qui consequatur voluptatum rerum nihil amet illum modi vitae alias, assumenda ducimus! Itaque commodi ipsum mollitia explicabo quaerat omnis expedita laudantium porro, blanditiis nesciunt eveniet deleniti iusto dolor necessitatibus ";
+
 export function DesktopGenerator() {
   const [selectedType, setSelectedType] = React.useState<Qtype>("url");
   const [selectFormat, setSelectedFormat] = React.useState("png");
-  const [content, setContent] = React.useState("");
+  const [content, setContent] = React.useState(ctx);
 
   const formatLabels = { png: "png", jpeg: "jpeg", svg: "svg" };
 
@@ -92,7 +97,7 @@ export function DesktopGenerator() {
       </main>
 
       <aside className="flex flex-col space-y-2">
-        <Preview />
+        <Preview content={content} />
         <section className="flex flex-col space-y-2">
           <h4 className="font-semibold">Logo</h4>
           <div>
@@ -132,6 +137,24 @@ export function DesktopGenerator() {
   );
 }
 
-function Preview() {
-  return <div className="w-12 aspect-square bg-light">{/* <canvas /> */}</div>;
+function Preview({ content }: { content: string }) {
+  const canvasRef = React.useRef(null);
+
+  let qr = qrgenerator.default(4, "H");
+
+  React.useEffect(() => {
+    if (canvasRef.current) {
+      qrcode.toCanvas(canvasRef.current, content, {
+        errorCorrectionLevel: "H",
+        width: 250,
+        margin: 2,
+        color: { dark: "#010599FF", light: "#FFBF60FF" },
+      });
+    }
+  }, [content]);
+  return (
+    <div className="w-12 aspect-square">
+      <canvas ref={canvasRef} width={250} height={250} />
+    </div>
+  );
 }
