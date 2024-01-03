@@ -19,23 +19,23 @@ export default function Home() {
           </p>
           <div className="flex items-center gap-6">
             <Button
-              href="/gen/qrcode"
+              href="/login/sign-up"
               as={Link}
               size="lg"
               radius="none"
               className="rounded-md bg-white text-deep-sapphire-950 font-medium"
             >
-              Generate QR
+              Get started for free
             </Button>
             <Button
-              href="/gen/shorten"
+              href="/shorten"
               as={Link}
               variant="bordered"
               size="lg"
               radius="none"
               className="rounded-md border-1 font-medium border-white text-white"
             >
-              Shorten URL
+              Shorten URL link
             </Button>
           </div>
         </section>
@@ -46,15 +46,54 @@ export default function Home() {
           Key Features
         </h2>
         <section className="flex items-center gap-6 justify-center max-w-screen-xl mx-auto px-4 md:px-0">
-          <Feature />
-          <Feature />
-          <Feature />
+          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+            <div>
+              <h3 className="font-bold text-xl text-tangerine">QR Codes</h3>
+              <p className="text-xl text-mid-light opacity-80">Made your way</p>
+            </div>
+            <p>
+              Create custom QR codes with logos, colors, and dynamic content.
+              Track scans and measure impact.
+            </p>
+          </div>
+
+          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+            <div>
+              <h3 className="font-bold text-xl">Short Links</h3>
+              <p className="text-xl text-mid-light opacity-80">Big Impact</p>
+            </div>
+            <p>
+              Shorten URLs, brand them, and track clicks across platforms.
+              Unleash the power of data-driven marketing.
+            </p>
+          </div>
+
+          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+            <div>
+              <h3 className="font-bold text-xl text-lavender-blue">
+                Empowering Developers
+              </h3>
+              <p className="text-xl text-mid-light opacity-80">
+                Developer-Friendly API:
+              </p>
+            </div>
+            <p>
+              Integrate seamlessly with our API. Build custom solutions,
+              automate workflows, and extend possibilities.
+            </p>
+          </div>
         </section>
+
+        <h2 className="text-center text-5xl">Flexible management workspace</h2>
+        <div className="flex flex-col md:flex-row mx-auto max-w-screen-lg">
+          <section>worksace dadskjfk</section>
+          {/* <Image/> */}
+        </div>
       </section>
 
-      <section className="h-48 bg-mid-light text-dark">
+      {/* <section className="h-48 bg-mid-light text-dark">
         <h3>Title goes here</h3>
-      </section>
+      </section> */}
     </>
   );
 }

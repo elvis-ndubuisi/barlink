@@ -101,14 +101,14 @@ export function ShortenInput() {
       </div>
       {isInvalid && (
         <span className="text-xs text-center font-medium text-cinnabar">
-          Please enter a loooong url with https://, http:// or ftp://
+          Please enter a loooong url starting with https://, http:// or ftp://
         </span>
       )}
       <Button
         isLoading={processing.processing}
         size="lg"
         radius="none"
-        className="rounded-md bg-indigo text-white"
+        className="rounded-md bg-dark text-light"
         onPress={() => shortenLink()}
         disabled={
           !Boolean(payload.url && payload.url.length > 30 && !isInvalid)
@@ -119,7 +119,7 @@ export function ShortenInput() {
 
       <span className="text-xs text-center font-medium">
         The shortened URL will be valid for only 30days.{" "}
-        <Link href="/" className="text-cinnabar underline hover:no-underline">
+        <Link href="/login/sign-up" className="text-cinnabar underline hover:no-underline">
           Register
         </Link>{" "}
         to specify custom duration
@@ -164,8 +164,7 @@ export function ShortenInput() {
               </ModalBody>
               <ModalFooter>
                 <Button
-                  // color="danger"
-                  variant="light"
+                className="bg-transparent text-white"
                   onPress={() => {
                     setCustomUrl(() => ({
                       hasCustom: false,
@@ -178,7 +177,7 @@ export function ShortenInput() {
                   Close
                 </Button>
                 <Button
-                  color="primary"
+                className="bg-cinnabar text-light"
                   onPress={onClose}
                   disabled={customUrl.isInvalid}
                 >
@@ -191,7 +190,7 @@ export function ShortenInput() {
       </Modal>
 
       {processing.converted && !processing.processing && (
-        <Snippet autoFocus size="lg" color="primary">
+        <Snippet autoFocus size="lg" color="danger">
           {processing.shortLink}
         </Snippet>
       )}
