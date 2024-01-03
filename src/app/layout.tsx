@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/nav-header";
 import { PageFooter } from "@/components/page-footer";
 
-const spaceGrotesk = Inter({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-spacegrotesk",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${spaceGrotesk.variable} font-sans font-normal bg-light text-dark min-h-screen`}
+        className={`${inter.className} font-sans bg-mirage-950 text-white min-h-screen`}
       >
         <UIProvider>
           <NavHeader />
