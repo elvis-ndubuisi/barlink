@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { UIProvider } from "../contexts/ui-provider";
 import "./globals.css";
-import { NavHeader } from "@/components/nav-header";
+import { NavHeader } from "@/components/navigation/nav-header";
 import { PageFooter } from "@/components/page-footer";
 
 const inter = Inter({
@@ -22,9 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="light">
-      <body
-        className={`${inter.className} font-sans bg-mirage-950 text-white min-h-screen`}
-      >
+      <body className={`${inter.className} font-san min-h-screen`}>
         <UIProvider>
           <NavHeader />
           {children}

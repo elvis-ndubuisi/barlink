@@ -1,8 +1,8 @@
 import { Button } from "@nextui-org/button";
-import { UserMenu } from "./navigation/user-menu";
+import { UserMenu } from "./user-menu";
 import { Link } from "@nextui-org/link";
 import { Chip } from "@nextui-org/chip";
-import { Icons } from "./icons";
+import { Icons } from "../icons";
 
 export function NavHeader() {
   let user = null;
