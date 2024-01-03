@@ -4,7 +4,7 @@ import { siteConfig } from "@/configs/site.config";
 
 export function PageFooter() {
   return (
-    <footer className="py-4">
+    <footer className="py-4 bg-deep-sapphire-950 text-white">
       <section className="flex items-center justify-between max-w-screen-xl mx-auto px-4 md:px-0">
         <h2>barlink</h2>
 

@@ -5,13 +5,14 @@ import { Feature } from "@/components/card";
 export default function Home() {
   return (
     <>
-      <section className="relative w-full h-screen max-h-[30em] grid place-content-center z-0">
-        <section className="dot_bg absolute top-0 left-0 bottom-0 right-0 -z-20 opacity-30" />
-        <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-5 leading-none justify-center">
-          <h1 className="font-black text-5xl text-center">
-            Streamline Your Links with Barlink
+      <section className="relative w-full h-screen max-h-[30em] grid place-content-center z-0 bg-deep-sapphire-950 text-white">
+        <section className="absolute top-0 left-0 bottom-0 right-0 -z-20 opacity-30" />
+        <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-5 justify-center">
+          <h1 className="text-5xl font-black text-center">
+            <span className="block">Unlock Link Power</span>
+            with QR Codes & Short Links
           </h1>
-          <p className="text-lg font-medium text-center text-secondary max-w-xl">
+          <p className="text-center max-w-xl">
             Barlink makes it effortless to generate QR codes and shorten URLs.
             Enhance user experience and engagement with our free and
             user-friendly services.
@@ -22,7 +23,7 @@ export default function Home() {
               as={Link}
               size="lg"
               radius="none"
-              className="rounded-md bg-dark text-light hover:outline-cinnabar"
+              className="rounded-md bg-white text-deep-sapphire-950 font-medium"
             >
               Generate QR
             </Button>
@@ -32,7 +33,7 @@ export default function Home() {
               variant="bordered"
               size="lg"
               radius="none"
-              className="rounded-md bg-light border-cinnabar border-1 font-medium hover:outline-cinnabar"
+              className="rounded-md border-1 font-medium border-white text-white"
             >
               Shorten URL
             </Button>
@@ -41,7 +42,7 @@ export default function Home() {
       </section>
 
       <section className="space-y-4 bg-dark text-light py-4">
-        <h2 className="text-center font-bold text-3xl text-cinnabar">
+        <h2 className="text-center font-bold text-3xl text-deep-sapphire-950">
           Key Features
         </h2>
         <section className="flex items-center gap-6 justify-center max-w-screen-xl mx-auto px-4 md:px-0">
