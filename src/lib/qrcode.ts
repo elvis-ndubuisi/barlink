@@ -32,7 +32,7 @@ export function drawRoundedSquare(
   color: string,
   radii: number | number[],
   fill: boolean,
-  ctx: CanvasRenderingContext2D
+  ctx: CanvasRenderingContext2D,
 ): void {
   // Set line width, fill style, and stroke style
   ctx.lineWidth = lineWidth;

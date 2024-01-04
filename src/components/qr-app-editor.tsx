@@ -8,29 +8,29 @@ const qrType = [{ name: "URL" }, { name: "vCard" }, { name: "Text" }];
 
 export function QrAppEditor() {
   return (
-    <section className="max-w-screen-lg min-h-[14em] mx-auto grid grid-cols-[0.4fr_1fr_0.5fr] gap-3 mb-4">
-      <aside className="min-h-full relative rounded-md bg-qrbg">
-        <header className="border-b border-main py-3 sticky top-0 left-0 right-0 flex flex-col items-center justify-start">
+    <section className="mx-auto mb-4 grid min-h-[14em] max-w-screen-lg grid-cols-[0.4fr_1fr_0.5fr] gap-3">
+      <aside className="bg-qrbg relative min-h-full rounded-md">
+        <header className="border-main sticky left-0 right-0 top-0 flex flex-col items-center justify-start border-b py-3">
           <h3>QR Code Type</h3>
         </header>
-        <div className="min-h-[20em] flex flex-col space-y-1 px-1 py-2">
+        <div className="flex min-h-[20em] flex-col space-y-1 px-1 py-2">
           {qrType.map((qt, idx) => (
             <button
               key={`${qt.name}-${idx}`}
-              className="flex items-center rounded-md bg-main p-2 text-qrbg"
+              className="bg-main text-qrbg flex items-center rounded-md p-2"
             >
               <p className="font-medium">{qt.name}</p>
             </button>
           ))}
         </div>
       </aside>
-      <main className="min-h-full relative rounded-md bg-qrbg">
-        <header className="py-2 sticky top-0 left-0 right-0 flex flex-col items-center justify-start">
+      <main className="bg-qrbg relative min-h-full rounded-md">
+        <header className="sticky left-0 right-0 top-0 flex flex-col items-center justify-start py-2">
           <h3>QR Code Type</h3>
         </header>
       </main>
-      <aside className="min-h-full relative rounded-md space-y-4">
-        <div className="w-full aspect-square rounded-md overflow-hidden bg-white">
+      <aside className="relative min-h-full space-y-4 rounded-md">
+        <div className="aspect-square w-full overflow-hidden rounded-md bg-white">
           Qr code preview
           <div></div>
         </div>

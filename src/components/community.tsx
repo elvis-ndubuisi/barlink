@@ -3,17 +3,17 @@ import { Icons } from "./icons";
 
 export default function Community() {
   return (
-    <section className="max-w-3xl mx-auto px-4 md:px-2 flex flex-col gap-4 items-center">
-      <h2 className="font-bold text-5xl">Community</h2>
+    <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 md:px-2">
+      <h2 className="text-5xl font-bold">Community</h2>
       <p className="text-lg">Reach with via any of my social links</p>
 
       <div className="flex items-center gap-4">
         <Card
           isBlurred
-          className="bg-secondary/40 border border-main/40 text-white"
+          className="border-main/40 border bg-secondary/40 text-white"
         >
           <CardHeader className="flex items-center gap-2">
-            <Icons.twitter className="w-6 h-6" />
+            <Icons.twitter className="h-6 w-6" />
             <p className="font-semibold">Twitter</p>
           </CardHeader>
           <CardBody>asdfadsf</CardBody>

@@ -65,23 +65,23 @@ export function ShortenInput() {
         setProcessing((prev) => ({ ...prev, shortLink: payload.short_link }));
       })
       .catch(() =>
-        setProcessing({ converted: true, processing: false, shortLink: "" })
+        setProcessing({ converted: true, processing: false, shortLink: "" }),
       );
   }
 
   return (
     <>
-      <div className="flex items-center gap-4 flex-wrapc">
+      <div className="flex-wrapc flex items-center gap-4">
         <Button
           isIconOnly
           radius="none"
           size="lg"
           onPress={onOpen}
-          className="rounded-md relative overflow-visible bg-cinnabar text-light"
+          className="bg-cinnabar text-light relative overflow-visible rounded-md"
         >
-          <Icons.settings className="w-6 h-6" />
+          <Icons.settings className="h-6 w-6" />
           {customUrl.hasCustom && (
-            <span className="absolute -top-1 -right-1 w-3 h-3 border border-bg rounded-full bg-indigo z-10" />
+            <span className="border-bg bg-indigo absolute -right-1 -top-1 z-10 h-3 w-3 rounded-full border" />
           )}
         </Button>
 
@@ -93,14 +93,14 @@ export function ShortenInput() {
           labelPlacement="inside"
           variant="flat"
           isInvalid={isInvalid}
-          className="flex-1 focus-within:outline-primary bg-transparent text-main min-w-md"
+          className="text-main min-w-md flex-1 bg-transparent focus-within:outline-primary"
           onChange={(e) =>
             setPayload((prev) => ({ ...prev, url: e.target.value }))
           }
         />
       </div>
       {isInvalid && (
-        <span className="text-xs text-center font-medium text-cinnabar">
+        <span className="text-cinnabar text-center text-xs font-medium">
           Please enter a loooong url starting with https://, http:// or ftp://
         </span>
       )}
@@ -108,7 +108,7 @@ export function ShortenInput() {
         isLoading={processing.processing}
         size="lg"
         radius="none"
-        className="rounded-md bg-dark text-light"
+        className="bg-dark text-light rounded-md"
         onPress={() => shortenLink()}
         disabled={
           !Boolean(payload.url && payload.url.length > 30 && !isInvalid)
@@ -117,9 +117,12 @@ export function ShortenInput() {
         Shorten It
       </Button>
 
-      <span className="text-xs text-center font-medium">
+      <span className="text-center text-xs font-medium">
         The shortened URL will be valid for only 30days.{" "}
-        <Link href="/login/sign-up" className="text-cinnabar underline hover:no-underline">
+        <Link
+          href="/login/sign-up"
+          className="text-cinnabar underline hover:no-underline"
+        >
           Register
         </Link>{" "}
         to specify custom duration
@@ -146,7 +149,7 @@ export function ShortenInput() {
                   }
                   startContent={
                     <div className="pointer-events-none flex items-center">
-                      <span className="text-default-400 text-small">
+                      <span className="text-small text-default-400">
                         https://btn.js.org/
                       </span>
                     </div>
@@ -164,7 +167,7 @@ export function ShortenInput() {
               </ModalBody>
               <ModalFooter>
                 <Button
-                className="bg-transparent text-white"
+                  className="bg-transparent text-white"
                   onPress={() => {
                     setCustomUrl(() => ({
                       hasCustom: false,
@@ -177,7 +180,7 @@ export function ShortenInput() {
                   Close
                 </Button>
                 <Button
-                className="bg-cinnabar text-light"
+                  className="bg-cinnabar text-light"
                   onPress={onClose}
                   disabled={customUrl.isInvalid}
                 >

@@ -50,15 +50,15 @@ export function DesktopGenerator() {
   const formatLabels = { png: "png", jpeg: "jpeg", svg: "svg" };
 
   return (
-    <section className="max-w-screen-lg mx-auto p-5 rounded-md grid grid-cols-[0.3fr_1fr_0.5fr] gap-3 bg-dark text-light">
+    <section className="bg-dark text-light mx-auto grid max-w-screen-lg grid-cols-[0.3fr_1fr_0.5fr] gap-3 rounded-md p-5">
       <aside>
-        <h3 className="font-bold mb-3">QR Type</h3>
+        <h3 className="mb-3 font-bold">QR Type</h3>
         <div className="flex flex-col space-y-2">
           {btnTypes.map((btn) => (
             <Button
               size="sm"
               radius="none"
-              className="rounded-sm bg-mid-light text-dark"
+              className="bg-mid-light text-dark rounded-sm"
               key={btn.type}
               onPress={() => setSelectedType(btn.type)}
             >
@@ -101,8 +101,8 @@ export function DesktopGenerator() {
         <section className="flex flex-col space-y-2">
           <h4 className="font-semibold">Logo</h4>
           <div>
-            <span className="border-2 text-sm text-center border-dashed border-tangerine bg-tangerine/30 p-3 rounded-md block">
-              <Icons.fileEarmark className="fill-light w-5 h-5 inline-block mr-1" />
+            <span className="border-tangerine bg-tangerine/30 block rounded-md border-2 border-dashed p-3 text-center text-sm">
+              <Icons.fileEarmark className="fill-light mr-1 inline-block h-5 w-5" />
               Drag & drop or select image
             </span>
             <input type="file" name="" hidden />
@@ -153,7 +153,7 @@ function Preview({ content }: { content: string }) {
     }
   }, [content]);
   return (
-    <div className="w-12 aspect-square">
+    <div className="aspect-square w-12">
       <canvas ref={canvasRef} width={250} height={250} />
     </div>
   );

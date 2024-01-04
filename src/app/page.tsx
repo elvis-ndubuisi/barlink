@@ -5,14 +5,14 @@ import { Feature } from "@/components/card";
 export default function Home() {
   return (
     <>
-      <section className="relative w-full h-screen max-h-[30em] grid place-content-center z-0 bg-deep-sapphire-950 text-white">
-        <section className="absolute top-0 left-0 bottom-0 right-0 -z-20 opacity-30" />
-        <section className="max-w-screen-xl mx-auto px-4 md:px-0 flex flex-col items-center gap-5 justify-center">
-          <h1 className="text-5xl font-black text-center">
+      <section className="relative z-0 grid h-screen max-h-[30em] w-full place-content-center bg-deep-sapphire-950 text-white">
+        <section className="absolute bottom-0 left-0 right-0 top-0 -z-20 opacity-30" />
+        <section className="mx-auto flex max-w-screen-xl flex-col items-center justify-center gap-5 px-4 md:px-0">
+          <h1 className="text-center text-5xl font-black">
             <span className="block">Unlock Link Power</span>
             with QR Codes & Short Links
           </h1>
-          <p className="text-center max-w-xl">
+          <p className="max-w-xl text-center">
             Barlink makes it effortless to generate QR codes and shorten URLs.
             Enhance user experience and engagement with our free and
             user-friendly services.
@@ -23,7 +23,7 @@ export default function Home() {
               as={Link}
               size="lg"
               radius="none"
-              className="rounded-md bg-white text-deep-sapphire-950 font-medium"
+              className="rounded-md bg-white font-medium text-deep-sapphire-950"
             >
               Get started for free
             </Button>
@@ -33,7 +33,7 @@ export default function Home() {
               variant="bordered"
               size="lg"
               radius="none"
-              className="rounded-md border-1 font-medium border-white text-white"
+              className="rounded-md border-1 border-white font-medium text-white"
             >
               Shorten URL link
             </Button>
@@ -41,15 +41,15 @@ export default function Home() {
         </section>
       </section>
 
-      <section className="space-y-4 bg-dark text-light py-4">
-        <h2 className="text-center font-bold text-3xl text-deep-sapphire-950">
+      <section className="bg-dark text-light space-y-4 py-4">
+        <h2 className="text-center text-3xl font-bold text-deep-sapphire-950">
           Key Features
         </h2>
-        <section className="flex items-center gap-6 justify-center max-w-screen-xl mx-auto px-4 md:px-0">
-          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+        <section className="mx-auto flex max-w-screen-xl items-center justify-center gap-6 px-4 md:px-0">
+          <div className="flex max-w-md flex-col space-y-4 rounded-md p-3">
             <div>
-              <h3 className="font-bold text-xl text-tangerine">QR Codes</h3>
-              <p className="text-xl text-mid-light opacity-80">Made your way</p>
+              <h3 className="text-tangerine text-xl font-bold">QR Codes</h3>
+              <p className="text-mid-light text-xl opacity-80">Made your way</p>
             </div>
             <p>
               Create custom QR codes with logos, colors, and dynamic content.
@@ -57,10 +57,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+          <div className="flex max-w-md flex-col space-y-4 rounded-md p-3">
             <div>
-              <h3 className="font-bold text-xl">Short Links</h3>
-              <p className="text-xl text-mid-light opacity-80">Big Impact</p>
+              <h3 className="text-xl font-bold">Short Links</h3>
+              <p className="text-mid-light text-xl opacity-80">Big Impact</p>
             </div>
             <p>
               Shorten URLs, brand them, and track clicks across platforms.
@@ -68,12 +68,12 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="max-w-md rounded-md p-3 flex flex-col space-y-4">
+          <div className="flex max-w-md flex-col space-y-4 rounded-md p-3">
             <div>
-              <h3 className="font-bold text-xl text-lavender-blue">
+              <h3 className="text-lavender-blue text-xl font-bold">
                 Empowering Developers
               </h3>
-              <p className="text-xl text-mid-light opacity-80">
+              <p className="text-mid-light text-xl opacity-80">
                 Developer-Friendly API:
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function Home() {
         </section>
 
         <h2 className="text-center text-5xl">Flexible management workspace</h2>
-        <div className="flex flex-col md:flex-row mx-auto max-w-screen-lg">
+        <div className="mx-auto flex max-w-screen-lg flex-col md:flex-row">
           <section>worksace dadskjfk</section>
           {/* <Image/> */}
         </div>

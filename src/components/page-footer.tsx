@@ -4,8 +4,8 @@ import { siteConfig } from "@/configs/site.config";
 
 export function PageFooter() {
   return (
-    <footer className="py-4 bg-deep-sapphire-950 text-white">
-      <section className="flex items-center justify-between max-w-screen-xl mx-auto px-4 md:px-0">
+    <footer className="bg-deep-sapphire-950 py-4 text-white">
+      <section className="mx-auto flex max-w-screen-xl items-center justify-between px-4 md:px-0">
         <h2>barlink</h2>
 
         <section className="flex items-center gap-3">
