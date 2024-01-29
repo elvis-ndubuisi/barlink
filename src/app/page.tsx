@@ -1,11 +1,9 @@
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
 import { Feature } from "@/components/card";
 
 export default function Home() {
 	return (
 		<>
-			<section className='relative z-0 grid h-screen max-h-[30em] w-full place-content-center bg-deep-sapphire-950 text-white'>
+			<section className='bg-deep-sapphire-950 relative z-0 grid h-screen max-h-[30em] w-full place-content-center text-white'>
 				<section className='absolute bottom-0 left-0 right-0 top-0 -z-20 opacity-30' />
 				<section className='mx-auto flex max-w-screen-xl flex-col items-center justify-center gap-5 px-4 md:px-0'>
 					<h1 className='text-center text-5xl font-black'>
@@ -16,30 +14,12 @@ export default function Home() {
 						Barlink makes it effortless to generate QR codes and shorten URLs. Enhance
 						user experience and engagement with our free and user-friendly services.
 					</p>
-					<div className='flex items-center gap-6'>
-						<Button
-							href='/login/sign-up'
-							as={Link}
-							size='lg'
-							radius='none'
-							className='rounded-md bg-white font-medium text-deep-sapphire-950'>
-							Get started for free
-						</Button>
-						<Button
-							href='/shorten'
-							as={Link}
-							variant='bordered'
-							size='lg'
-							radius='none'
-							className='rounded-md border-1 border-white font-medium text-white'>
-							Shorten URL link
-						</Button>
-					</div>
+					<div className='flex items-center gap-6'></div>
 				</section>
 			</section>
 
 			<section className='bg-dark text-light space-y-4 py-4'>
-				<h2 className='text-center text-3xl font-bold text-deep-sapphire-950'>
+				<h2 className='text-deep-sapphire-950 text-center text-3xl font-bold'>
 					Key Features
 				</h2>
 				<section className='mx-auto flex max-w-screen-xl items-center justify-center gap-6 px-4 md:px-0'>

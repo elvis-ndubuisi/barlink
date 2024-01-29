@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { UIProvider } from "../contexts/ui-provider";
+import { ThemeProvider } from "@/contexts/theme-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/navigation/nav-header";
 import { PageFooter } from "@/components/page-footer";
@@ -24,11 +24,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					`font-inter min-h-screen bg-background antialiased`,
 					inter.variable,
 				)}>
-				<UIProvider>
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem
+					disableTransitionOnChange>
 					<NavHeader />
 					{children}
 					<PageFooter />
-				</UIProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	);
