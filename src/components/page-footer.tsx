@@ -1,15 +1,17 @@
-import { Link } from "@nextui-org/link";
 import { Icons } from "./icons";
 import { siteConfig } from "@/configs/site.config";
 
 export function PageFooter() {
 	return (
-		<footer className='bg-deep-sapphire-950 py-4 text-white'>
-			<section className='mx-auto flex max-w-screen-xl items-center justify-between px-4 md:px-0'>
-				<h2>barlink</h2>
+		<footer className='pb-6 pt-3'>
+			<section className='mx-auto flex max-w-screen-2xl items-center justify-between px-2 md:px-1 lg:px-0'>
+				<div className='flex items-center gap-2'>
+					<Icons.qrcode />
+					<h4>Barlink</h4>
+				</div>
 
 				<section className='flex items-center gap-3'>
-					<div className='flex items-center gap-3'>
+					{/* <div className='flex items-center gap-3'>
 						<Link
 							isExternal
 							className='text-main hover:text-tertiary'
@@ -29,7 +31,7 @@ export function PageFooter() {
 					</Link>
 					<Link href='/' className='text-highlight hover:text-tertiary cursor-pointer'>
 						Terms of use
-					</Link>
+					</Link> */}
 				</section>
 			</section>
 		</footer>

@@ -65,7 +65,24 @@
 //     </header>
 //   );
 // }
+import Link from "next/link";
+import { Icons } from "../icons";
+import { Button } from "../ui/button";
 
 export function NavHeader() {
-	return <header>header</header>;
+	return (
+		<header className='h-22 w-full'>
+			<section className='mx-auto flex max-w-screen-2xl items-center justify-between px-2'>
+				<div className='flex items-center gap-2'>
+					<Icons.qrcode />
+					<h3 className='text-xl font-bold'>Barlink</h3>
+				</div>
+				<nav>navLinks</nav>
+				<div>
+					<Button>Sign Up</Button>
+					<Button>Join</Button>
+				</div>
+			</section>
+		</header>
+	);
 }
