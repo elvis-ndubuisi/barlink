@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import { ThemeProvider } from "@/contexts/theme-provider";
 import "./globals.css";
 import { NavHeader } from "@/components/navigation/nav-header";
 import { PageFooter } from "@/components/page-footer";
 import { cn } from "@/lib/utils";
-
-const inter = Inter({
-	subsets: ["latin"],
-	variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
 	title: "QR Code Generation and URL Shortening",
@@ -20,10 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en' className='light'>
 			<body
-				className={cn(
-					`font-inter min-h-screen bg-background antialiased`,
-					inter.variable,
-				)}>
+				className={cn(`font-inter min-h-screen bg-background antialiased`,GeistSans.variable,GeistMono.variable)}>
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
