@@ -1,6 +1,5 @@
 import { Feature } from "@/components/card";
 import { Button } from "@/components/ui/button";
-import type { ButtonProps } from "@/components/ui/button";
 
 export default function Home() {
 	return (

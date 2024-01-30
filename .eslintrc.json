@@ -3,6 +3,7 @@
 		"next/core-web-vitals",
 		"plugin:sonarjs/recommended",
 		"plugin:security/recommended-legacy"
-	]
+	],
+	"rules": {}
 	// "plugins": ["sonarjs"]
 }
