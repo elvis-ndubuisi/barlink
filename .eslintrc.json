@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": [
+		"next/core-web-vitals",
+		"plugin:sonarjs/recommended",
+		"plugin:security/recommended-legacy"
+	]
+	// "plugins": ["sonarjs"]
 }
