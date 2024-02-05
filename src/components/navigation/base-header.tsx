@@ -69,18 +69,21 @@ import Link from "next/link";
 import { Icons } from "../icons";
 import { Button } from "../ui/button";
 
-export function NavHeader() {
+export default function BaseHeader() {
 	return (
 		<header className='h-22 w-full'>
 			<section className='mx-auto flex max-w-screen-2xl items-center justify-between px-2'>
 				<div className='flex items-center gap-2'>
-					<Icons.qrcode />
+					<Icons.Qrcode />
 					<h3 className='text-xl font-bold'>Barlink</h3>
 				</div>
-				<nav>navLinks</nav>
 				<div>
+					<nav className='flex items-center gap-2'>
+						<Link href='#'>Docs</Link>
+						<Link href='#'>Integration</Link>
+					</nav>
 					<Button>Sign Up</Button>
-					<Button>Join</Button>
+					<Button variant='outline'>Join</Button>
 				</div>
 			</section>
 		</header>

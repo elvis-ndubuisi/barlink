@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
 
 export const Icons = {
-	qrcode: (props: SVGProps<SVGSVGElement>) => {
+	Qrcode: (props: SVGProps<SVGSVGElement>) => {
 		return (
 			<svg
 				{...props}

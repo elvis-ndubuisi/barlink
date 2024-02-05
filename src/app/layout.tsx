@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "@/contexts/theme-provider";
 import "./globals.css";
-import { NavHeader } from "@/components/navigation/nav-header";
+import BaseHeader from "@/components/navigation/base-header";
 import { PageFooter } from "@/components/page-footer";
 import { cn } from "@/lib/utils";
 
@@ -16,15 +16,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en' className='light'>
 			<body
-				className={cn(`font-inter min-h-screen bg-background antialiased`,GeistSans.variable,GeistMono.variable)}>
+				className={cn(
+					`min-h-screen bg-background`,
+					GeistSans.className,
+					GeistMono.variable,
+				)}>
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
 					enableSystem
 					disableTransitionOnChange>
-					<NavHeader />
+					<BaseHeader />
 					{children}
-					<PageFooter />
+					{/* <PageFooter /> */}
 				</ThemeProvider>
 			</body>
 		</html>
