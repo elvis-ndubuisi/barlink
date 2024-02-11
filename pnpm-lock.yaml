@@ -72,8 +72,8 @@ dependencies:
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.2.17)(@types/react@18.2.39)(react-dom@18.2.0)(react@18.2.0)
   '@t3-oss/env-nextjs':
-    specifier: ^0.8.0
-    version: 0.8.0(typescript@5.3.2)(zod@3.22.4)
+    specifier: ^0.9.0
+    version: 0.9.2(typescript@5.3.2)(zod@3.22.4)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -85,7 +85,7 @@ dependencies:
     version: 8.0.0-rc22(react@18.2.0)
   geist:
     specifier: ^1.2.1
-    version: 1.2.1(next@14.0.4)
+    version: 1.2.1(next@14.1.0)
   nanoid:
     specifier: ^5.0.4
     version: 5.0.4
@@ -1487,8 +1487,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@t3-oss/env-core@0.8.0(typescript@5.3.2)(zod@3.22.4):
-    resolution: {integrity: sha512-Tc1pg0KH/tJeI0Z1s/Isp1VsGDj1N03ZAYFV8GjWgMxytF/ve0Dv+opjmTapHICRv8qiB1Y/fsTjkWNMpKPRCQ==}
+  /@t3-oss/env-core@0.9.2(typescript@5.3.2)(zod@3.22.4):
+    resolution: {integrity: sha512-KgWXljUTHgO3o7GMZQPAD5+P+HqpauMNNHowlm7V2b9IeMitSUpNKwG6xQrup/xARWHTdxRVIl0mSI4wCevQhQ==}
     peerDependencies:
       typescript: '>=5.0.0'
       zod: ^3.0.0
@@ -1500,8 +1500,8 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@t3-oss/env-nextjs@0.8.0(typescript@5.3.2)(zod@3.22.4):
-    resolution: {integrity: sha512-bJyoE8of4QmqZN7a49iLJAbUq4graScb9ezXzvnuIVr9JP43C093vmy55hT1uZL533CwiPz8zo1INwyAS6qnHw==}
+  /@t3-oss/env-nextjs@0.9.2(typescript@5.3.2)(zod@3.22.4):
+    resolution: {integrity: sha512-dklHrgKLESStNVB67Jdbu6osxDYA+xNKaPBRerlnkEvzbCccSKMvZENx6EZebJuR4snqB3/yRykNMn/bdIAyiQ==}
     peerDependencies:
       typescript: '>=5.0.0'
       zod: ^3.0.0
@@ -1509,7 +1509,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@t3-oss/env-core': 0.8.0(typescript@5.3.2)(zod@3.22.4)
+      '@t3-oss/env-core': 0.9.2(typescript@5.3.2)(zod@3.22.4)
       typescript: 5.3.2
       zod: 3.22.4
     dev: false
@@ -2618,12 +2618,12 @@ packages:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
 
-  /geist@1.2.1(next@14.0.4):
+  /geist@1.2.1(next@14.1.0):
     resolution: {integrity: sha512-xCl7zWfnWqc+TbCG5qqyeT5tnVlOO4pSJsT3Ei59DN1SR4N2VlauF8Fv0D1pPFXGUJgu6RMoeZX+wsR4T9bMhg==}
     peerDependencies:
       next: ^13.2 || ^14
     dependencies:
-      next: 14.0.4(react-dom@18.2.0)(react@18.2.0)
+      next: 14.1.0(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /get-caller-file@2.0.5:
