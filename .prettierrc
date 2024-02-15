@@ -1,12 +1,12 @@
 {
-  "printWidth": 90,
-  "endOfLine": "lf",
-  "bracketSameLine": true,
-  "bracketSpacing": true,
-  "jsxSingleQuote": true,
-  "singleQuote": false,
-  "useTabs": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "plugins": ["prettier-plugin-tailwindcss"]
+	"printWidth": 90,
+	"endOfLine": "lf",
+	"bracketSameLine": true,
+	"bracketSpacing": true,
+	"jsxSingleQuote": true,
+	"singleQuote": false,
+	"useTabs": true,
+	"tabWidth": 2,
+	"trailingComma": "all",
+	"plugins": ["prettier-plugin-tailwindcss"]
 }
