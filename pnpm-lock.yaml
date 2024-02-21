@@ -248,8 +248,8 @@ importers:
         specifier: 8.0.0-rc22
         version: 8.0.0-rc22(react@18.2.0)
       lucide-react:
-        specifier: ^0.330.0
-        version: 0.330.0(react@18.2.0)
+        specifier: ^0.336.0
+        version: 0.336.0(react@18.2.0)
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
@@ -284,9 +284,6 @@ importers:
       '@tanstack/router-vite-plugin':
         specifier: ^1.16.1
         version: 1.16.1
-      '@tooling/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint-config
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -336,15 +333,6 @@ importers:
       prisma:
         specifier: ^5.9.1
         version: 5.9.1
-
-  packages/e2e:
-    devDependencies:
-      '@playwright/test':
-        specifier: ^1.41.2
-        version: 1.41.2
-      '@types/node':
-        specifier: ^20.10.6
-        version: 20.10.6
 
   packages/ui:
     devDependencies:
@@ -1872,14 +1860,6 @@ packages:
       open: 9.1.0
       picocolors: 1.0.0
       tslib: 2.6.2
-    dev: true
-
-  /@playwright/test@1.41.2:
-    resolution: {integrity: sha512-qQB9h7KbibJzrDpkXkYvsmiDJK14FULCCZgEcoe2AvFAS64oCirWTwzTlAYEbKaRxWs5TFesE1Na6izMv3HfGg==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      playwright: 1.41.2
     dev: true
 
   /@prisma/client@5.9.1(prisma@5.9.1):
@@ -6226,14 +6206,6 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -7721,8 +7693,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /lucide-react@0.330.0(react@18.2.0):
-    resolution: {integrity: sha512-CQwY+Fpbt2kxCoVhuN0RCZDCYlbYnqB870Bl/vIQf3ER/cnDDQ6moLmEkguRyruAUGd4j3Lc4mtnJosXnqHheA==}
+  /lucide-react@0.336.0(react@18.2.0):
+    resolution: {integrity: sha512-e06J4Qrdrk3BP/hf3MnkW3LnymdthfyEtVbdEg0xPQ/olTEKfOfTv03DYmdRm1+XpaNQdCpiHT7Vi6regbxDCQ==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -8373,22 +8345,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
-    dev: true
-
-  /playwright-core@1.41.2:
-    resolution: {integrity: sha512-VaTvwCA4Y8kxEe+kfm2+uUUw5Lubf38RxF7FpBxLPmGe5sdNkSg5e3ChEigaGrX7qdqT3pt2m/98LiyvU2x6CA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: true
-
-  /playwright@1.41.2:
-    resolution: {integrity: sha512-v0bOa6H2GJChDL8pAeLa/LZC4feoAMbSQm1/jF/ySsWWoaNItvrMP7GEkvEEFyCTUYKMxjQKaTSg5up7nR6/8A==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dependencies:
-      playwright-core: 1.41.2
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /pluralize@8.0.0:
