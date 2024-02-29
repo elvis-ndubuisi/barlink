@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 import { typographyVariants } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
