@@ -2,6 +2,8 @@ Simplify sharing, track, & grow. All-in-one QR & URL platform
 
 QR magic + URL power: Supercharge your marketing with one platform. Scannable simplicity, data-driven growth.
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 "name": "web",
 "private": true,
 "version": "0.0.0",
