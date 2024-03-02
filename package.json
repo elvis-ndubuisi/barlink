@@ -12,7 +12,9 @@
 	"devDependencies": {
 		"@tooling/eslint-config": "workspace:*",
 		"@tooling/typescript-config": "workspace:*",
+		"cz-conventional-changelog": "^3.3.0",
 		"husky": "^9.0.10",
+		"lint-staged": "^15.2.2",
 		"prettier": "^3.1.1",
 		"prettier-plugin-tailwindcss": "^0.5.11",
 		"turbo": "latest"
@@ -20,5 +22,13 @@
 	"packageManager": "pnpm@8.15.3",
 	"engines": {
 		"node": ">=18"
+	},
+	"dependencies": {
+		"commitizen": "^4.3.0"
+	},
+	"husky": {
+		"hooks": {
+			"prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+		}
 	}
 }
