@@ -23,10 +23,11 @@
 	"dependencies": {
 		"@nestjs/common": "^10.0.0",
 		"@nestjs/config": "^3.2.0",
-    "@nestjs/core": "^10.0.0",
-    "@nestjs/mapped-types": "*",
+		"@nestjs/core": "^10.0.0",
+		"@nestjs/mapped-types": "*",
 		"@nestjs/platform-express": "^10.0.0",
 		"@nestjs/throttler": "^5.1.2",
+		"@package/database": "workspace:*",
 		"helmet": "^7.1.0",
 		"reflect-metadata": "^0.2.0",
 		"rxjs": "^7.8.1"

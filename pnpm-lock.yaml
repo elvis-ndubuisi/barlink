@@ -100,6 +100,9 @@ importers:
       '@nestjs/throttler':
         specifier: ^5.1.2
         version: 5.1.2(@nestjs/common@10.3.3)(@nestjs/core@10.3.3)(reflect-metadata@0.2.1)
+      '@package/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       helmet:
         specifier: ^7.1.0
         version: 7.1.0
