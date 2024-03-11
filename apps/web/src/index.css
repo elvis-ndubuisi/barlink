@@ -3,3 +3,8 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: "General Sans";
+	src: url("./assets/font/GeneralSans-Variable.ttf");
+}
