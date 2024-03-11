@@ -22,7 +22,10 @@ import { Route as GenerateImport } from "./routes/generate";
 import { Route as FaqsImport } from "./routes/faqs";
 import { Route as ContactImport } from "./routes/contact";
 import { Route as AuthImport } from "./routes/auth";
+import { Route as AuthLayoutImport } from "./routes/_authLayout";
 import { Route as IndexImport } from "./routes/index";
+import { Route as AuthLayoutSignupImport } from "./routes/_authLayout.signup";
+import { Route as AuthLayoutLoginImport } from "./routes/_authLayout.login";
 import { Route as DashboardDashboardIndexImport } from "./routes/_dashboard/dashboard/index";
 import { Route as DashboardAccountIndexImport } from "./routes/_dashboard/account/index";
 
@@ -82,9 +85,24 @@ const AuthRoute = AuthImport.update({
 	getParentRoute: () => rootRoute,
 } as any);
 
+const AuthLayoutRoute = AuthLayoutImport.update({
+	id: "/_authLayout",
+	getParentRoute: () => rootRoute,
+} as any);
+
 const IndexRoute = IndexImport.update({
 	path: "/",
 	getParentRoute: () => rootRoute,
+} as any);
+
+const AuthLayoutSignupRoute = AuthLayoutSignupImport.update({
+	path: "/signup",
+	getParentRoute: () => AuthLayoutRoute,
+} as any);
+
+const AuthLayoutLoginRoute = AuthLayoutLoginImport.update({
+	path: "/login",
+	getParentRoute: () => AuthLayoutRoute,
 } as any);
 
 const DashboardDashboardIndexRoute = DashboardDashboardIndexImport.update({
@@ -103,6 +121,10 @@ declare module "@tanstack/react-router" {
 	interface FileRoutesByPath {
 		"/": {
 			preLoaderRoute: typeof IndexImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/_authLayout": {
+			preLoaderRoute: typeof AuthLayoutImport;
 			parentRoute: typeof rootRoute;
 		};
 		"/auth": {
@@ -145,6 +167,14 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof AboutLazyImport;
 			parentRoute: typeof rootRoute;
 		};
+		"/_authLayout/login": {
+			preLoaderRoute: typeof AuthLayoutLoginImport;
+			parentRoute: typeof AuthLayoutImport;
+		};
+		"/_authLayout/signup": {
+			preLoaderRoute: typeof AuthLayoutSignupImport;
+			parentRoute: typeof AuthLayoutImport;
+		};
 		"/_dashboard/account/": {
 			preLoaderRoute: typeof DashboardAccountIndexImport;
 			parentRoute: typeof rootRoute;
@@ -160,6 +190,7 @@ declare module "@tanstack/react-router" {
 
 export const routeTree = rootRoute.addChildren([
 	IndexRoute,
+	AuthLayoutRoute.addChildren([AuthLayoutLoginRoute, AuthLayoutSignupRoute]),
 	AuthRoute,
 	ContactRoute,
 	FaqsRoute,
