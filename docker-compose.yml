@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  barlink-mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root # Set your desired username here
+      MONGO_INITDB_ROOT_PASSWORD: root # Set your desired password here
+    ports:
+      - "27017:27017" # Map container port 27017 to host port 27017
+
+volumes:
+  barlink-mongo-data: {} # Empty volume definition
