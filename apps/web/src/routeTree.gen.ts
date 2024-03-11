@@ -13,7 +13,9 @@ import { createFileRoute } from "@tanstack/react-router";
 // Import Routes
 
 import { Route as rootRoute } from "./routes/__root";
+import { Route as TermsImport } from "./routes/terms";
 import { Route as ShortenImport } from "./routes/shorten";
+import { Route as PrivacyImport } from "./routes/privacy";
 import { Route as PricingImport } from "./routes/pricing";
 import { Route as IntegrationImport } from "./routes/integration";
 import { Route as GenerateImport } from "./routes/generate";
@@ -21,6 +23,8 @@ import { Route as FaqsImport } from "./routes/faqs";
 import { Route as ContactImport } from "./routes/contact";
 import { Route as AuthImport } from "./routes/auth";
 import { Route as IndexImport } from "./routes/index";
+import { Route as DashboardDashboardIndexImport } from "./routes/_dashboard/dashboard/index";
+import { Route as DashboardAccountIndexImport } from "./routes/_dashboard/account/index";
 
 // Create Virtual Routes
 
@@ -33,8 +37,18 @@ const AboutLazyRoute = AboutLazyImport.update({
 	getParentRoute: () => rootRoute,
 } as any).lazy(() => import("./routes/about.lazy").then((d) => d.Route));
 
+const TermsRoute = TermsImport.update({
+	path: "/terms",
+	getParentRoute: () => rootRoute,
+} as any);
+
 const ShortenRoute = ShortenImport.update({
 	path: "/shorten",
+	getParentRoute: () => rootRoute,
+} as any);
+
+const PrivacyRoute = PrivacyImport.update({
+	path: "/privacy",
 	getParentRoute: () => rootRoute,
 } as any);
 
@@ -73,6 +87,16 @@ const IndexRoute = IndexImport.update({
 	getParentRoute: () => rootRoute,
 } as any);
 
+const DashboardDashboardIndexRoute = DashboardDashboardIndexImport.update({
+	id: "/_dashboard/dashboard/",
+	getParentRoute: () => rootRoute,
+} as any);
+
+const DashboardAccountIndexRoute = DashboardAccountIndexImport.update({
+	id: "/_dashboard/account/",
+	getParentRoute: () => rootRoute,
+} as any);
+
 // Populate the FileRoutesByPath interface
 
 declare module "@tanstack/react-router" {
@@ -105,12 +129,28 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof PricingImport;
 			parentRoute: typeof rootRoute;
 		};
+		"/privacy": {
+			preLoaderRoute: typeof PrivacyImport;
+			parentRoute: typeof rootRoute;
+		};
 		"/shorten": {
 			preLoaderRoute: typeof ShortenImport;
 			parentRoute: typeof rootRoute;
 		};
+		"/terms": {
+			preLoaderRoute: typeof TermsImport;
+			parentRoute: typeof rootRoute;
+		};
 		"/about": {
 			preLoaderRoute: typeof AboutLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/_dashboard/account/": {
+			preLoaderRoute: typeof DashboardAccountIndexImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/_dashboard/dashboard/": {
+			preLoaderRoute: typeof DashboardDashboardIndexImport;
 			parentRoute: typeof rootRoute;
 		};
 	}
@@ -126,8 +166,12 @@ export const routeTree = rootRoute.addChildren([
 	GenerateRoute,
 	IntegrationRoute,
 	PricingRoute,
+	PrivacyRoute,
 	ShortenRoute,
+	TermsRoute,
 	AboutLazyRoute,
+	DashboardAccountIndexRoute,
+	DashboardDashboardIndexRoute,
 ]);
 
 /* prettier-ignore-end */

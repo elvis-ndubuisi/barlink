@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import MantineProvider from "./providers/mantine-provider";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -30,7 +31,9 @@ if (!rootElement.innerHTML) {
 	root.render(
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
+				<MantineProvider>
+					<RouterProvider router={router} />
+				</MantineProvider>
 			</QueryClientProvider>
 		</React.StrictMode>,
 	);
