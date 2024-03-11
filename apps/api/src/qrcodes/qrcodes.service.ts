@@ -5,6 +5,7 @@ import { UpdateQrcodeDto } from "./dto/update-qrcode.dto";
 @Injectable()
 export class QrcodesService {
 	create(createQrcodeDto: CreateQrcodeDto) {
+		console.log(createQrcodeDto);
 		return "This action adds a new qrcode";
 	}
 
@@ -17,6 +18,7 @@ export class QrcodesService {
 	}
 
 	update(id: number, updateQrcodeDto: UpdateQrcodeDto) {
+		console.log(updateQrcodeDto);
 		return `This action updates a #${id} qrcode`;
 	}
 

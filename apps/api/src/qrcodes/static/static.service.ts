@@ -5,6 +5,7 @@ import { UpdateStaticDto } from "./dto/update-static.dto";
 @Injectable()
 export class StaticService {
 	create(createStaticDto: CreateStaticDto) {
+		console.log(createStaticDto);
 		return "This action adds a new static";
 	}
 
@@ -17,6 +18,7 @@ export class StaticService {
 	}
 
 	update(id: number, updateStaticDto: UpdateStaticDto) {
+		console.log(updateStaticDto);
 		return `This action updates a #${id} static`;
 	}
 

@@ -5,6 +5,7 @@ import { UpdateDynamicDto } from "./dto/update-dynamic.dto";
 @Injectable()
 export class DynamicService {
 	create(createDynamicDto: CreateDynamicDto) {
+		console.log(createDynamicDto);
 		return "This action adds a new dynamic";
 	}
 
@@ -17,6 +18,7 @@ export class DynamicService {
 	}
 
 	update(id: number, updateDynamicDto: UpdateDynamicDto) {
+		console.log(updateDynamicDto);
 		return `This action updates a #${id} dynamic`;
 	}
 
