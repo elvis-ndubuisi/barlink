@@ -4,7 +4,6 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "./providers/theme-provider";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -31,9 +30,7 @@ if (!rootElement.innerHTML) {
 	root.render(
 		<React.StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-					<RouterProvider router={router} />
-				</ThemeProvider>
+				<RouterProvider router={router} />
 			</QueryClientProvider>
 		</React.StrictMode>,
 	);

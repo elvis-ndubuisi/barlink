@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/shorten")({
+export const Route = createFileRoute("/privacy")({
 	component: () => {
-		return <main>shorten</main>;
+		return <main>privacy</main>;
 	},
 });
