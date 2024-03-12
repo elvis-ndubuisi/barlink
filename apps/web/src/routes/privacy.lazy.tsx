@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import BaseHeader from "@/components/base-header";
 import BaseFooter from "@/components/base-footer";
 
-export const Route = createFileRoute("/privacy")({
+export const Route = createLazyFileRoute("/privacy")({
 	component: () => {
 		return (
 			<main>

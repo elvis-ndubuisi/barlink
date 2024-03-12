@@ -1,15 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import BaseHeader from "@/components/base-header";
 import BaseFooter from "@/components/base-footer";
 
-export const Route = createFileRoute("/terms")({
+export const Route = createLazyFileRoute("/faqs")({
 	component: () => {
 		return (
-			<main>
+			<>
 				<BaseHeader />
-				terms page
+				<section>main</section>
 				<BaseFooter />
-			</main>
+			</>
 		);
 	},
 });
