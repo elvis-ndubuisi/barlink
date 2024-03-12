@@ -26,6 +26,7 @@ import { Route as AuthLayoutImport } from "./routes/_authLayout";
 import { Route as IndexImport } from "./routes/index";
 import { Route as AuthLayoutSignupImport } from "./routes/_authLayout.signup";
 import { Route as AuthLayoutLoginImport } from "./routes/_authLayout.login";
+import { Route as AuthLayoutForgetPasswordImport } from "./routes/_authLayout.forget-password";
 import { Route as DashboardDashboardIndexImport } from "./routes/_dashboard/dashboard/index";
 import { Route as DashboardAccountIndexImport } from "./routes/_dashboard/account/index";
 
@@ -105,6 +106,11 @@ const AuthLayoutLoginRoute = AuthLayoutLoginImport.update({
 	getParentRoute: () => AuthLayoutRoute,
 } as any);
 
+const AuthLayoutForgetPasswordRoute = AuthLayoutForgetPasswordImport.update({
+	path: "/forget-password",
+	getParentRoute: () => AuthLayoutRoute,
+} as any);
+
 const DashboardDashboardIndexRoute = DashboardDashboardIndexImport.update({
 	id: "/_dashboard/dashboard/",
 	getParentRoute: () => rootRoute,
@@ -167,6 +173,10 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof AboutLazyImport;
 			parentRoute: typeof rootRoute;
 		};
+		"/_authLayout/forget-password": {
+			preLoaderRoute: typeof AuthLayoutForgetPasswordImport;
+			parentRoute: typeof AuthLayoutImport;
+		};
 		"/_authLayout/login": {
 			preLoaderRoute: typeof AuthLayoutLoginImport;
 			parentRoute: typeof AuthLayoutImport;
@@ -190,7 +200,11 @@ declare module "@tanstack/react-router" {
 
 export const routeTree = rootRoute.addChildren([
 	IndexRoute,
-	AuthLayoutRoute.addChildren([AuthLayoutLoginRoute, AuthLayoutSignupRoute]),
+	AuthLayoutRoute.addChildren([
+		AuthLayoutForgetPasswordRoute,
+		AuthLayoutLoginRoute,
+		AuthLayoutSignupRoute,
+	]),
 	AuthRoute,
 	ContactRoute,
 	FaqsRoute,

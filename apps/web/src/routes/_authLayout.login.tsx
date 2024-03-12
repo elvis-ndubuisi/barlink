@@ -25,6 +25,7 @@ export const Route = createFileRoute("/_authLayout/login")({
 					<Flex direction='row' gap='xs' justify={{ sm: "center" }}>
 						<Button
 							size='md'
+							fullWidth
 							leftSection={
 								<img
 									src={googleIcon}
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/_authLayout/login")({
 						</Button>
 						<Button
 							size='md'
+							fullWidth
 							leftSection={
 								<img
 									src={facebookIcon}

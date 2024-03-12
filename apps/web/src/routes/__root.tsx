@@ -1,5 +1,5 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
-import "../index.css";
+import "../styles/index.css";
 import { QueryClient } from "@tanstack/react-query";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

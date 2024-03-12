@@ -1,12 +1,14 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Box } from "@mantine/core";
+import { Box, Center } from "@mantine/core";
 
 export const Route = createFileRoute("/_authLayout")({
 	component: () => {
 		return (
 			<main className='flex min-h-screen items-stretch justify-center'>
-				<Box className='hidden max-w-md flex-auto bg-blue-300 lg:block'>
-					image section
+				<Box bg={"brand.0"} className='hidden max-w-md flex-auto lg:block'>
+					<Center h='100%' className=''>
+						center
+					</Center>
 				</Box>
 				<Outlet />
 			</main>
