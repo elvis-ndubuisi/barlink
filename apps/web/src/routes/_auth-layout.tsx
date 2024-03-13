@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { Box, Center } from "@mantine/core";
 
-export const Route = createFileRoute("/_authLayout")({
+export const Route = createFileRoute("/_auth-layout")({
 	component: () => {
 		return (
 			<main className='flex min-h-screen items-stretch justify-center'>

@@ -13,66 +13,66 @@ import { createFileRoute } from "@tanstack/react-router";
 // Import Routes
 
 import { Route as rootRoute } from "./routes/__root";
-import { Route as TermsImport } from "./routes/terms";
 import { Route as ShortenImport } from "./routes/shorten";
-import { Route as PrivacyImport } from "./routes/privacy";
-import { Route as PricingImport } from "./routes/pricing";
-import { Route as IntegrationImport } from "./routes/integration";
 import { Route as GenerateImport } from "./routes/generate";
-import { Route as FaqsImport } from "./routes/faqs";
 import { Route as ContactImport } from "./routes/contact";
 import { Route as AuthImport } from "./routes/auth";
-import { Route as AuthLayoutImport } from "./routes/_authLayout";
+import { Route as AuthLayoutImport } from "./routes/_auth-layout";
 import { Route as IndexImport } from "./routes/index";
-import { Route as AuthLayoutSignupImport } from "./routes/_authLayout.signup";
-import { Route as AuthLayoutLoginImport } from "./routes/_authLayout.login";
-import { Route as AuthLayoutForgetPasswordImport } from "./routes/_authLayout.forget-password";
+import { Route as AuthLayoutSignupImport } from "./routes/_auth-layout.signup";
+import { Route as AuthLayoutLoginImport } from "./routes/_auth-layout.login";
+import { Route as AuthLayoutForgetPasswordImport } from "./routes/_auth-layout.forget-password";
 import { Route as DashboardDashboardIndexImport } from "./routes/_dashboard/dashboard/index";
 import { Route as DashboardAccountIndexImport } from "./routes/_dashboard/account/index";
 
 // Create Virtual Routes
 
+const TermsLazyImport = createFileRoute("/terms")();
+const PrivacyLazyImport = createFileRoute("/privacy")();
+const PricingLazyImport = createFileRoute("/pricing")();
+const IntegrationLazyImport = createFileRoute("/integration")();
+const FaqsLazyImport = createFileRoute("/faqs")();
 const AboutLazyImport = createFileRoute("/about")();
 
 // Create/Update Routes
+
+const TermsLazyRoute = TermsLazyImport.update({
+	path: "/terms",
+	getParentRoute: () => rootRoute,
+} as any).lazy(() => import("./routes/terms.lazy").then((d) => d.Route));
+
+const PrivacyLazyRoute = PrivacyLazyImport.update({
+	path: "/privacy",
+	getParentRoute: () => rootRoute,
+} as any).lazy(() => import("./routes/privacy.lazy").then((d) => d.Route));
+
+const PricingLazyRoute = PricingLazyImport.update({
+	path: "/pricing",
+	getParentRoute: () => rootRoute,
+} as any).lazy(() => import("./routes/pricing.lazy").then((d) => d.Route));
+
+const IntegrationLazyRoute = IntegrationLazyImport.update({
+	path: "/integration",
+	getParentRoute: () => rootRoute,
+} as any).lazy(() => import("./routes/integration.lazy").then((d) => d.Route));
+
+const FaqsLazyRoute = FaqsLazyImport.update({
+	path: "/faqs",
+	getParentRoute: () => rootRoute,
+} as any).lazy(() => import("./routes/faqs.lazy").then((d) => d.Route));
 
 const AboutLazyRoute = AboutLazyImport.update({
 	path: "/about",
 	getParentRoute: () => rootRoute,
 } as any).lazy(() => import("./routes/about.lazy").then((d) => d.Route));
 
-const TermsRoute = TermsImport.update({
-	path: "/terms",
-	getParentRoute: () => rootRoute,
-} as any);
-
 const ShortenRoute = ShortenImport.update({
 	path: "/shorten",
 	getParentRoute: () => rootRoute,
 } as any);
 
-const PrivacyRoute = PrivacyImport.update({
-	path: "/privacy",
-	getParentRoute: () => rootRoute,
-} as any);
-
-const PricingRoute = PricingImport.update({
-	path: "/pricing",
-	getParentRoute: () => rootRoute,
-} as any);
-
-const IntegrationRoute = IntegrationImport.update({
-	path: "/integration",
-	getParentRoute: () => rootRoute,
-} as any);
-
 const GenerateRoute = GenerateImport.update({
 	path: "/generate",
-	getParentRoute: () => rootRoute,
-} as any);
-
-const FaqsRoute = FaqsImport.update({
-	path: "/faqs",
 	getParentRoute: () => rootRoute,
 } as any);
 
@@ -87,7 +87,7 @@ const AuthRoute = AuthImport.update({
 } as any);
 
 const AuthLayoutRoute = AuthLayoutImport.update({
-	id: "/_authLayout",
+	id: "/_auth-layout",
 	getParentRoute: () => rootRoute,
 } as any);
 
@@ -129,7 +129,7 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof IndexImport;
 			parentRoute: typeof rootRoute;
 		};
-		"/_authLayout": {
+		"/_auth-layout": {
 			preLoaderRoute: typeof AuthLayoutImport;
 			parentRoute: typeof rootRoute;
 		};
@@ -141,47 +141,47 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof ContactImport;
 			parentRoute: typeof rootRoute;
 		};
-		"/faqs": {
-			preLoaderRoute: typeof FaqsImport;
-			parentRoute: typeof rootRoute;
-		};
 		"/generate": {
 			preLoaderRoute: typeof GenerateImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/integration": {
-			preLoaderRoute: typeof IntegrationImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/pricing": {
-			preLoaderRoute: typeof PricingImport;
-			parentRoute: typeof rootRoute;
-		};
-		"/privacy": {
-			preLoaderRoute: typeof PrivacyImport;
 			parentRoute: typeof rootRoute;
 		};
 		"/shorten": {
 			preLoaderRoute: typeof ShortenImport;
 			parentRoute: typeof rootRoute;
 		};
-		"/terms": {
-			preLoaderRoute: typeof TermsImport;
-			parentRoute: typeof rootRoute;
-		};
 		"/about": {
 			preLoaderRoute: typeof AboutLazyImport;
 			parentRoute: typeof rootRoute;
 		};
-		"/_authLayout/forget-password": {
+		"/faqs": {
+			preLoaderRoute: typeof FaqsLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/integration": {
+			preLoaderRoute: typeof IntegrationLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/pricing": {
+			preLoaderRoute: typeof PricingLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/privacy": {
+			preLoaderRoute: typeof PrivacyLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/terms": {
+			preLoaderRoute: typeof TermsLazyImport;
+			parentRoute: typeof rootRoute;
+		};
+		"/_auth-layout/forget-password": {
 			preLoaderRoute: typeof AuthLayoutForgetPasswordImport;
 			parentRoute: typeof AuthLayoutImport;
 		};
-		"/_authLayout/login": {
+		"/_auth-layout/login": {
 			preLoaderRoute: typeof AuthLayoutLoginImport;
 			parentRoute: typeof AuthLayoutImport;
 		};
-		"/_authLayout/signup": {
+		"/_auth-layout/signup": {
 			preLoaderRoute: typeof AuthLayoutSignupImport;
 			parentRoute: typeof AuthLayoutImport;
 		};
@@ -207,14 +207,14 @@ export const routeTree = rootRoute.addChildren([
 	]),
 	AuthRoute,
 	ContactRoute,
-	FaqsRoute,
 	GenerateRoute,
-	IntegrationRoute,
-	PricingRoute,
-	PrivacyRoute,
 	ShortenRoute,
-	TermsRoute,
 	AboutLazyRoute,
+	FaqsLazyRoute,
+	IntegrationLazyRoute,
+	PricingLazyRoute,
+	PrivacyLazyRoute,
+	TermsLazyRoute,
 	DashboardAccountIndexRoute,
 	DashboardDashboardIndexRoute,
 ]);

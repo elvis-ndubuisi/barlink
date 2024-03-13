@@ -13,7 +13,7 @@ import {
 	Center,
 } from "@mantine/core";
 
-export const Route = createFileRoute("/_authLayout/signup")({
+export const Route = createFileRoute("/_auth-layout/signup")({
 	component: () => {
 		return (
 			<Center className='flex-1'>
@@ -62,12 +62,7 @@ export const Route = createFileRoute("/_authLayout/signup")({
 									<Input size='md' placeholder='Name' name='first_name' id='first_name' />
 								</Input.Wrapper>
 								<Input.Wrapper label='Last Name' required error='' size='sm'>
-									<Input
-										size='md'
-										placeholder='Last name'
-										name='last_name'
-										id='last_name'
-									/>
+									<Input size='md' placeholder='Last name' name='last_name' id='last_name' />
 								</Input.Wrapper>
 							</Flex>
 							<Input.Wrapper label='Email address' required error='' size='sm'>
@@ -80,12 +75,7 @@ export const Route = createFileRoute("/_authLayout/signup")({
 								/>
 							</Input.Wrapper>
 							<Input.Wrapper label='Password' required error='' size='sm'>
-								<PasswordInput
-									size='md'
-									placeholder='************'
-									name='password'
-									id='password'
-								/>
+								<PasswordInput size='md' placeholder='************' name='password' id='password' />
 							</Input.Wrapper>
 							<Input.Wrapper label='Confirm Password' required error='' size='sm'>
 								<PasswordInput

@@ -11,7 +11,7 @@ import {
 } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authLayout/forget-password")({
+export const Route = createFileRoute("/_auth-layout/forget-password")({
 	component: () => {
 		return (
 			<Container size={460} my={30}>

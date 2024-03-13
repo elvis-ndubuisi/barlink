@@ -13,7 +13,7 @@ import {
 	Center,
 } from "@mantine/core";
 
-export const Route = createFileRoute("/_authLayout/login")({
+export const Route = createFileRoute("/_auth-layout/login")({
 	component: () => {
 		// const [state, setState] = React.useState({});
 		return (
@@ -68,12 +68,7 @@ export const Route = createFileRoute("/_authLayout/login")({
 								/>
 							</Input.Wrapper>
 							<Input.Wrapper label='Password' required error='' size='sm'>
-								<PasswordInput
-									size='md'
-									placeholder='************'
-									name='password'
-									id='password'
-								/>
+								<PasswordInput size='md' placeholder='************' name='password' id='password' />
 							</Input.Wrapper>
 							<Input.Wrapper label='field' hidden>
 								<Input name='giggle' id='giggle' />
