@@ -7,6 +7,33 @@ import BaseFooter from "@/components/base-footer";
 const placeholder =
 	"It can’t help but hear a pin drop from over half a mile away, so it lives deep in the mountains where there aren’t many people or Pokémon.";
 
+const faqs = [
+	{
+		value: "none for now",
+		question: "What is Barlink?",
+		answer:
+			"Barlink is a QRCode-as-a-Service platform that allows you to generate and manage custom QR codes.",
+	},
+	{
+		value: "none for now",
+		question: "What are QR codes?",
+		answer:
+			"QR codes (Quick Response codes) are two-dimensional barcodes that can be scanned by smartphones and other devices to access information.",
+	},
+	{
+		value: "none for now",
+		question: "Who can use Barlink?",
+		answer:
+			"Barlink can be used by anyone who needs to generate QR codes, from individuals and small businesses to large enterprises.",
+	},
+	{
+		value: "none for now",
+		question: "Is Barlink free to use?",
+		answer:
+			"Barlink offers a free plan with limited features. We also offer paid plans with more features and functionalities.",
+	},
+];
+
 export const Route = createLazyFileRoute("/faqs")({
 	component: () => {
 		return (
@@ -30,39 +57,12 @@ export const Route = createLazyFileRoute("/faqs")({
 									chevronPosition='right'
 									defaultValue='reset-password'
 									variant='separated'>
-									<Accordion.Item
-										className='text-[--mantine-font-size-sm]'
-										value='reset-password'>
-										<Accordion.Control>How can I reset my password?</Accordion.Control>
-										<Accordion.Panel>{placeholder}</Accordion.Panel>
-									</Accordion.Item>
-
-									<Accordion.Item
-										className='text-[--mantine-font-size-sm]'
-										value='another-account'>
-										<Accordion.Control>
-											Can I create more that one account?
-										</Accordion.Control>
-										<Accordion.Panel>{placeholder}</Accordion.Panel>
-									</Accordion.Item>
-
-									<Accordion.Item
-										className='text-[--mantine-font-size-sm]'
-										value='newsletter'>
-										<Accordion.Control>
-											How can I subscribe to monthly newsletter?
-										</Accordion.Control>
-										<Accordion.Panel>{placeholder}</Accordion.Panel>
-									</Accordion.Item>
-
-									<Accordion.Item
-										className='text-[--mantine-font-size-sm]'
-										value='credit-card'>
-										<Accordion.Control>
-											Do you store credit card information securely?
-										</Accordion.Control>
-										<Accordion.Panel>{placeholder}</Accordion.Panel>
-									</Accordion.Item>
+									{faqs.map((faq) => (
+										<Accordion.Item className='text-[--mantine-font-size-sm]' value={faq.question}>
+											<Accordion.Control>{faq.question}</Accordion.Control>
+											<Accordion.Panel>{faq.answer}</Accordion.Panel>
+										</Accordion.Item>
+									))}
 								</Accordion>
 							</Grid.Col>
 						</Grid>
