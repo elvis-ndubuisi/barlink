@@ -8,12 +8,12 @@ const links = [
 		link: "/generate",
 		label: "Generate",
 	},
+	// {
+	// 	link: "/shorten",
+	// 	label: "Shorten",
+	// },
 	{
-		link: "/shorten",
-		label: "Shorten",
-	},
-	{
-		link: "/faq",
+		link: "/faqs",
 		label: "FAQ",
 	},
 	{
@@ -30,16 +30,10 @@ export default function BaseHeader() {
 	const [opened, { toggle }] = useDisclosure(false);
 
 	return (
-		<header className=''>
+		<header className='bg-[--mantine-color-body]/90'>
 			<section className='mx-auto flex max-w-screen-xl items-center justify-between px-2 py-4 md:px-1'>
-				<Link
-					to='/'
-					className='flex items-center gap-2 text-xl font-semibold tracking-widest'>
-					<img
-						className='h-8 w-8 bg-gray-300 object-contain object-center'
-						src=''
-						alt=''
-					/>
+				<Link to='/' className='flex items-center gap-2 text-xl font-semibold tracking-widest'>
+					<img className='h-8 w-8 bg-gray-300 object-contain object-center' src='' alt='' />
 					<span className=''>Barlink</span>
 				</Link>
 
@@ -59,7 +53,7 @@ export default function BaseHeader() {
 
 				<Group justify='center' gap={"xs"} visibleFrom='xs'>
 					<Link to='/login'>
-						<Button variant='light'>Log in</Button>
+						<Button variant='transparent'>Log in</Button>
 					</Link>
 					<Link to='/signup'>
 						<Button
