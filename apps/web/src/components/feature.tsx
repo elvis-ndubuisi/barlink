@@ -1,49 +1,54 @@
-import { Title, SimpleGrid, Text, Button, ThemeIcon, Grid, rem } from "@mantine/core";
-// import {
-// 	IconReceiptOff,
-// 	IconFlame,
-// 	IconCircleDotted,
-// 	IconFileCode,
-// } from "@tabler/icons-react";
-import { FlameIcon, FileCode, CircleDot, Receipt } from "lucide-react";
-// import classes from "./FeaturesTitle.module.css";
-import classes from "../styles/feature.module.css";
+import { Title, SimpleGrid, Text, Button, Grid, ThemeIcon, rem } from "@mantine/core";
+import { Link } from "@tanstack/react-router";
+import {
+	IconApiApp,
+	IconMoodHeart,
+	IconAnalyze,
+	IconStack,
+	IconAccessible,
+} from "@tabler/icons-react";
 
 const features = [
 	{
-		icon: Receipt,
-		title: "Free and open source",
+		icon: IconMoodHeart,
+		title: "Easy to Use",
 		description:
-			"All packages are published under MIT license, you can use Mantine in any project",
+			"No design experience required. Barlink's intuitive interface allows you to create professional static and dynamic QR codes in minutes.",
 	},
 	{
-		icon: FileCode,
-		title: "TypeScript based",
-		description: "Build type safe applications, all components and hooks export types",
+		icon: IconAccessible,
+		title: "Fully Customizable",
+		description:
+			"Design QR codes that match your brand with our extensive color and logo upload options.",
 	},
 	{
-		icon: CircleDot,
-		title: "No annoying focus ring",
+		icon: IconAnalyze,
+		title: "Track and Analyze",
 		description:
-			"With new :focus-visible selector focus ring will appear only when user navigates with keyboard",
+			"Gain valuable insights into your QR code performance with detailed scan tracking and analytics.",
 	},
 	{
-		icon: FlameIcon,
-		title: "Flexible",
+		icon: IconApiApp,
+		title: "Integrations",
 		description:
-			"Customize colors, spacing, shadows, fonts and many other settings with global theme object",
+			"Barlink's robust API allows developers to seamlessly integrate QR code functionalities into their applications, unlocking new possibilities for user engagement.",
+	},
+	{
+		icon: IconStack,
+		title: "Bulk Generation",
+		description: " Save time by creating and managing hundreds of QR codes at once.",
 	},
 ];
 
-export function FeaturesTitle() {
+export default function Features() {
 	const items = features.map((feature) => (
 		<div key={feature.title}>
 			<ThemeIcon
 				size={44}
 				radius='md'
 				variant='gradient'
-				gradient={{ deg: 133, from: "blue", to: "cyan" }}>
-				<feature.icon style={{ width: rem(26), height: rem(26) }} stroke={"1.5"} />
+				gradient={{ deg: 45, from: "brand.7", to: "brand.9" }}>
+				<feature.icon style={{ width: rem(26), height: rem(26) }} stroke={1.5} />
 			</ThemeIcon>
 			<Text fz='lg' mt='sm' fw={500}>
 				{feature.title}
@@ -53,30 +58,29 @@ export function FeaturesTitle() {
 			</Text>
 		</div>
 	));
-
 	return (
-		<div
-			// className={classes.wrapper}
-			className='mx-auto my-3 max-w-screen-xl px-2'>
-			<Grid gutter={80}>
+		<section className='mx-auto max-w-screen-xl p-3'>
+			<Grid gutter={80} align='center'>
 				<Grid.Col span={{ base: 12, md: 5 }}>
-					<Title className={classes.title} order={2}>
-						A fully featured React components library for your next project
-					</Title>
-					<Text c='dimmed'>
-						Build fully functional accessible web applications faster than ever – Mantine
-						includes more than 120 customizable components and hooks to cover you in any
-						situation
+					<Title>Powerful QR Codes, Easy Integration</Title>
+					<Text c='dimmed' my='md'>
+						Barlink empowers you to create impactful QR codes that elevate your marketing
+						strategies. Our intuitive platform allows you to design professional, fully customizable
+						QR codes in seconds. With a variety of features like dynamic content, password
+						protection, and detailed analytics, Barlink provides the power you need to track and
+						measure campaign success.
 					</Text>
-
-					<Button
-						variant='gradient'
-						gradient={{ deg: 133, from: "blue", to: "cyan" }}
-						size='lg'
-						radius='md'
-						mt='xl'>
-						Get started
-					</Button>
+					<Text c='dimmed'>
+						For developers, Barlink offers seamless integration through our robust API. Integrate
+						Barlink's functionalities into your applications to unlock the potential of QR codes
+						within your existing workflows. Barlink: Powerful QR codes made easy to use and
+						integrate.
+					</Text>
+					<Link to='/signup'>
+						<Button variant='filled' size='sm' mt='md'>
+							Sign up for free
+						</Button>
+					</Link>
 				</Grid.Col>
 				<Grid.Col span={{ base: 12, md: 7 }}>
 					<SimpleGrid cols={{ base: 1, md: 2 }} spacing={30}>
@@ -84,6 +88,6 @@ export function FeaturesTitle() {
 					</SimpleGrid>
 				</Grid.Col>
 			</Grid>
-		</div>
+		</section>
 	);
 }
