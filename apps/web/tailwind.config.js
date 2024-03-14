@@ -5,7 +5,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["General Sans", ...defaultTheme.fontFamily.sans],
+				// sans: ["General Sans", ...defaultTheme.fontFamily.sans],
+				sans: ["Inter", ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
