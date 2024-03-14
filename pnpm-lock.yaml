@@ -236,6 +236,9 @@ importers:
       recharts:
         specifier: '2'
         version: 2.12.2(react-dom@18.2.0)(react@18.2.0)
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@tanstack/eslint-plugin-query':
         specifier: ^5.20.1
@@ -10528,4 +10531,3 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: true

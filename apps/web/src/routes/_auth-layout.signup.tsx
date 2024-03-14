@@ -1,106 +1,100 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import googleIcon from "../assets/icons8-google-96.png";
-import facebookIcon from "../assets/icons8-facebook-96.png";
+import SocialSignins from "@/components/social-signins";
+import { z } from "zod";
+import { useForm, zodResolver } from "@mantine/form";
 import {
-	Input,
 	PasswordInput,
 	Text,
 	Stack,
 	Button,
-	Title,
-	Divider,
-	Flex,
+	Container,
+	rem,
 	Center,
+	Paper,
+	Group,
+	Anchor,
+	TextInput,
 } from "@mantine/core";
 
-export const Route = createFileRoute("/_auth-layout/signup")({
-	component: () => {
-		return (
-			<Center className='flex-1'>
-				<Stack gap='md' maw={400} w='100%'>
-					<Title order={2} ta='center'>
-						Sign Up to Barlink
-					</Title>
-					<Flex direction='row' gap='xs' justify={{ sm: "center" }}>
-						<Button
-							fullWidth
-							size='md'
-							leftSection={
-								<img
-									src={googleIcon}
-									width={24}
-									height={24}
-									className='object-contain object-center'
-								/>
-							}
-							variant='outline'>
-							Sign in with Google
-						</Button>
-						<Button
-							fullWidth
-							size='md'
-							leftSection={
-								<img
-									src={facebookIcon}
-									width={24}
-									height={24}
-									className='object-contain object-center'
-								/>
-							}
-							variant='outline'>
-							Sign in with Facebook
-						</Button>
-					</Flex>
-					<Divider size={"sm"} label='OR' labelPosition='center' />
-					<form
-						onSubmit={(e) => {
-							e.preventDefault();
-						}}>
-						<Stack gap='sm'>
-							<Flex direction='row' gap={"sm"}>
-								<Input.Wrapper label='First Name' required error='' size='sm'>
-									<Input size='md' placeholder='Name' name='first_name' id='first_name' />
-								</Input.Wrapper>
-								<Input.Wrapper label='Last Name' required error='' size='sm'>
-									<Input size='md' placeholder='Last name' name='last_name' id='last_name' />
-								</Input.Wrapper>
-							</Flex>
-							<Input.Wrapper label='Email address' required error='' size='sm'>
-								<Input
-									size='md'
-									placeholder='email@address.com'
-									name='email'
-									type='email'
-									id='email'
-								/>
-							</Input.Wrapper>
-							<Input.Wrapper label='Password' required error='' size='sm'>
-								<PasswordInput size='md' placeholder='************' name='password' id='password' />
-							</Input.Wrapper>
-							<Input.Wrapper label='Confirm Password' required error='' size='sm'>
-								<PasswordInput
-									size='md'
-									placeholder='************'
-									name='confirm_password'
-									id='confirm_password'
-								/>
-							</Input.Wrapper>
-							<Input.Wrapper label='field' hidden>
-								<Input name='giggle' id='giggle' />
-							</Input.Wrapper>
-							<Button type='submit' size='md'>
-								Submit
-							</Button>
-						</Stack>
-					</form>
-					<Text size='sm'>
-						Already have an account?{" "}
-						<Link to='/login' className='font-medium'>
-							Log In
-						</Link>
-					</Text>
-				</Stack>
-			</Center>
-		);
-	},
+const schema = z.object({
+	name: z.string().min(4, { message: "Name's too short" }),
+	email: z.string().email("Invalid email"),
+	password: z
+		.string()
+		.min(8, { message: "Password is too short" })
+		.max(20, { message: "Password too long" }),
+	confirmPassword: z.string(),
 });
+export const Route = createFileRoute("/_auth-layout/signup")({
+	component: SignUP,
+});
+
+function SignUP() {
+	const form = useForm({
+		initialValues: { email: "", password: "", confirmPassword: "", name: "" },
+		validate: zodResolver(schema),
+	});
+	return (
+		<Center className='flex-1'>
+			<Container style={{ maxWidth: rem(430), width: "100%" }}>
+				<Text size='lg' ta='center' fw={600}>
+					Sign Up to Barlink
+				</Text>
+				<SocialSignins />
+				<Paper withBorder shadow='md' p='md' radius='md'>
+					<form onSubmit={form.onSubmit(() => {})}>
+						<Stack gap='md'>
+							<TextInput
+								required
+								label='Name'
+								placeholder='Name'
+								value={form.values.name}
+								onChange={(event) => form.setFieldValue("name", event.target.value)}
+								error={form.errors.name && form.errors.name}
+							/>
+
+							<TextInput
+								required
+								label='Email'
+								placeholder='email@address.domain'
+								value={form.values.email}
+								onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
+								error={form.errors.email && form.errors.email}
+							/>
+
+							<PasswordInput
+								required
+								label='Password'
+								placeholder='********'
+								value={form.values.password}
+								onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
+								error={form.errors.password && form.errors.password}
+							/>
+
+							<PasswordInput
+								required
+								label='Confirm password'
+								placeholder='********'
+								value={form.values.confirmPassword}
+								onChange={(event) =>
+									form.setFieldValue("confirmPassword", event.currentTarget.value)
+								}
+								error={form.errors.confirmPassword && form.errors.confirmPassword}
+							/>
+						</Stack>
+
+						<Group justify='space-between' mt='xl'>
+							<Link to='/login'>
+								<Anchor component='button' c={"dimmed"} size='xs'>
+									Already have an account? Login
+								</Anchor>
+							</Link>
+
+							<Button type='submit'>Register</Button>
+						</Group>
+					</form>
+				</Paper>
+			</Container>
+		</Center>
+	);
+}
