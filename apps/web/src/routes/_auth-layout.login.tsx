@@ -37,6 +37,14 @@ function Login() {
 				<Text size='xl' ta='center' fw={600}>
 					Welcome to Mantine, login with
 				</Text>
+				<Text c='dimmed' size='sm' ta='center' mt={5}>
+					Do not have an account yet?{" "}
+					<Link to='/signup'>
+						<Anchor size='sm' component='button'>
+							Create account
+						</Anchor>
+					</Link>
+				</Text>
 				<SocialSignins />
 
 				<Paper withBorder shadow='md' p='md' mt={30} radius='md'>
@@ -62,11 +70,12 @@ function Login() {
 						</Stack>
 
 						<Group justify='space-between' mt='xl'>
-							<Link to='/signup'>
-								<Anchor component='button' type='button' c='dimmed' size='xs'>
-									Don't have an account? Register
+							<Link to='/forget-password'>
+								<Anchor component='button' size='sm'>
+									Forgot password?
 								</Anchor>
 							</Link>
+
 							<Button type='submit'>Login</Button>
 						</Group>
 					</form>
