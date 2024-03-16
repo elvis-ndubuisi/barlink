@@ -4,8 +4,7 @@ import BaseHeader from "@/components/base-header";
 import BaseFooter from "@/components/base-footer";
 import Features from "@/components/feature";
 import UseCase from "@/components/use-case";
-import APIBanner from "@/components/api-banner";
-import { GradientDownBackground, DotsBackground } from "@/components/background-snippets";
+import { GradientDownBackground } from "@/components/background-snippets";
 
 export const Route = createFileRoute("/")({
 	component: () => {
@@ -42,18 +41,19 @@ export const Route = createFileRoute("/")({
 						</Container>
 
 						<div className='items-enter my-4 flex flex-col justify-center gap-4 md:flex-row'>
-							<Button size='md' variant='default' color='gray' radius='xl'>
-								<Link to='/generate'>Generate QRCode</Link>
-							</Button>
-							<Button size='md' radius='xl'>
-								<Link to='/signup'>Start Using API now</Link>
-							</Button>
+							<Link to='/generate'>
+								<Button size='md' variant='outline' color='gray'>
+									Generate QRCode
+								</Button>
+							</Link>
+							<Link to='/signup'>
+								<Button size='md'>Start Using API now</Button>
+							</Link>
 						</div>
 					</section>
 				</Container>
 				<Features />
 				<UseCase />
-				<APIBanner />
 				<BaseFooter />
 			</>
 		);

@@ -60,7 +60,7 @@ export default function Features() {
 	));
 	return (
 		<section className='mx-auto max-w-screen-xl p-3'>
-			<Grid gutter={80} align='center'>
+			<Grid gutter={80} align='start'>
 				<Grid.Col span={{ base: 12, md: 5 }}>
 					<Title>Powerful QR Codes, Easy Integration</Title>
 					<Text c='dimmed' my='md'>

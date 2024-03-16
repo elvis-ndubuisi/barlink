@@ -28,18 +28,23 @@ export function GoogleIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 	);
 }
 
-export function FacebookIcon(props: React.ComponentPropsWithoutRef<"svg">) {
+export function FacebookIcon(props: React.ComponentProps<"svg">) {
 	return (
 		<svg
+			aria-hidden='true'
+			focusable='false'
+			data-prefix='fab'
+			data-icon='facebook'
+			className='svg-inline--fa fa-facebook'
+			role='img'
 			xmlns='http://www.w3.org/2000/svg'
-			style={{ width: "1.3rem", height: "1.3rem" }}
-			fill='none'
-			viewBox='0 0 92 92'
+			viewBox='0 0 512 512'
+			style={{ width: "0.9rem", height: "0.9rem" }}
 			{...props}>
-			<rect width='91.562' height='91.562' fill='#337fff' rx='45.781'></rect>
 			<path
-				fill='#fff'
-				d='M56.983 48.761l1.305-8.289H50.25v-5.387c0-2.267 1.122-4.481 4.71-4.481h3.705v-7.059a44.902 44.902 0 00-6.523-.557c-6.614 0-10.932 3.976-10.932 11.164v6.32h-7.332v8.29h7.332V68.81h9.04V48.76z'></path>
+				fill='currentColor'
+				d='M504 256C504 119 393 8 256 8S8 119 8 256c0 123.8 90.69 226.4 209.3 245V327.7h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.3 482.4 504 379.8 504 256z'
+			/>
 		</svg>
 	);
 }
