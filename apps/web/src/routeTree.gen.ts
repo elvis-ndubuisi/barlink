@@ -19,6 +19,7 @@ import { Route as ContactImport } from "./routes/contact";
 import { Route as AuthImport } from "./routes/auth";
 import { Route as AuthLayoutImport } from "./routes/_auth-layout";
 import { Route as IndexImport } from "./routes/index";
+import { Route as GenerateStepImport } from "./routes/generate.$step";
 import { Route as AuthLayoutSignupImport } from "./routes/_auth-layout.signup";
 import { Route as AuthLayoutLoginImport } from "./routes/_auth-layout.login";
 import { Route as AuthLayoutForgetPasswordImport } from "./routes/_auth-layout.forget-password";
@@ -94,6 +95,11 @@ const AuthLayoutRoute = AuthLayoutImport.update({
 const IndexRoute = IndexImport.update({
 	path: "/",
 	getParentRoute: () => rootRoute,
+} as any);
+
+const GenerateStepRoute = GenerateStepImport.update({
+	path: "/$step",
+	getParentRoute: () => GenerateRoute,
 } as any);
 
 const AuthLayoutSignupRoute = AuthLayoutSignupImport.update({
@@ -185,6 +191,10 @@ declare module "@tanstack/react-router" {
 			preLoaderRoute: typeof AuthLayoutSignupImport;
 			parentRoute: typeof AuthLayoutImport;
 		};
+		"/generate/$step": {
+			preLoaderRoute: typeof GenerateStepImport;
+			parentRoute: typeof GenerateImport;
+		};
 		"/_dashboard/account/": {
 			preLoaderRoute: typeof DashboardAccountIndexImport;
 			parentRoute: typeof rootRoute;
@@ -207,7 +217,7 @@ export const routeTree = rootRoute.addChildren([
 	]),
 	AuthRoute,
 	ContactRoute,
-	GenerateRoute,
+	GenerateRoute.addChildren([GenerateStepRoute]),
 	ShortenRoute,
 	AboutLazyRoute,
 	FaqsLazyRoute,
