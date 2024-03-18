@@ -19,10 +19,10 @@
 			"persistent": true
 		},
 		"db:generate": {
-			"cache": false
-		},
-		"db:push": {
-			"cache": false
-		}
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    }
 	}
 }

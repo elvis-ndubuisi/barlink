@@ -1,33 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { CreateAuthDto, UpdateAuthDto } from "./dto";
+import { PrismaService } from "src/prisma/prisma.service";
+import { AuthDto } from "./dto";
 
 @Controller("auth")
 export class AuthController {
-	constructor(private readonly authService: AuthService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private prisma: PrismaService,
+	) {}
 
-	@Post()
-	create(@Body() createAuthDto: CreateAuthDto) {
-		return this.authService.create(createAuthDto);
+	@Post("/credentials/login")
+	loginWithCredentials(dto: AuthDto) {
+		return "hello";
 	}
 
-	@Get()
-	findAll() {
-		return this.authService.findAll();
+	@Post("/credentials/signup")
+	signupWithCredentials() {
+		return "hello";
 	}
 
-	@Get(":id")
-	findOne(@Param("id") id: string) {
-		return this.authService.findOne(+id);
+	@Post("/google")
+	signupWithGoogle() {
+		return "hello";
 	}
 
-	@Patch(":id")
-	update(@Param("id") id: string, @Body() updateAuthDto: UpdateAuthDto) {
-		return this.authService.update(+id, updateAuthDto);
+	@Post("/facebook")
+	signupWithFacebook() {
+		return "hello";
 	}
 
-	@Delete(":id")
-	remove(@Param("id") id: string) {
-		return this.authService.remove(+id);
+	@Post("/log-out")
+	logOut() {
+		return "hello";
+	}
+
+	@Post("/refresh")
+	refreshToken() {
+		return "hello";
 	}
 }
