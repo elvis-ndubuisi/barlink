@@ -1,5 +1,6 @@
 import { Tabs, Button, Group } from "@mantine/core";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import * as Widget from "@/components/qrcode-widgets";
 
 export const Route = createFileRoute("/generate/$step")({
 	component: GenerateStep,
@@ -10,9 +11,11 @@ function GenerateStep() {
 	const navigate = useNavigate();
 	return (
 		<Tabs.Panel value={params?.step}>
-			{parseInt(params?.step) === 1 && <section>page 1</section>}
-			{parseInt(params?.step) === 2 && <div>page 2</div>}
-			{parseInt(params?.step) === 3 && <section>page 3</section>}
+			{parseInt(params?.step) === 1 && <Widget.QRCodetype />}
+			{parseInt(params?.step) === 2 && <Widget.QRCodeCustomize />}
+			{parseInt(params?.step) === 3 && <Widget.QRCodeLogo />}
+			{parseInt(params?.step) === 4 && <Widget.QRCodeTemplate />}
+
 			<Group justify='space-between' mt={"sm"}>
 				<Button
 					disabled={parseInt(params?.step) == 1}
@@ -25,7 +28,7 @@ function GenerateStep() {
 					Back
 				</Button>
 				<Button
-					disabled={parseInt(params?.step) == 3}
+					disabled={parseInt(params?.step) == 4}
 					onClick={() =>
 						navigate({
 							to: "/generate/$step",

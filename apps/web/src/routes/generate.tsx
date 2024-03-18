@@ -1,15 +1,19 @@
 import { createFileRoute, Outlet, useNavigate, useParams } from "@tanstack/react-router";
 import BaseHeader from "@/components/base-header";
 import BaseFooter from "@/components/base-footer";
-import { Title, Text, Paper, Grid, Container, Tabs } from "@mantine/core";
+import React from "react";
+import { Title, Text, Paper, Grid, Container, Tabs, ScrollArea, Flex } from "@mantine/core";
+
+const qrcode_type = ["URl", "Web", "VCard"];
 
 export const Route = createFileRoute("/generate")({
 	component: Generate,
 });
 
 function Generate() {
+	const typeViewport = React.useRef<HTMLDivElement>(null);
 	const navigate = useNavigate({ from: "/generate/$step" });
-	const { step } = useParams({ strict: false });
+	const { step } = useParams({ strict: false }) as { step: string };
 
 	return (
 		<>
@@ -22,6 +26,17 @@ function Generate() {
 
 				<Container>
 					<Grid>
+						<Grid.Col span={{ base: 12 }}>
+							<ScrollArea type='hover' viewportRef={typeViewport}>
+								<Paper withBorder p='sm'>
+									<Flex gap='md'>
+										{qrcode_type.map((t) => (
+											<Text key={t}>{t}</Text>
+										))}
+									</Flex>
+								</Paper>
+							</ScrollArea>
+						</Grid.Col>
 						<Grid.Col span={{ base: 12, xs: 9 }}>
 							<Paper p='0.4rem' withBorder>
 								<Tabs
@@ -30,9 +45,10 @@ function Generate() {
 										navigate({ to: "/generate/$step", params: { step: value } })
 									}>
 									<Tabs.List>
-										<Tabs.Tab value='1'>Gallery</Tabs.Tab>
+										<Tabs.Tab value='1'>QRCode Type</Tabs.Tab>
 										<Tabs.Tab value='2'>Customize</Tabs.Tab>
-										<Tabs.Tab value='3'>Settings</Tabs.Tab>
+										<Tabs.Tab value='3'>Logo</Tabs.Tab>
+										<Tabs.Tab value='4'>Templates</Tabs.Tab>
 									</Tabs.List>
 
 									<Outlet />

@@ -44,7 +44,7 @@ export default function BaseHeader() {
 							key={link.label}
 							className='rounded-[--mantine-radius-sm] px-1.5 py-0.5 hover:text-[--mantine-color-brand-6]'
 							activeProps={{
-								className: "bg-[--mantine-color-brand-8] text-white hover:text-white",
+								className: "bg-[--mantine-color-brand-6] text-white hover:text-white",
 							}}>
 							{link.label}
 						</Link>
