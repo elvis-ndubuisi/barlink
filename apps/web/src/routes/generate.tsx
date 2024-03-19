@@ -45,10 +45,10 @@ function Generate() {
 										navigate({ to: "/generate/$step", params: { step: value } })
 									}>
 									<Tabs.List>
-										<Tabs.Tab value='1'>QRCode Type</Tabs.Tab>
-										<Tabs.Tab value='2'>Customize</Tabs.Tab>
-										<Tabs.Tab value='3'>Logo</Tabs.Tab>
-										<Tabs.Tab value='4'>Templates</Tabs.Tab>
+										<Tabs.Tab value='type'>QRCode Type</Tabs.Tab>
+										<Tabs.Tab value='customize'>Customize</Tabs.Tab>
+										<Tabs.Tab value='logo'>Logo</Tabs.Tab>
+										<Tabs.Tab value='template'>Templates</Tabs.Tab>
 									</Tabs.List>
 
 									<Outlet />

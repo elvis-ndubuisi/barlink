@@ -11,10 +11,10 @@ function GenerateStep() {
 	const navigate = useNavigate();
 	return (
 		<Tabs.Panel value={params?.step}>
-			{parseInt(params?.step) === 1 && <Widget.QRCodetype />}
-			{parseInt(params?.step) === 2 && <Widget.QRCodeCustomize />}
-			{parseInt(params?.step) === 3 && <Widget.QRCodeLogo />}
-			{parseInt(params?.step) === 4 && <Widget.QRCodeTemplate />}
+			{params?.step === "type" && <Widget.QRCodetype />}
+			{params?.step === "customize" && <Widget.QRCodeCustomize />}
+			{params?.step === "logo" && <Widget.QRCodeLogo />}
+			{params?.step === "template" && <Widget.QRCodeTemplate />}
 
 			<Group justify='space-between' mt={"sm"}>
 				<Button

@@ -41,7 +41,7 @@ export const Route = createFileRoute("/")({
 						</Container>
 
 						<div className='items-enter my-4 flex flex-col justify-center gap-4 md:flex-row'>
-							<Link to='/generate'>
+							<Link to='/generate' params={{ step: "type" }}>
 								<Button size='md' variant='outline' color='gray'>
 									Generate QRCode
 								</Button>
