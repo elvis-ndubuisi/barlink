@@ -18,9 +18,9 @@ model User {
   email     String   @unique
   password  String
   name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  qrcodes    QRCode[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  qrcodes   QRCode[]
 
   @@map("users")
 }
@@ -30,11 +30,11 @@ model QRCode {
   userId      String   @db.ObjectId
   name        String?
   link        String? // coult be a url or text content
-  contentType String? // eg.website vcard
+  contentType String?  @map("content_type") // eg.website vcard
   dynamic     Boolean  @default(false)
   data        String? // for dynamic content
   password    String?
-  designData  Json? // Optional for storing design customizations
+  designData  Json?    @map("design_data") // Optional for storing design customizations
   scanCount   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
