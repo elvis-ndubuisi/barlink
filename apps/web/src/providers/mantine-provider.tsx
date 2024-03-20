@@ -5,7 +5,7 @@ import { theme } from "@/utils/theme";
 
 export default function MantineProvider({ children }: Readonly<PropsWithChildren>) {
 	return (
-		<Provider defaultColorScheme='auto' theme={theme}>
+		<Provider defaultColorScheme='light' theme={theme}>
 			{children}
 		</Provider>
 	);

@@ -66,13 +66,13 @@ export default function BaseFooter() {
 				</Text>
 
 				<Group gap={0} className={classes.social} justify='flex-end' wrap='nowrap'>
-					<ActionIcon size='lg' color='gray' variant='subtle'>
+					<ActionIcon size='lg' variant='subtle'>
 						<IconBrandTwitter style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 					</ActionIcon>
-					<ActionIcon size='lg' color='gray' variant='subtle'>
+					<ActionIcon size='lg' variant='subtle'>
 						<IconBrandYoutube style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 					</ActionIcon>
-					<ActionIcon size='lg' color='gray' variant='subtle'>
+					<ActionIcon size='lg' variant='subtle'>
 						<IconBrandInstagram style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 					</ActionIcon>
 				</Group>
