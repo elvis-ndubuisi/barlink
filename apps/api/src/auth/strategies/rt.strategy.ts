@@ -3,14 +3,20 @@ import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { Request } from "express";
 import { ExtractJwt, Strategy } from "passport-jwt";
+import { AuthService } from "../auth.service";
 
 @Injectable()
 export class RtStrategy extends PassportStrategy(Strategy, "refresh-jwt") {
-	constructor(private readonly configService: ConfigService) {
+	constructor(
+		private readonly configService: ConfigService,
+		private authService: AuthService,
+	) {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: false,
-			secretOrKey: configService.get<string>("REFRESH_PUBLIC_KEY"),
+			secretOrKey: Buffer.from(configService.get<string>("REFRESH_PUBLIC_KEY"), "base64").toString(
+				"ascii",
+			),
 			passReqToCallback: true,
 		});
 	}

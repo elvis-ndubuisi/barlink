@@ -1,8 +1,8 @@
 import {
-	BadRequestException,
-	ForbiddenException,
 	Injectable,
 	InternalServerErrorException,
+	NotFoundException,
+	UnauthorizedException,
 } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { AuthDto } from "./dto";
@@ -22,9 +22,9 @@ export class AuthService {
 	async loginWithCredentials(dto: AuthDto): Promise<Tokens> {
 		const user = await this.prismaService.user.findUnique({ where: { email: dto.email } });
 
-		if (!user) throw new BadRequestException("User not found");
+		if (!user) throw new NotFoundException("User not found");
 		const passwordMatches = await argon.verify(user.password, dto.password);
-		if (!passwordMatches) throw new ForbiddenException("Incorrect credentials");
+		if (!passwordMatches) throw new UnauthorizedException("Incorrect credentials");
 
 		const tokens = await this.signTokens(user.id, user.email);
 		await this.updateRtHash(user.id, tokens.refresh_token);
@@ -77,7 +77,7 @@ export class AuthService {
 					identity,
 				},
 				{
-					expiresIn: "60s",
+					// expiresIn: "60s",
 					algorithm: "RS256",
 					secret: accessPrivateKey,
 				},
@@ -88,7 +88,7 @@ export class AuthService {
 					identity,
 				},
 				{
-					expiresIn: "7d",
+					// expiresIn: "7d",
 					algorithm: "RS256",
 					secret: refreshPrivateKey,
 				},

@@ -4,14 +4,16 @@ import { AuthController } from "./auth.controller";
 import { ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { AtStrategy, RtStrategy } from "./strategies";
+import { PassportModule } from "@nestjs/passport";
 @Module({
 	imports: [
+		PassportModule,
 		JwtModule.registerAsync({
 			inject: [ConfigService],
 			useFactory: async (configService: ConfigService) => ({
 				privateKey: configService.get<string>("ACCESS_PRIVATE_KEY"),
 				publicKey: configService.get<string>("ACCESS_PUBLIC_KEY"),
-				signOptions: { expiresIn: "60S", algorithm: "RS256" },
+				signOptions: { expiresIn: "5m", algorithm: "RS256" },
 			}),
 		}),
 		JwtModule.registerAsync({

@@ -3,10 +3,12 @@ import { Strategy, ExtractJwt } from "passport-jwt";
 import { ConfigService } from "@nestjs/config";
 import { Injectable } from "@nestjs/common";
 
-// type JwtPayload = {
-// 	sub: string;
-// 	identity: string;
-// };
+type JwtPayload = {
+	sub: string;
+	identity: string;
+	iat: number;
+	exp: number;
+};
 
 @Injectable()
 export class AtStrategy extends PassportStrategy(Strategy, "jwt") {
@@ -14,11 +16,13 @@ export class AtStrategy extends PassportStrategy(Strategy, "jwt") {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: false,
-			secretOrKey: configService.get<string>("ACCESS_PUBLIC_KEY"),
+			secretOrKey: Buffer.from(configService.get<string>("ACCESS_PUBLIC_KEY"), "base64").toString(
+				"ascii",
+			),
 		});
 	}
 
-	async validate(payload: any) {
+	async validate(payload: JwtPayload) {
 		return payload;
 	}
 }

@@ -1,6 +1,8 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
+import { AuthGuard } from "@nestjs/passport";
+import { Request } from "express";
 
 @Controller("auth")
 export class AuthController {
@@ -21,22 +23,25 @@ export class AuthController {
 	@HttpCode(HttpStatus.OK)
 	@Post("/google")
 	signupWithGoogle() {
-		return this.signupWithGoogle();
+		return this.authService.signupWithGoogle();
 	}
 
 	@HttpCode(HttpStatus.OK)
 	@Post("/facebook")
 	signupWithFacebook() {
-		return this.signupWithFacebook();
+		return this.authService.signupWithFacebook();
 	}
 
+	@UseGuards(AuthGuard("jwt"))
+	@HttpCode(HttpStatus.OK)
 	@Post("/logout")
-	logOut() {
-		return this.logOut();
+	logOut(@Req() req: Request) {
+		return this.authService.logOut(req.user["sub"]);
 	}
 
+	@UseGuards(AuthGuard("refresh-jwt"))
 	@Post("/refresh")
 	refreshToken() {
-		return this.refreshToken();
+		return this.authService.refreshToken();
 	}
 }
