@@ -1,42 +1,42 @@
-import { Controller, Post } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { PrismaService } from "src/prisma/prisma.service";
 import { AuthDto } from "./dto";
 
 @Controller("auth")
 export class AuthController {
-	constructor(
-		private readonly authService: AuthService,
-		private prisma: PrismaService,
-	) {}
+	constructor(private readonly authService: AuthService) {}
 
+	@HttpCode(HttpStatus.OK)
 	@Post("/credentials/login")
-	loginWithCredentials(dto: AuthDto) {
-		return "hello";
+	loginWithCredentials(@Body() dto: AuthDto) {
+		return this.authService.loginWithCredentials(dto);
 	}
 
+	@HttpCode(HttpStatus.CREATED)
 	@Post("/credentials/signup")
-	signupWithCredentials() {
-		return "hello";
+	signupWithCredentials(@Body() dto: AuthDto) {
+		return this.authService.signupWithCredentials(dto);
 	}
 
+	@HttpCode(HttpStatus.OK)
 	@Post("/google")
 	signupWithGoogle() {
-		return "hello";
+		return this.signupWithGoogle();
 	}
 
+	@HttpCode(HttpStatus.OK)
 	@Post("/facebook")
 	signupWithFacebook() {
-		return "hello";
+		return this.signupWithFacebook();
 	}
 
-	@Post("/log-out")
+	@Post("/logout")
 	logOut() {
-		return "hello";
+		return this.logOut();
 	}
 
 	@Post("/refresh")
 	refreshToken() {
-		return "hello";
+		return this.refreshToken();
 	}
 }
