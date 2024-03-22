@@ -1,0 +1,20 @@
+{
+	"name": "@package/qrcode-node",
+	"version": "0.0.0",
+	"description": "Customizable QRCode generator",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"dev": "tsup --watch",
+		"lint": "eslint . --max-warnings 0"
+	},
+	"author": "",
+	"devDependencies": {
+		"@tooling/eslint-config": "workspace:*",
+		"@tooling/typescript-config": "workspace:*",
+		"@types/eslint": "^8.56.1",
+		"eslint": "^8.57.0",
+		"tsup": "^8.0.2",
+		"typescript": "^5.4.3"
+	}
+}
