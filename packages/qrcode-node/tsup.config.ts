@@ -8,4 +8,7 @@ export default defineConfig({
 	sourcemap: true,
 	dts: true,
 	metafile: true,
+	format: ["cjs", "esm"],
+	shims: true,
+	skipNodeModulesBundle: true,
 });

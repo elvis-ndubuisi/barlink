@@ -63,7 +63,7 @@ export class AuthService {
 		});
 	}
 
-	refreshToken() {
+	refreshToken(userId: string, rt: string) {
 		return "";
 	}
 

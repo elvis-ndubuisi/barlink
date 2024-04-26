@@ -23,7 +23,7 @@
 		"@tanstack/react-router": "^1.16.0",
 		"@tanstack/router-devtools": "^1.16.0",
 		"clsx": "^2.1.0",
-		"embla-carousel-react": "^8.0.0",
+		"embla-carousel-react": "^7.1.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"recharts": "2",
