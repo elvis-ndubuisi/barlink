@@ -64,6 +64,7 @@ export class AuthService {
 	}
 
 	refreshToken(userId: string, rt: string) {
+		console.log(userId, rt);
 		return "";
 	}
 

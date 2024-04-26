@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "tsup --watch",
 		"start": "node dist/index.js",
-		"lint": "eslint . --max-warnings 0"
+		"lint": "eslint . --fix --max-warnings 0"
 	},
 	"author": "",
 	"devDependencies": {
@@ -20,6 +20,7 @@
 		"typescript": "^5.4.3"
 	},
 	"dependencies": {
+		"jimp": "^0.22.12",
 		"qrcode": "^1.5.3"
 	}
 }

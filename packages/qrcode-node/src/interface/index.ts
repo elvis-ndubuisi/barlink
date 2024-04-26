@@ -22,6 +22,38 @@ export interface QRCodeData {
 	metadata?: Record<string, any>;
 }
 
+export interface QRCodeEyeCustomization {
+	color?: string;
+	radius?: number;
+	logo?: Buffer;
+}
+
+export interface QRCodeCustomizationOptions {
+	logo?: Buffer;
+	logoPosition?: {
+		x: number;
+		y: number;
+	};
+	backgroundColor?: string;
+	backgroundImage?: Buffer;
+	eyes?: {
+		topLeft?: QRCodeEyeCustomization;
+		topRight?: QRCodeEyeCustomization;
+		bottomLeft?: QRCodeEyeCustomization;
+	};
+}
+
+// export interface QRCodeCustomizationOptions {
+// 	logo?: Buffer;
+// 	logoPosition?: {
+// 		x: number;
+// 		y: number;
+// 	};
+// 	eyeColor?: string;
+// 	backgroundColor?: string;
+// 	backgroundImage?: Buffer;
+// }
+
 // Example usage
 const urlQRCodeData: QRCodeData = {
 	type: QRCodeDataType.URL,
@@ -89,7 +121,7 @@ const googlePlayQRCodeData: QRCodeData = {
 	},
 };
 
-const appStoreQRCodeData: QRCodeData = {
+export const appStoreQRCodeData: QRCodeData = {
 	type: QRCodeDataType.APP_STORE,
 	content: "itms-apps://apps.apple.com/app/id1234567890", // URI for App Store app
 	metadata: {
@@ -97,7 +129,7 @@ const appStoreQRCodeData: QRCodeData = {
 	},
 };
 
-const eventQRCodeData: QRCodeData = {
+export const eventQRCodeData: QRCodeData = {
 	type: QRCodeDataType.EVENT,
 	content: "", // Not directly used (library specific format)
 	metadata: {
@@ -109,7 +141,7 @@ const eventQRCodeData: QRCodeData = {
 	},
 };
 
-const cryptoQRCodeData: QRCodeData = {
+export const cryptoQRCodeData: QRCodeData = {
 	type: QRCodeDataType.CRYPTO,
 	content: "", // Not directly used (library specific format)
 	metadata: {
@@ -119,7 +151,7 @@ const cryptoQRCodeData: QRCodeData = {
 	},
 };
 
-const mecardQRCodeData: QRCodeData = {
+export const mecardQRCodeData: QRCodeData = {
 	type: QRCodeDataType.MECARD,
 	content: "MECARD:N:John Doe;TEL:1234567890;EMAIL:john.doe@example.com;FN:John Doe", // MECARD formatted string
 	metadata: {

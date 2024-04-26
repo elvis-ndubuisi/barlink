@@ -39,3 +39,11 @@ export function encodeQRCodeData(data: QRCodeData): string {
 // };
 // const encodedWifi = encodeQRCodeData(wifiData);
 // console.log(encodedWifi); // Output: WIFI:S:MyWifi;T:WPA;P:SuperSecurePassword
+
+// const vCardQRCodeData = {
+//   type: QRCodeDataType.VCARD,
+//   content: 'N:Doe;John;;;\\nFN:John Doe\\nEMAIL;TYPE=INTERNET:john.doe@example.com',
+//   metadata: {
+//     version: '3.0',
+//   },
+// };
