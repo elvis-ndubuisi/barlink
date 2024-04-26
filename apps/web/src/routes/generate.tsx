@@ -116,6 +116,7 @@ function Generate() {
 								<Tabs
 									value={step}
 									onChange={(value) =>
+										// @ts-ignore
 										navigate({ to: "/generate/$step", params: { step: value } })
 									}>
 									<Tabs.List>
